@@ -12,7 +12,7 @@ import lyons.entity.Goods;
 import lyons.entity.Gsales;
 import lyons.tools.ScannerChoice;
 
-public class GoodsDao 
+public final class GoodsDao 
 {
 		 Connection        conn  = null;
 		 PreparedStatement pstmt = null;
@@ -20,8 +20,6 @@ public class GoodsDao
 	
 	/*
 	 * 1.添加商品到数据库-功能实现 已实现！
-	 * 
-	 * 设计书存在安全隐患-用户无法输入空格或者且指定长度太短？
 	 */
 	public boolean addGoods(Goods goods)
 	{
@@ -163,98 +161,102 @@ public class GoodsDao
 	 * 函数解释：在上一级菜单GoodsPage.queryGoodsPage()中接收用户选择的查询方式
 	 *			当做此函数的参数。用参数的来作为if-else的条件选择执行的语句！
 	 */
-	public ArrayList<Goods> queryGoods(int key) //获取用户查询的选择来确定用哪一个sql,避免代码冗杂!也可以用内部类实现
-	{											//代码还是太冗杂，想办法把try-catch成立一个函数，调用它
-		ArrayList<Goods> goodsList = new ArrayList<Goods>();
-		conn = DbConn.getconn();	
-		
-		if (key == 1)			//4.1商品 数量 升序查询-功能实现   其实用case更好！
-		{
-			String sql = "select * from goods order by gnum asc";
-				try
-				{
-					pstmt = conn.prepareStatement(sql);
-					rs = pstmt.executeQuery();
-					while (rs.next())
-					{
-						int gid = rs.getInt("gid");
-						String gname = rs.getString(2);
-						int gprice = rs.getInt(3);
-						int gnum = rs.getInt(4);
-						
-						Goods goods = new Goods(gid,gname,gprice,gnum);
-						goodsList.add(goods);
-					}
-				} catch (SQLException e)
-				{
-					e.printStackTrace();
-				}finally
-						{
-							DbClose.queryClose(pstmt, rs, conn);
-						}
-		}else if (key == 2){
-					 	//4.2商品 价格 升序查询-功能实现
-					String sql = "select * from goods order by gprice asc";
-					try
-					{
-						pstmt = conn.prepareStatement(sql);
-						rs = pstmt.executeQuery();
-						while (rs.next())
-						{
-							int gid = rs.getInt("gid");
-							String gname = rs.getString(2);
-							int gprice = rs.getInt(3);
-							int gnum = rs.getInt(4);
-							
-							Goods goods = new Goods(gid,gname,gprice,gnum);
-							goodsList.add(goods);
-						}
-					} catch (SQLException e)
-					{
-						e.printStackTrace();
-					}finally
-							{
-								DbClose.queryClose(pstmt, rs, conn);
-							}
-				}else {				
-							//4.3商品 关键字 查询商品-功能实现0
-							String nameGet = ScannerChoice.ScannerInfoString();
-						
-							String gName = "%"+nameGet+"%";							//从用户处获取的字符串加上 % 符号，来达到模糊查询的目的
-							String sql = "SELECT * FROM GOODS WHERE GNAME LIKE ?";  //居然不能直接跟 % .只能用连接字符串的方式
-							   try
-							   {
-									pstmt = conn.prepareStatement(sql);
-									pstmt.setString(1, gName);
-									rs = pstmt.executeQuery();
-									while (rs.next())
-									{
-										int gid = rs.getInt("gid");
-										String gname = rs.getString(2);
-										int gprice = rs.getInt(3);
-										int gnum = rs.getInt(4);
-										
-										Goods goods = new Goods(gid,gname,gprice,gnum);
-										goodsList.add(goods);
-									}
-								} catch (SQLException e)
-								{
-									e.printStackTrace();
-								}finally
-										{
-											DbClose.queryClose(pstmt, rs, conn);
-										}
-						}
-		return goodsList;
-	}
+		public ArrayList<Goods> queryGoods(int key) //获取用户查询的选择来确定用哪一个sql,避免代码冗杂!也可以用内部类实现
+		{											//代码还是太冗杂，想办法把try-catch成立一个函数，调用它
+			ArrayList<Goods> goodsList = new ArrayList<Goods>();
+			conn = DbConn.getconn();	
 	
-
+			switch (key)
+			{
+				case 1:
+						//4.1商品 数量 升序查询-功能实现
+						String sqlGnum = "SELECT * FROM GOODS ORDER BY GNUM ASC";
+						try
+						{
+							pstmt = conn.prepareStatement(sqlGnum);
+							rs = pstmt.executeQuery();
+							while (rs.next())
+							{
+								int gid = rs.getInt("gid");
+								String gname = rs.getString(2);
+								double gprice = rs.getDouble(3);
+								int gnum = rs.getInt(4);
+								
+								Goods goods = new Goods(gid,gname,gprice,gnum);
+								goodsList.add(goods);
+							}
+						} catch (SQLException e)
+						{
+							e.printStackTrace();
+						}finally
+								{
+									DbClose.queryClose(pstmt, rs, conn);
+								}
+					break;
+				case 2:
+					 	//4.2商品 价格 升序查询-功能实现
+						String sqlGprice = "SELECT * FROM GOODS ORDER BY GPRICE ASC";
+						try
+						{
+							pstmt = conn.prepareStatement(sqlGprice);
+							rs = pstmt.executeQuery();
+							while (rs.next())
+							{
+								int gid = rs.getInt("gid");
+								String gname = rs.getString(2);
+								double gprice = rs.getDouble(3);
+								int gnum = rs.getInt(4);
+								
+								Goods goods = new Goods(gid,gname,gprice,gnum);
+								goodsList.add(goods);
+							}
+						} catch (SQLException e)
+						{
+							e.printStackTrace();
+						}finally
+								{
+									DbClose.queryClose(pstmt, rs, conn);
+								}
+					break;
+				default:
+						//4.3商品 关键字 查询商品-功能实现0
+						String nameGet = ScannerChoice.ScannerInfoString();
+					
+						String gName = "%"+nameGet+"%";							//从用户处获取的字符串加上 % 符号，来达到模糊查询的目的
+						String sqlGname = "SELECT * FROM GOODS WHERE GNAME LIKE ?";  //居然不能直接跟 % .只能用连接字符串的方式
+						   try
+						   {
+								pstmt = conn.prepareStatement(sqlGname);
+								pstmt.setString(1, gName);
+								rs = pstmt.executeQuery();
+								while (rs.next())
+								{
+									int gid = rs.getInt("gid");
+									String gname = rs.getString(2);
+									double gprice = rs.getDouble(3);
+									int gnum = rs.getInt(4);
+									
+									Goods goods = new Goods(gid,gname,gprice,gnum);
+									goodsList.add(goods);
+								}
+							} catch (SQLException e)
+							{
+								e.printStackTrace();
+							}finally
+									{
+										DbClose.queryClose(pstmt, rs, conn);
+									}
+					break;
+			}
+			return goodsList;
+		}
+	
 	/*
 	 * 5.显示所有商品-功能实现 已实现！
 	 */
 	public ArrayList<Goods> displayGoods()
 	{
-		ArrayList<Goods> goodsList = new ArrayList<Goods>(); //不懂
+		ArrayList<Goods> goodsList = new ArrayList<Goods>(); 
 		conn = DbConn.getconn();
 		String sql = "SELECT * FROM GOODS";
 		
@@ -321,7 +323,5 @@ public class GoodsDao
 			
 			return bool;
 		}
-	
-
-	
+		
 }

@@ -9,7 +9,7 @@ import java.sql.Connection;
  * @author 张磊
  *
  */
-public class DbConn
+public final class DbConn
 {
 	public static  Connection getconn()
 	{
@@ -23,7 +23,7 @@ public class DbConn
 		
 				try
 				{
-					Class.forName("oracle.jdbc.driver.OracleDriver");   //driver后面的点误输入成逗号，找bug浪费了5小时+，日！
+					Class.forName("oracle.jdbc.driver.OracleDriver"); 
 					conn = DriverManager.getConnection(url,user,passwd);
 				}catch (SQLException e)
 				{

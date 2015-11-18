@@ -14,7 +14,7 @@ import lyons.entity.Gsales;
  * 商品售卖情况
  * @author 张磊
  */
-public class GsalesDao
+public final class GsalesDao
 {
 	/*
 	 * 每日卖出商品列表
@@ -43,7 +43,7 @@ public class GsalesDao
 				while (rs.next())
 				{
 					String gName = rs.getString(1);
-					String gPrice = rs.getString(2);
+					double gPrice = rs.getDouble(2);
 					int gNum = rs.getInt(3);
 					int allSnum = rs.getInt("allSum");
 					
@@ -60,7 +60,5 @@ public class GsalesDao
 		return GsalesList;	//需要返回给调用者值:gid，各销售商品总和
 		
 	}
-
-
 
 }

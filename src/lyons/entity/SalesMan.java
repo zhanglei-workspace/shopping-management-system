@@ -1,6 +1,6 @@
 package lyons.entity;
 
-public class SalesMan
+public final class SalesMan
 {
 	private int sId;
 	private String sName;

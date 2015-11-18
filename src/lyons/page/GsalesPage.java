@@ -6,7 +6,7 @@ import lyons.dao.GsalesDao;
 import lyons.entity.Gsales;
 import lyons.tools.ScannerChoice;
 
-public class GsalesPage
+public final class GsalesPage
 {
 	/*
 	 * 每日卖出商品列表界面
@@ -32,10 +32,11 @@ public class GsalesPage
 					//获取售出商品：gname,gprice,gnum, allSum (各种商品的销售总和)
 					Gsales gSales = GsalesList.get(i);
 					System.out.print("\t"+gSales.getGName()+"\t\t"+gSales.getGPrice()+" $\t\t"+gSales.getGNum()+"\t\t"+gSales.getAllSnum());
-					if (gSales.getGNum()==0)
+					int gNUm = gSales.getGNum();
+					if (gNUm==0)
 					{
 						System.out.println("\t\t该商品已售空");
-					}else if (gSales.getGNum()<10)
+					}else if (gNUm<10)
 							{
 								System.out.println("\t\t该商品已不足10件");
 							}else {

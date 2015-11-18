@@ -4,7 +4,7 @@ package lyons.entity;
  * 重载构造函数-滿足各種操作需求
  * @author 张磊
  */
-public class Goods
+public final class Goods
 {
 	 	//数据库Goods表主鍵
 		private int gid;

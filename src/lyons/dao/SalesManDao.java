@@ -17,7 +17,7 @@ import lyons.entity.SalesMan;
  * @author ÕÅÀÚ
  *
  */
-public class SalesManDao
+public final class SalesManDao
 {
 	 Connection        conn  = null;
 	 PreparedStatement pstmt = null;

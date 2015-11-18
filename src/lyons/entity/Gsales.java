@@ -2,7 +2,7 @@ package lyons.entity;
 
 import java.sql.Date;
 
-public class Gsales
+public final class Gsales
 {
 	
 	private int gSid;
@@ -12,7 +12,7 @@ public class Gsales
 	private int sNum;
 	
 	private String gName; 
-	private String gPrice;
+	private double gPrice;
 	private int gNum;
 	private int allSnum; //各种商品销量总和
 	
@@ -34,7 +34,7 @@ public class Gsales
 	 * gName,gPrice,gNum,allSnum
 	 */
 
-	public Gsales(String gName,String gPrice,int gNum,int allSnum)
+	public Gsales(String gName,double gPrice,int gNum,int allSnum)
 	{
 		this.gName = gName;
 		this.gPrice = gPrice;
@@ -95,12 +95,12 @@ public class Gsales
 		gName = name;
 	}
 
-	public String getGPrice()
+	public double getGPrice()
 	{
 		return gPrice;
 	}
 
-	public void setGPrice(String price)
+	public void setGPrice(double price)
 	{
 		gPrice = price;
 	}

@@ -7,7 +7,7 @@ import lyons.entity.SalesMan;
 import lyons.tools.QueryPrint;
 import lyons.tools.ScannerChoice;
 
-public class SalesManPage
+public final class SalesManPage
 {
 	/*
 	 * 1.添加售货员界面 已实现！

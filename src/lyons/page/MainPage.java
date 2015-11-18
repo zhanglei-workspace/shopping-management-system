@@ -15,7 +15,7 @@ import lyons.entity.SalesMan;
 import lyons.tools.QueryPrint;
 import lyons.tools.ScannerChoice;
 
-public class MainPage
+public final class MainPage
 {
 
 	/*
@@ -27,7 +27,7 @@ public class MainPage
 			MainPage.mianPage();
 		}
 	/*
-	 * 主界面 已实现！
+	 * 主界面 已实现！已校验！
 	 * @param args
 	 */
 		public static void  mianPage()
@@ -44,37 +44,40 @@ public class MainPage
 				boolean bool = true;
 				 do
 				{
-					 int choice = ScannerChoice.ScannerCho();
-						switch (choice)
-						{
-						case 0:
-							bool = false;
-							System.out.println("------------------");
-							System.out.println("您已经退出系统!");
-							System.exit(1);			//退出程序，返回值随便设置
-							break;
-						case 1:
-							bool = false;
-							MaintenancePage();
-							break;
-						case 2:
-							bool = false;
-							checkstandLogPage();
-							break;
-						case 3:
-							bool = false;
-							commodityManagementPage();
-							break;
-						default:
-							System.out.println("\n输入有误！重新输入或者按0退出.\n");
-							break;
-						}
+					 String choice = ScannerChoice.ScannerChoString();
+						
+					 if ("0".equals(choice) || "1".equals(choice) || "2".equals(choice) || "3".equals(choice))
+					 { 
+						 bool = false;
+						 int info = Integer.parseInt(choice);
+						 switch (info)
+						 {
+						 case 0:
+							 System.out.println("------------------");
+							 System.out.println("您已经退出系统!");
+							 System.exit(1);			//退出程序，返回值随便设置
+							 break;
+						 case 1:
+							 MaintenancePage();
+							 break;
+						 case 2:
+							 checkstandLogPage();
+							 break;
+						 case 3:
+							 commodityManagementPage();
+							 break;
+						 default:
+						 break;
+						 }
+					 }
+					 System.err.println("!输入有误!");
+					 System.out.println("重新选择或者按0退出.");
 				} while (bool);
 			}
 		}
 		
 	/*
-	 * 1.商品维护界面
+	 * 1.商品维护界面 已校验！
 	 */
 		public static void MaintenancePage()
 		{
@@ -94,8 +97,8 @@ public class MainPage
 			{
 				String choice = ScannerChoice.ScannerChoString();
 					
-					if (choice.equals("0") || choice.equals("1") || choice.equals("2") || 
-						choice.equals("3") || choice.equals("4") || choice.equals("5"))
+					if ("0".equals(choice) || "1".equals(choice) || "2".equals(choice) || 
+						"3".equals(choice) || "4".equals(choice) || "5".equals(choice))
 						{
 							bool = false;
 							int info = Integer.parseInt(choice);
@@ -123,8 +126,8 @@ public class MainPage
 								break;
 							}
 						}
-					System.err.println("\t!输入有误!");
-					System.out.println("\n重新输入或按 0 返回上一级菜单.");
+					System.err.println("!输入有误!");
+					System.out.println("重新输入或按 0 返回上一级菜单.");
 			}while(bool);
 		}
 
@@ -185,7 +188,7 @@ public class MainPage
 											if (sPssWord.equals(salesMan.getSPassWord())) //验证密码，登陆成功了！！
 											{
 												boolLog = false;
-												System.out.println("\t--账户成功登陆--");
+												System.out.println("\t  ---账户成功登陆---");
 												shoppingSettlementPage(salesMan.getSId()); //获取营业员的编号，把营业员的编号传给这个函数
 											}else {
 												if (logTimes<=0)
@@ -212,7 +215,8 @@ public class MainPage
 							break;
 							}
 					}
-				 System.out.println("\n输入有误！重新输入或按 0 返回上一级菜单.");
+				 System.err.println("!输入有误!");
+				 System.out.println("重新输入或按 0 返回上一级菜单");
 			}while(bool);
 		}
 
@@ -233,7 +237,7 @@ public class MainPage
 			{
 				String choice = ScannerChoice.ScannerChoString();
 					
-					if (choice.equals("0") || choice.equals("1") || choice.equals("2"))
+					if ("0".equals(choice) || "1".equals(choice) || "2".equals(choice))
 						{
 							bool = false;
 							int info = Integer.parseInt(choice);
@@ -252,8 +256,8 @@ public class MainPage
 								break;
 							}
 						}
-					System.err.println("\t!输入有误!");
-					System.out.println("\n重新输入或按 0 返回上一级菜单.");
+					System.err.println("!输入有误!");
+					System.out.println("重新输入或按 0 返回上一级菜单.");
 			}while(bool);
 		}
 	
@@ -270,7 +274,7 @@ public class MainPage
 			boolean pressShopping = true; //主要是得让用户有跳出去的渠道啊
 			do
 			{
-				System.out.println("\n按 S 开始购物结算.按 0 返回账户登录界面");
+				System.out.println("按 S 开始购物结算.按 0 返回账户登录界面");
 				String choNext = ScannerChoice.ScannerInfoString();
 				if (choNext.equals("0"))
 				{
@@ -300,22 +304,7 @@ public class MainPage
 							default:
 								System.out.println("--按商品编号选择商品--");
 							 		
-							
-//									boolean boolGid = true;
-//							 		do  这段代码我打算实现用户不输入数字的情况。留着，最后解决
-//									{
-//							 			String gidString = ScannerChoice.ScannerInfoString();
-//							 			if (gidString)
-//										{
-//											boolGid = false;
-//											int shoppingGid = Integer.parseInt(gidString);
-//										}
-//										System.out.println("！请输入正确输入商品编号！");
-//									} while (boolGid);
-							 	
-							 		
-							 		
-	
+							// 默认用户输入正确的编号
 							 	//传参gid，调用精确查询商品
 							 	int shoppingGid = ScannerChoice.ScannerInfoInt();
 							 	String shoppingName = null;
@@ -351,9 +340,9 @@ public class MainPage
 										{
 											bool = false;
 											double allPrice = choicegoodsNum*gPrice;
-											System.out.println("\t\t\t购物车结算\n");
+											System.out.println("\t\t\t  购物车结算\n");
 											System.out.println("\t\t商品名称\t商品单价\t购买数量\t总价\n");
-											System.out.println("\t\t"+goodsName+"\t"+gPrice+"\t"+choicegoodsNum+"\t"+allPrice+" $\n");
+											System.out.println("\t\t"+goodsName+"\t"+gPrice+" $\t"+choicegoodsNum+"\t"+allPrice+" $\n");
 											
 											boolean boolshopping = true;
 											do
@@ -473,7 +462,7 @@ public class MainPage
 						}
 					}
 				System.err.println("\t!输入有误!");
-				System.out.println("\n重新输入或按 0 返回上一级菜单.");
+				System.out.println("重新输入或按 0 返回上一级菜单.");
 		}while(bool);
 	}
 }

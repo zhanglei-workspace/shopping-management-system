@@ -12,7 +12,7 @@ import lyons.db.DbConn;
 import lyons.entity.Goods;
 import lyons.entity.SalesMan;
 
-public class QueryPrint
+public final class QueryPrint
 {
 	/*
 	 * 精确查询函数小工具
@@ -127,7 +127,7 @@ public class QueryPrint
 						{
 							int gid = rs.getInt("gid");
 							String gname = rs.getString(2);
-							int gprice = rs.getInt(3);
+							double gprice = rs.getDouble(3);
 							int gnum = rs.getInt(4);
 							
 							Goods goods = new Goods(gid,gname,gprice,gnum);

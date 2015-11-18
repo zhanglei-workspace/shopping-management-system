@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class DbClose
+public final class DbClose
 {
 	/*
 	 * 关闭 添加功能 资源
@@ -50,11 +50,8 @@ public class DbClose
 				}
 			} catch (SQLException e)
 			{
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			
-			
 		}
+		
 }
