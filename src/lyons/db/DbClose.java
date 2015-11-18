@@ -18,13 +18,18 @@ public final class DbClose
 				{
 					pstmt.close();
 				}
+			} catch (SQLException e1)
+			{
+				e1.printStackTrace();
+			}
+			try
+			{
 				if (conn != null)
 				{
 					conn.close();
 				}
 			} catch (SQLException e)
 			{
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -40,10 +45,22 @@ public final class DbClose
 				{
 					pstmt.close();
 				}
+			} catch (SQLException e1)
+			{
+				e1.printStackTrace();
+			}
+			try
+			{
 				if (rs != null )
 				{
 					rs.close();
 				}
+			} catch (SQLException e1)
+			{
+				e1.printStackTrace();
+			}
+			try
+			{
 				if (conn != null)
 				{
 					conn.close();
