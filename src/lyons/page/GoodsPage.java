@@ -8,7 +8,7 @@ import lyons.tools.QueryPrint;
 import lyons.tools.ScannerChoice;
 
 
-public final class GoodsPage
+public final class GoodsPage extends ScannerChoice
 {
 
 	/*
@@ -20,13 +20,13 @@ public final class GoodsPage
 				System.out.println("\t正在执行添加商品操作\n");
 				
 				System.out.println("\n請輸入添加商品-名称");
-				String goodsName = ScannerChoice.ScannerChoSting();
+				String goodsName = ScannerChoSting();
 				
 				System.out.println("\n請輸入添加商品-价格");
-				double goodsPrice = ScannerChoice.ScannerInfo();
+				double goodsPrice = ScannerInfo();
 			
 				System.out.println("\n請輸入添加商品-数量");
-				int goodsNumber = ScannerChoice.ScannerInfoInt();
+				int goodsNumber = ScannerInfoInt();
 				
 				Goods goods  = new Goods(goodsName,goodsPrice,goodsNumber); //创建商品对象
 				boolean bool = new GoodsDao().addGoods(goods);
@@ -38,7 +38,7 @@ public final class GoodsPage
 						System.out.println("添加商品失败");	
 					}
 					//用户选择操作完 添加商品 后的下一步。
-					ScannerChoice.changedInfoNext("addGoodsPage");
+					changedInfoNext("addGoodsPage");
 			}
 
 	/*
@@ -62,7 +62,7 @@ public final class GoodsPage
 					 boolean boolNext = true;
 						 do
 						{
-							 String choice = ScannerChoice.ScannerChoString();
+							 String choice = ScannerChoString();
 							 if ("0".equals(choice) || "1".equals(choice) || "2".equals(choice) || "3".equals(choice))
 							 { 
 								 boolNext = false;
@@ -74,7 +74,7 @@ public final class GoodsPage
 									 break;
 								 case 1:
 									 System.out.println("请输入商品-新名称");
-									 String gname = ScannerChoice.ScannerInfoString();
+									 String gname = ScannerInfoString();
 									 Goods goodsName = new Goods(gid,gname);
 									 boolean boolName = new GoodsDao().updateGoods(1, goodsName);
 									 if (boolName)
@@ -84,11 +84,11 @@ public final class GoodsPage
 									 	{
 										 	System.err.println("\n\t！！更新商品名失敗！！");
 									 	}
-									 ScannerChoice.changedInfoNext("upateGoodsPage");
+									 changedInfoNext("upateGoodsPage");
 									 break;
 								 case 2:
 									 System.out.println("请输入商品-新价格 ");
-									 double gprice = ScannerChoice.ScannerInfo();
+									 double gprice = ScannerInfo();
 									 Goods  goodsPrice = new Goods(gid,gprice);
 									 boolean boolPrice = new GoodsDao().updateGoods(2,goodsPrice);
 									 
@@ -99,11 +99,11 @@ public final class GoodsPage
 									 	{
 										 	System.err.println("\n\t！！更新商品价格失敗！！");
 									 	}
-									 ScannerChoice.changedInfoNext("upateGoodsPage");
+									 changedInfoNext("upateGoodsPage");
 									 break;
 								 case 3:
 									 System.out.println("请输入商品-新数量 ");
-									 int gNum = ScannerChoice.ScannerInfoInt();	
+									 int gNum = ScannerInfoInt();	
 									 Goods  goodsNum= new Goods(gid,gNum);
 									 boolean boolNum = new GoodsDao().updateGoods(3,goodsNum);
 									 if (boolNum)
@@ -113,7 +113,7 @@ public final class GoodsPage
 									 	{
 										 	System.err.println("\n\t！！更新商品数量失敗！！");
 									 	}
-									 ScannerChoice.changedInfoNext("upateGoodsPage");
+									 	changedInfoNext("upateGoodsPage");
 									 break;
 								 default:
 									 System.out.println("请输入正确的选择！");
@@ -141,7 +141,7 @@ public final class GoodsPage
 					do
 					{
 						System.out.println("\n确认删除该商品：Y/N");
-						String choice = ScannerChoice.ScannerNext();
+						String choice = ScannerNext();
 							if ("y".equals(choice) || "Y".equals(choice))
 							{
 								bool = false;//跳出do-while循环
@@ -155,7 +155,7 @@ public final class GoodsPage
 										{
 											System.err.println("\n\t！！刪除该商品失敗！！");
 										}
-									ScannerChoice.changedInfoNext("deleteGoodsPage"); //
+									changedInfoNext("deleteGoodsPage"); //
 							}else if ("N".equals(choice) || "n".equals(choice)) 
 									{
 										bool = false;
@@ -185,7 +185,7 @@ public final class GoodsPage
 					 boolean bool = true;
 						 do
 						{
-							 String  info = ScannerChoice.ScannerChoString();
+							 String  info = ScannerChoString();
 							 if ("0".equals(info) || "1".equals(info) || "2".equals(info) || "3".equals(info))
 							 { 
 								 bool = false;
@@ -244,7 +244,7 @@ public final class GoodsPage
 													 do
 													{
 														 System.out.println("输入 0 返回上一级菜单");
-														 String choiceNext = ScannerChoice.ScannerChoString();
+														 String choiceNext = ScannerChoString();
 														
 														 if ("0".equals(choiceNext))
 														{
@@ -269,7 +269,7 @@ public final class GoodsPage
 						boolean boolNext = true;
 						 do
 						{
-							 String choice = ScannerChoice.ScannerChoString();
+							 String choice = ScannerChoString();
 								
 							 if ("0".equals(choice))
 							 { 
@@ -320,7 +320,7 @@ public final class GoodsPage
 				do
 				{
 					System.out.println("输入 0 返回上一级菜单");
-					String choice = ScannerChoice.ScannerChoString();
+					String choice = ScannerChoString();
 					
 					if (choice.equals("0"))
 					{

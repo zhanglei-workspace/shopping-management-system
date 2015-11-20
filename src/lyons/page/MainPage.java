@@ -15,7 +15,7 @@ import lyons.entity.SalesMan;
 import lyons.tools.QueryPrint;
 import lyons.tools.ScannerChoice;
 
-public final class MainPage
+public final class MainPage extends ScannerChoice
 {
 
 	/*
@@ -41,14 +41,14 @@ public final class MainPage
 			
 			System.out.println("\n请输入选项,或者按0退出.");
 			{
-				boolean bool = true;
+				boolean flag = true;
 				 do
 				{
-					 String choice = ScannerChoice.ScannerChoString();
+					 String choice = ScannerChoString();
 						
 					 if ("0".equals(choice) || "1".equals(choice) || "2".equals(choice) || "3".equals(choice))
 					 { 
-						 bool = false;
+						 flag = false;
 						 int info = Integer.parseInt(choice);
 						 switch (info)
 						 {
@@ -72,7 +72,7 @@ public final class MainPage
 					 }
 					 System.err.println("!输入有误!");
 					 System.out.println("重新选择或者按0退出.");
-				} while (bool);
+				} while (flag);
 			}
 		}
 		
@@ -92,15 +92,15 @@ public final class MainPage
 			
 			System.out.println("\n请输入选项,或者按 0 返回上一级菜单.");
 			
-			boolean bool = true;
+			boolean flag = true;
 			 do
 			{
-				String choice = ScannerChoice.ScannerChoString();
+				String choice = ScannerChoString();
 					
 					if ("0".equals(choice) || "1".equals(choice) || "2".equals(choice) || 
 						"3".equals(choice) || "4".equals(choice) || "5".equals(choice))
 						{
-							bool = false;
+							flag = false;
 							int info = Integer.parseInt(choice);
 							switch (info)
 							{
@@ -128,7 +128,7 @@ public final class MainPage
 						}
 					System.err.println("!输入有误!");
 					System.out.println("重新输入或按 0 返回上一级菜单.");
-			}while(bool);
+			}while(flag);
 		}
 
 	/*
@@ -142,39 +142,39 @@ public final class MainPage
 			System.out.println("-----------------------------");
 			System.out.println("请输入选项,或者按 0 返回上一级菜单.");
 			
-			boolean bool = true;
+			boolean flag = true;
 			 do
 			{
-				 String choice = ScannerChoice.ScannerChoString();
-				 if (choice.equals("0") || choice.equals("1") || choice.equals("2"))
+				 String choice = ScannerChoString();
+				 if ("0".equals(choice) || "1".equals(choice) || "2".equals(choice))
 					{
-					 	bool = false;
+					 	flag = false;
 					 	int info = Integer.parseInt(choice);
 							switch (info)
 							{
 							case 0:
-								bool = false;
+								flag = false;
 								mianPage();
 								break;
 							case 1:
-								bool = false;
+								flag = false;
 								int logTimes = 2;//剩余登陆次数,有三次机会
-								boolean boolLog = true;
+								boolean flagLog = true;
 								
 								do
 								{
 									System.out.println("---用户名---");
-									String sName = ScannerChoice.ScannerInfoString();
+									String sName = ScannerInfoString();
 									System.out.println("---密码---");
-									String sPssWord = ScannerChoice.ScannerInfoString();
+									String sPssWord = ScannerInfoString();
 									
 									ArrayList<SalesMan> salesManInfo = new SalesManDao().checkstandLog(sName); //从数据库中获取用户密码
 									
-									if (salesManInfo == null || salesManInfo.size() <= 0) //没有此用户的情况！
+									if (salesManInfo == null || salesManInfo.size() == 0) //没有此用户的情况！
 									{
-										if (logTimes<=0)
+										if (logTimes == 0)
 										{
-											boolLog = false;
+											flagLog = false;
 											System.out.println("------------------");
 											System.err.println("\t！！您已被强制退出系统！！");
 											System.exit(1);			//退出程序，返回值随便设置
@@ -182,34 +182,36 @@ public final class MainPage
 										System.err.println("\t!!用户名输入有误!!\n");
 										System.out.println("\n剩余登陆次数："+logTimes);
 										logTimes--;
-									}else {
-											SalesMan salesMan = salesManInfo.get(0); //只返回了一组数值
+									}else 
+										{
+											SalesMan salesMan = salesManInfo.get(0); //此地，只返回了一组数值，只遍历1次即可
 										
 											if (sPssWord.equals(salesMan.getSPassWord())) //验证密码，登陆成功了！！
 											{
-												boolLog = false;
+												flagLog = false;
 												System.out.println("\t  ---账户成功登陆---");
 												shoppingSettlementPage(salesMan.getSId()); //获取营业员的编号，把营业员的编号传给这个函数
-											}else {
-												if (logTimes<=0)
+											}else 
 												{
-													boolLog = false;
-													System.out.println("------------------");
-													System.err.println("\t！！您已被强制退出系统！！");
-													System.exit(1);			//退出程序，返回值随便设置
+													if (logTimes == 0)
+													{
+														flagLog = false;
+														System.out.println("------------------");
+														System.err.println("\t！！您已被强制退出系统！！");
+														System.exit(1);			//退出程序，返回值随便设置
+													}
+													System.err.println("\t!!密码错误!!\n");
+													System.out.println("\n剩余登陆次数："+logTimes);
+													logTimes--;
 												}
-												System.err.println("\t!!密码错误!!\n");
-												System.out.println("\n剩余登陆次数："+logTimes);
-												logTimes--;
-											}
-									}
-								} while (boolLog);
+										}
+								} while (flagLog);
 								break;
 							case 2:
-								bool = false;
+								flag = false;
 								System.out.println("------------------");
 								System.out.println("您已经退出系统!");
-								System.exit(1);			//退出程序，返回值随便设置
+								System.exit(-1);			//退出程序，返回值随便设置
 								break;
 							default:
 							break;
@@ -217,7 +219,7 @@ public final class MainPage
 					}
 				 System.err.println("!输入有误!");
 				 System.out.println("重新输入或按 0 返回上一级菜单");
-			}while(bool);
+			}while(flag);
 		}
 
 	/*
@@ -232,14 +234,14 @@ public final class MainPage
 			
 			System.out.println("\n请输入选项,或者按 0 返回上一级菜单.");
 			
-			boolean bool = true;
+			boolean flag = true;
 			 do
 			{
-				String choice = ScannerChoice.ScannerChoString();
+				String choice = ScannerChoString();
 					
 					if ("0".equals(choice) || "1".equals(choice) || "2".equals(choice))
 						{
-							bool = false;
+							flag = false;
 							int info = Integer.parseInt(choice);
 							switch (info)
 							{
@@ -258,7 +260,7 @@ public final class MainPage
 						}
 					System.err.println("!输入有误!");
 					System.out.println("重新输入或按 0 返回上一级菜单.");
-			}while(bool);
+			}while(flag);
 		}
 	
 	/*
@@ -268,146 +270,136 @@ public final class MainPage
 		{
 			System.out.println("\n\t*******购物结算*******\n");
 			
-//			int choNext = ScannerChoice.ScannerCho();
-			
-			
 			boolean pressShopping = true; //主要是得让用户有跳出去的渠道啊
 			do
 			{
 				System.out.println("按 S 开始购物结算.按 0 返回账户登录界面");
-				String choNext = ScannerChoice.ScannerInfoString();
-				if (choNext.equals("0"))
+				String choNext = ScannerInfoString();
+				if ("0".equals(choNext))
 				{
 					pressShopping = false;
 					checkstandLogPage();
 					
-				}else if (choNext.equals("s") || choNext.equals("S")) 
+				}else if ("s".equals(choNext) || "S".equals(choNext)) 
 						{
 							pressShopping = false;
 							System.out.println("\n--请输入商品关键字--");
 							
-//							String operShopping  = "shoppingSettlementPage";
-							int gid = QueryPrint.querySettlement();//当商品件数有且只有一件时返回gid号，没有符合条件时返回 -1. >1件时返回-2 . 查无此商品时返回-3
+							int gid = QueryPrint.querySettlement();//当商品件数有且只有一件时返回商品gid号，商品已售空时返回 -1. >1件时返回-2 . 查无此商品时返回-3
 							
 							switch (gid)
 							{
 							case -3:
-								//无此商品，調用选择函数，选择下一步
+								//无此商品,重新循环
 								pressShopping = true;
 								break;
 							case -1:
-								System.err.println("\t--抱歉，该商品已售空--");
-								//商品商品，調用选择函数，选择下一步
 								pressShopping = true;
+								System.err.println("\t--抱歉，该商品已售空--");
 								break;
 								
 							default:
 								System.out.println("--按商品编号选择商品--");
 							 		
-							// 默认用户输入正确的编号
+							// 默认用户输入的编号是int类型
 							 	//传参gid，调用精确查询商品
-							 	int shoppingGid = ScannerChoice.ScannerInfoInt();
-							 	String shoppingName = null;
-								ArrayList<Goods> goodsList = new QueryPrint().queryGoodsKey(shoppingGid,shoppingName);
+							 	int shoppingGid = ScannerInfoInt();
 								
-								if (goodsList == null || goodsList.size() <= 0) //判断结果：查无此商品
+							 	ArrayList<Goods> goodsList = new QueryPrint().queryGoodsKey(shoppingGid,null);
+								if (goodsList == null || goodsList.size() == 0) //判断结果：查无此商品
 								{
 									System.err.println("\t！！查无此商品 ！！\n");
-									
-									//調用选择函数，选择下一步
 									pressShopping = true;
 								}else 
-								{
-									Goods goods = goodsList.get(0); //获取这一组数值，并将其实例化
-									int gNum = goods.getGnum();		//商品数量
-//									int gId = goods.getGid();			//获取商品id
-									double gPrice = goods.getGprice();      //获取商品价格
-									String goodsName = goods.getGname();
-									
-									System.out.println("--请输入购买数量--");
-									
-									boolean bool = true;
-									do
 									{
-										int choicegoodsNum=ScannerChoice.ScannerInfoInt();//用户购买的数量
+										Goods goods = goodsList.get(0); //获取这一组数值，并将其实例化
+										int gNum = goods.getGnum();		//商品数量
+										double gPrice = goods.getGprice();      //获取商品价格
 										
-										if (choicegoodsNum > gNum)
+										System.out.println("--请输入购买数量--");
+										boolean flag = true;
+										do
 										{
-											//大于仓库数目了！
-											System.err.println("\t！！仓库储备不足！！");
-											System.out.println("--请重新输入购买数量--");
-										}else 
-										{
-											bool = false;
-											double allPrice = choicegoodsNum*gPrice;
-											System.out.println("\t\t\t  购物车结算\n");
-											System.out.println("\t\t商品名称\t商品单价\t购买数量\t总价\n");
-											System.out.println("\t\t"+goodsName+"\t"+gPrice+" $\t"+choicegoodsNum+"\t"+allPrice+" $\n");
+											int choicegoodsNum = ScannerInfoInt();//获取用户要购买的数量
 											
-											boolean boolshopping = true;
-											do
+											if (choicegoodsNum > gNum)
 											{
-												System.out.println("确认购买：Y/N");
-												String choShopping = ScannerChoice.ScannerChoSting(); 
-												if (choShopping.equals("y") || choShopping.equals("Y"))
+												//大于仓库数目了！
+												System.err.println("\t！！仓库储备不足！！");
+												System.out.println("--请重新输入购买数量--");
+											}else 
+											{
+												flag = false;
+												double allPrice = choicegoodsNum*gPrice; //double 与 int 做运算，java处理的很烂（BigDecimal），银行系统用java开发得哭死
+												System.out.println("\t\t\t  购物车结算\n");
+												System.out.println("\t\t商品名称\t商品单价\t购买数量\t总价\n");
+												System.out.println("\t\t"+goods.getGname()+"\t"+gPrice+" $\t"+choicegoodsNum+"\t"+allPrice+" $\n");
+												
+												boolean flagshopping = true;
+												do
 												{
-													System.out.println("\n总价："+allPrice+" $");
-													System.out.println("\n实际缴费金额");
-													
-													boolean boolBalance = true; //检测用户是否纳费充足！
-													do
+													System.out.println("确认购买：Y/N");
+													String choShopping = ScannerChoSting(); 
+													if (choShopping.equals("y") || choShopping.equals("Y"))
 													{
-														double amount = ScannerChoice.ScannerInfo();
-														double balance = amount-allPrice;  //用户交钱与购买物品总价间的差额
-														if (balance < 0)
-														{
-															System.err.println("\t！！缴纳金额不足！！");
-															System.out.println("\n请重新输入缴纳金额($)");
-														}else{
-															boolBalance = false;
-															
-															
-/*	这里是购物结算操作数据库！！！！！！----------------------	//1.更goods表数量2.增加sales表数量
-														商品gid goods.getGid(),购买数量choicegoodsNum。
-														原商品数量gNum。结算员Id  salesManSid
-														*/
+														System.out.println("\n总价："+allPrice+" $");
+														System.out.println("\n实际缴费金额");
 														
-															//对sales表进行操作
-															Gsales gSales = new Gsales(goods.getGid(),salesManSid,choicegoodsNum);
-															boolean insert = new GoodsDao(). shoppingSettlement(gSales);
+														boolean flagBalance = true; //检测用户是否纳费充足！
+														do
+														{
+															double amount = ScannerInfo();
+															double balance = amount-allPrice;  //用户交钱与购买物品总价间的差额
+															if (balance < 0)
+															{
+																System.err.println("\t！！缴纳金额不足！！");
+																System.out.println("\n请重新输入缴纳金额($)");
+															}else{
+																flagBalance = false;
+																
+																
+	/*	这里是购物结算操作数据库！！！！！！----------------------	//1.更goods表数量2.增加sales表数量
+															商品gid goods.getGid(),购买数量choicegoodsNum。
+															原商品数量gNum。结算员Id  salesManSid
+															*/
 															
-															//对goods表操作
-															int goodsNewNum = gNum - choicegoodsNum; //现在goods表中该商品数量
-															Goods newGoods = new Goods(goods.getGid(),goodsNewNum);
-															boolean update = new GoodsDao().updateGoods(3,newGoods);
-									
-																if (update && insert)
-																{
-																	System.out.println("找零："+balance);
-																	System.out.println("\n谢谢光临，欢迎下次惠顾");
-																}else 
+																//对sales表进行操作
+																Gsales gSales = new Gsales(goods.getGid(),salesManSid,choicegoodsNum);
+																boolean insert = new GoodsDao(). shoppingSettlement(gSales);
+																
+																//对goods表操作
+																int goodsNewNum = gNum - choicegoodsNum; //现在goods表中该商品数量
+																Goods newGoods = new Goods(goods.getGid(),goodsNewNum);
+																boolean update = new GoodsDao().updateGoods(3,newGoods);
+										
+																	if (update && insert)
 																	{
-																		System.err.println("！支付失败！"); //出现这个错误一定是数据库操作有问题！
-																	}
-															shoppingSettlementPage(salesManSid);//最后跳转到到购物结算页面
-//	结束购物结算操作数据库！！！！！！-----------------------------------
-															 }
-													} while (boolBalance);	
-													
-												}else if (choShopping.equals("N") || choShopping.equals("n")) 
-												{
-													shoppingSettlementPage(salesManSid);
-												}
-												System.err.println("\t！！请确认购物意向！！");
-											} while (boolshopping);
-										}
-									} while (bool);
-								}					
+																		System.out.println("找零："+balance);
+																		System.out.println("\n谢谢光临，欢迎下次惠顾");
+																	}else 
+																		{
+																			System.err.println("！支付失败！"); //出现这个错误一定是数据库操作有问题！
+																		}
+																shoppingSettlementPage(salesManSid);//最后跳转到到购物结算页面
+	//	结束购物结算操作数据库！！！！！！-----------------------------------
+																 }
+														} while (flagBalance);	
+														
+													}else if (choShopping.equals("N") || choShopping.equals("n")) 
+													{
+														shoppingSettlementPage(salesManSid);
+													}
+													System.err.println("\t！！请确认购物意向！！");
+												} while (flagshopping);
+											}
+										} while (flag);
+									}					
 								break;
 							}
-						}else{
+						}else
+							{
 								System.err.println("\t!!请输入合法字符!!\n");
-							 }
+							}
 			} while (pressShopping);
 		}
 
@@ -427,15 +419,15 @@ public final class MainPage
 		
 		System.out.println("\n请输入选项,或者按 0 返回上一级菜单.");
 		
-		boolean bool = true;
+		boolean flag = true;
 		 do
 		{
-			String choice = ScannerChoice.ScannerChoString();
+			String choice = ScannerChoString();
 				
 				if (choice.equals("0") || choice.equals("1") || choice.equals("2") || 
 					choice.equals("3") || choice.equals("4") || choice.equals("5"))
 					{
-						bool = false;
+						flag = false;
 						int info = Integer.parseInt(choice);
 						switch (info)
 						{
@@ -463,7 +455,7 @@ public final class MainPage
 					}
 				System.err.println("\t!输入有误!");
 				System.out.println("重新输入或按 0 返回上一级菜单.");
-		}while(bool);
+		}while(flag);
 	}
 }
 

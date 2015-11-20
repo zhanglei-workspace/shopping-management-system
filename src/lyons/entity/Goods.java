@@ -2,6 +2,7 @@ package lyons.entity;
 /**
  * 商品名称
  * 重载构造函数-滿足各種操作需求
+ * 实际是为多态做准备工作
  * @author 张磊
  */
 public final class Goods

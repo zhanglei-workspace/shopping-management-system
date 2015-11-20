@@ -269,7 +269,7 @@ public final class GoodsDao
 				{
 					int gid = rs.getInt(1);
 					String gname = rs.getString(2);
-					int gprice = rs.getInt("gprice"); //是双引号,当然也可以用数字表示。主要是提醒自己有两种方式
+					double gprice = rs.getDouble("gprice"); //是双引号,当然也可以用数字表示。主要是提醒自己有两种方式
 					int gnum = rs.getInt(4);
 					
 					Goods goods = new Goods(gid,gname,gprice,gnum);	//创建Goods对象，并赋值。

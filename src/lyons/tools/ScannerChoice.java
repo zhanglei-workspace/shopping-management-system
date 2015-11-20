@@ -13,7 +13,7 @@ import lyons.page.GoodsPage;
 import lyons.page.MainPage;
 import lyons.page.SalesManPage;
 
-public final class ScannerChoice
+public class ScannerChoice
 {
 	/*
 	 * 获取用户--界面选择

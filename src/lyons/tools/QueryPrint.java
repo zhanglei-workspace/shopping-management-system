@@ -62,7 +62,7 @@ public final class QueryPrint
 	 */
 		public static int querySettlement() 
 		{
-			int gid = -1;	//用来返回错误信息的gid
+			int gid = -1;	//用来返回错误信息的gid（此时代表：商品已售空，返回方式不是很好待修改）
 			ArrayList<Goods> goodsSettlement= new GoodsDao().queryGoods(0);  //調用 模糊查询函数 GoodsDao.queryGoods() 確定用戶所要操作的数据
 			    if (goodsSettlement == null || goodsSettlement.size() <= 0) //判断结果：查无此商品
 				{
@@ -99,7 +99,7 @@ public final class QueryPrint
 							}
 						}
 					}
-		 return gid; //当商品件数有且只有一件时返回gid号，没有符合条件时返回 -1. >1件时返回-2 . 查无此商品时返回-3
+		 return gid; //当商品件数有且只有一件时返回商品gid号，商品已售空时返回 -1. >1件时返回-2 . 查无此商品时返回-3
 		} 
 	
 

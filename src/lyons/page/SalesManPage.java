@@ -7,7 +7,7 @@ import lyons.entity.SalesMan;
 import lyons.tools.QueryPrint;
 import lyons.tools.ScannerChoice;
 
-public final class SalesManPage
+public final class SalesManPage extends ScannerChoice
 {
 	/*
 	 * 1.添加售货员界面 已实现！
@@ -17,10 +17,10 @@ public final class SalesManPage
 			System.out.println("\t正在执行添加售货员操作\n");
 			
 			System.out.println("\n添加售货员-姓名");
-			String sName = ScannerChoice.ScannerChoSting();
+			String sName = ScannerChoSting();
 			
 			System.out.println("\n添加售货员-密码");
-			String sPssswd = ScannerChoice.ScannerChoSting();
+			String sPssswd = ScannerChoSting();
 			
 			SalesMan salesMan = new SalesMan(sName,sPssswd);//创建售货员对象
 			boolean bool = new SalesManDao().addSalesMan(salesMan);
@@ -31,7 +31,7 @@ public final class SalesManPage
 				}else {
 					System.out.println("添加售货员失败");	
 				}
-			ScannerChoice.choiceSalesManNext("addSalesMan");
+			choiceSalesManNext("addSalesMan");
 	}
 	
 	/*
@@ -41,14 +41,14 @@ public final class SalesManPage
 	{
 		System.out.println("\t正在执行更改售货员操作\n");
 		System.out.println("请输入想要更改的售货员名字");
-		String sName = ScannerChoice.ScannerInfoString();
+		String sName = ScannerInfoString();
 
 		//调用精确查找售货员函数
 		ArrayList<SalesMan> salesManList = new QueryPrint().querySalesMan(sName);
 			if (salesManList.size() <= 0)
 			{
 				System.err.println("\t！！查无此人！！");
-				ScannerChoice.choiceSalesManNext("updateSalesMan"); //选择下一步
+				choiceSalesManNext("updateSalesMan"); //选择下一步
 			}else 
 				{
 					//显示将要更改的售货员信息
@@ -66,7 +66,7 @@ public final class SalesManPage
 					boolean boolNext = true;
 					do
 					{
-						String choice = ScannerChoice.ScannerChoString();
+						String choice = ScannerChoString();
 						if ("0".equals(choice) || "1".equals(choice) || "2".equals(choice))
 						{
 							int info = Integer.parseInt(choice);
@@ -78,7 +78,7 @@ public final class SalesManPage
 									break;
 								case 1:
 										System.out.println("更改售货员-新姓名");
-										String sNewName = ScannerChoice.ScannerInfoString();
+										String sNewName = ScannerInfoString();
 										
 										SalesMan salesManName = new SalesMan(salesMan.getSId(),sNewName,null);
 										boolean boolsName = new SalesManDao().updateSalesMan(1, salesManName);
@@ -89,11 +89,11 @@ public final class SalesManPage
 										}else {
 											System.err.println("\n\t！！更新售货员名字失敗！！");
 										}
-										ScannerChoice.choiceSalesManNext("updateSalesMan");
+										choiceSalesManNext("updateSalesMan");
 									break;
 								case 2:
 										System.out.println("更改售货员-新密码");
-										String sNewPasswd = ScannerChoice.ScannerInfoString();
+										String sNewPasswd = ScannerInfoString();
 										
 										SalesMan salesManPasswd = new SalesMan(salesMan.getSId(),null,sNewPasswd);
 										boolean boolsPasswd = new SalesManDao().updateSalesMan(2, salesManPasswd);
@@ -104,7 +104,7 @@ public final class SalesManPage
 										}else {
 											System.err.println("\n\t！！更新售货员密码失敗！！");
 										}
-										ScannerChoice.choiceSalesManNext("updateSalesMan");
+										choiceSalesManNext("updateSalesMan");
 									break;
 								default:
 									break;
@@ -125,14 +125,14 @@ public final class SalesManPage
 		
 		System.out.println("\t正在执行 删除售货员 操作\n");
 		System.out.println("请输入想要删除的售货员名字");
-		String sName = ScannerChoice.ScannerInfoString();
+		String sName = ScannerInfoString();
 		
 		//调用精确查找售货员函数
 		ArrayList<SalesMan> salesManList = new QueryPrint().querySalesMan(sName);
 			if (salesManList.size() <= 0)
 			{
 				System.err.println("\t！！查无此人！！");
-				ScannerChoice.choiceSalesManNext("deleteSalesMan"); //选择下一步
+				choiceSalesManNext("deleteSalesMan"); //选择下一步
 			}else 
 				{
 					//显示将要删除的售货员信息
@@ -150,7 +150,7 @@ public final class SalesManPage
 					do
 					{
 						System.out.println("\n确认删除该售货员：Y/N");
-						String choice = ScannerChoice.ScannerNext();
+						String choice = ScannerNext();
 						if ("y".equals(choice) || "Y".equals(choice))
 						{
 							bool = false;//跳出do-while循环
@@ -165,7 +165,7 @@ public final class SalesManPage
 							{
 								System.err.println("\t！！刪除该售货员失敗！！");
 							}
-							ScannerChoice.choiceSalesManNext("deleteGoods"); //选择下一步
+							choiceSalesManNext("deleteGoods"); //选择下一步
 						}else if ("N".equals(choice) || "n".equals(choice)) 
 						{
 							bool = false;
@@ -184,7 +184,7 @@ public final class SalesManPage
 		{
 			System.out.println("\t\t  正在执行查询售货员操作\n");
 			System.out.println("要查询的售货员关键字");
-			String sName = ScannerChoice.ScannerInfoString();
+			String sName = ScannerInfoString();
 			
 			ArrayList<SalesMan> salesManList = new SalesManDao().querySalesMan(sName);
 				
@@ -203,7 +203,7 @@ public final class SalesManPage
 							System.out.println();
 						}
 					}
-				ScannerChoice.choiceSalesManNext("querySalesMan"); //参数：告诉被调用者是谁在调用！以确定一下步的选择
+				choiceSalesManNext("querySalesMan"); //参数：告诉被调用者是谁在调用！以确定一下步的选择
 		}
 	/*
 	 * 5.显示所有售货员界面 已实现！
@@ -232,7 +232,7 @@ public final class SalesManPage
 				do
 				{
 					System.out.println("\n\n输入 0 返回上一级菜单");
-					String choice = ScannerChoice.ScannerChoString();
+					String choice = ScannerChoString();
 					
 					if (choice.equals("0"))
 					{
