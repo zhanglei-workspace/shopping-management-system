@@ -1,6 +1,6 @@
 # shoppingGMS
 JDBC上手设计项目 
-Email:superHKM@gmail.com
+Email:superHooKM@gmail.com
 
 概要需求：
 一、编写目的
