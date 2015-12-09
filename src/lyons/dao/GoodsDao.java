@@ -221,7 +221,9 @@ public final class GoodsDao
 				default:
 						//4.3商品 关键字 查询商品-功能实现0
 						String nameGet = ScannerChoice.ScannerInfoString();
-					
+						
+//						String sqlGname = "SELECT * FROM GOODS WHERE GNAME LIKE '%'||?||'%'";//应该这样写代替下面字符串的连接
+						
 						String gName = "%"+nameGet+"%";							//从用户处获取的字符串加上 % 符号，来达到模糊查询的目的
 						String sqlGname = "SELECT * FROM GOODS WHERE GNAME LIKE ?";  //居然不能直接跟 % .只能用连接字符串的方式
 						   try

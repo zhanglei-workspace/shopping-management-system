@@ -25,7 +25,6 @@ CREATE TRIGGER salesman_trigger
        FOR EACH ROW
        BEGIN
            SELECT salesman_seq.nextval INTO :new.sid FROM dual;
-       END
-       COMMIT;
+       END;
        
 --用户违反唯一约束多次创建信息时，会占用自动生成的序列号（我觉得这个可能存在安全隐患）

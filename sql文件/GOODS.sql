@@ -18,7 +18,7 @@ CREATE SEQUENCE goods_seq  --序列名字随便取
        MINVALUE      1
        MAXVALUE   100000 --最大数值可以随便设置
        NOCYCLE           --用完maxvalues后，不再循环！
-       CACHE 10;         --每次提前缓存10数字提高效率，可以随便设置
+       CACHE 10         --每次提前缓存10数字提高效率，可以随便设置
        
 
 --2.为表创建 触发器 ，用于自动从序列取值给GOODS表中gid自动赋值

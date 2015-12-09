@@ -16,7 +16,7 @@ CREATE SEQUENCE salesman_seq
        MINVALUE       1
        MAXVALUE     100000
        NOCYCLE
-       CACHE        10;
+       CACHE        10
        
 --´¥·¢Æ÷
 

@@ -365,7 +365,7 @@ public final class MainPage extends ScannerChoice
 															
 																//对sales表进行操作
 																Gsales gSales = new Gsales(goods.getGid(),salesManSid,choicegoodsNum);
-																boolean insert = new GoodsDao(). shoppingSettlement(gSales);
+																boolean insert = new GoodsDao().shoppingSettlement(gSales);
 																
 																//对goods表操作
 																int goodsNewNum = gNum - choicegoodsNum; //现在goods表中该商品数量

@@ -28,8 +28,7 @@ CREATE TRIGGER goods_trigger
        FOR EACH ROW        --行级触发器：插入的每一行数据都会触发
        BEGIN               --从序列中获取新的序号并赋给 新行 的gid 字段
            SELECT goods_seq.nextval INTO :new.gid FROM dual;
-       END
-       COMMIT;             --务必要提交
+       END;
 
 
 --truncate 能够清除数据，然而，不能抹掉序列的记忆。
