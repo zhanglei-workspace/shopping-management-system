@@ -6,7 +6,7 @@ CREATE TABLE salesman
        sname      VARCHAR2(10) NOT NULL UNIQUE,
        spassword  VARCHAR(20) NOT NULL
        
-);
+)
 
 --иЗЁипРап
 
