@@ -24,7 +24,7 @@ public class ScannerChoice
 		{
 			Scanner scanner = new Scanner(System.in);
 			System.out.print("您的选择：");
-			int info = scanner.nextInt();//读取这一行信息
+			int info = scanner.nextInt();
 			System.out.println();
 			return info;
 		}
@@ -37,8 +37,7 @@ public class ScannerChoice
 		{
 			Scanner scanner = new Scanner(System.in);
 			System.out.print("您的选择：");
-			String info = scanner.next();//读取这一行信息
-			return info;
+			return scanner.next();						//返回所读取信息
 		}
 	/*
 	 * 获取用户--界面选择
@@ -49,7 +48,7 @@ public class ScannerChoice
 			{
 				Scanner scanner = new Scanner(System.in);
 				System.out.print("您的选择：");
-				String info = scanner.next();//读取这一行信息
+				String info = scanner.next();
 				return info;
 			}
 		
@@ -62,7 +61,7 @@ public class ScannerChoice
 		{
 			Scanner scanner = new Scanner(System.in);
 			System.out.print("您的选择：");
-			String info = scanner.next();//读取这一行信息
+			String info = scanner.next();
 			return info;
 		}
 	/*
@@ -73,7 +72,7 @@ public class ScannerChoice
 		{
 			Scanner scanner = new Scanner(System.in);
 			System.out.print("请输入：");
-			double info = scanner.nextDouble();//读取这一行信息
+			double info = scanner.nextDouble();
 			return info;
 		}
 		/*
@@ -84,7 +83,7 @@ public class ScannerChoice
 		{
 			Scanner scanner = new Scanner(System.in);
 			System.out.print("请输入：");
-			int info = scanner.nextInt();//读取这一行信息
+			int info = scanner.nextInt();
 			
 			return info;
 		}
@@ -97,8 +96,7 @@ public class ScannerChoice
 			{
 				Scanner scanner = new Scanner(System.in);
 				System.out.print("请输入：");
-				String info = scanner.next();//读取这一行信息
-				return info;
+				return scanner.next();
 			}
 		
 	/*

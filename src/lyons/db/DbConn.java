@@ -17,7 +17,7 @@ public final class DbConn
 		
 		String user   = "scott";
 		String passwd = "tiger";
-		String url = "jdbc:oracle:thin:@localhost:1521:inspur";
+		String url = "jdbc:oracle:thin:@localhost:1521:orcl";
 		
 		//已加载完驱动
 		
