@@ -30,7 +30,7 @@ public class ScannerChoice
 		}
 		/*
 		 * 获取用户--界面选择
-		 *         选项选择
+		 *       --选项选择
 		 * @return String
 		 */
 		public static String ScannerChoString()
@@ -39,31 +39,7 @@ public class ScannerChoice
 			System.out.print("您的选择：");
 			return scanner.next();						//返回所读取信息
 		}
-	/*
-	 * 获取用户--界面选择
-	 *         选项选择
-	 * @return String
-	 */
-			public static String ScannerChoSting()
-			{
-				Scanner scanner = new Scanner(System.in);
-				System.out.print("您的选择：");
-				String info = scanner.next();
-				return info;
-			}
-		
-	/*
-	 * 获取用户--界面选择
-	 * 		   Y/N 选择
-	 * @return Srting
-	 */
-		public static String ScannerNext()
-		{
-			Scanner scanner = new Scanner(System.in);
-			System.out.print("您的选择：");
-			String info = scanner.next();
-			return info;
-		}
+
 	/*
 	 * 获取用户--輸入图书信息
 	 * @return double 
@@ -105,15 +81,13 @@ public class ScannerChoice
 	 */
 		public static void changedInfoNext(String choiceFunction)
 		{		
-			boolean boolNext = true;
 			 do
 			{
 					System.out.println("是否继续进行-当前操作:(Y/N)");
-					String choice = ScannerChoice.ScannerNext();
+					String choice = ScannerChoice.ScannerChoString();
 				
 					 if ("y".equals(choice) || "Y".equals(choice)) //在JAVA: Equals比较的是值,==比较的是地址
 						{
-							 boolNext = false;
 							//下面的嵌套if-else 是让用户选择继续操作当前步骤所跳转到指定页面。（因为不同函数调用，跳转的指定函数不同）
 							if ("upateGoodsPage".equals(choiceFunction))
 								{
@@ -128,11 +102,10 @@ public class ScannerChoice
 								//上面的嵌套结束
 						}else if ("N".equals(choice) || "n".equals(choice)) 
 								{
-									boolNext = false;
 				 					MainPage.MaintenancePage();
 								}
 				 	System.out.println("\n输入有误！请重新输入.");
-			} while (boolNext);
+			} while (true);
 		}
 	
 		/*
@@ -143,17 +116,15 @@ public class ScannerChoice
 		 */
 			public static void choiceSalesManNext(String choiceFunction)
 			{	
-				boolean boolNext = true;
 				 do
 				{		
 						System.out.println("是否继续进行-当前操作:(Y/N)");
-						String choice = ScannerChoice.ScannerNext();
+						String choice = ScannerChoice.ScannerChoString();
 					
 						 if ( "y".equals(choice) || "Y".equals(choice) ) //在JAVA: Equals比较的是值,==比较的是地址  .将比较的常量放在前面，方直空指针异常
 							{
-								 boolNext = false;
 								//下面的嵌套if-else 是让用户选择继续操作当前步骤所跳转到指定页面。（因为不同函数调用，跳转的指定函数不同）
-								if ("updateSalesMan".equals(choiceFunction)) //equals时，常量放在前面，提高效率！
+								if ("updateSalesMan".equals(choiceFunction))
 									{
 										 SalesManPage.updateSalesManPage();
 									}else if ("deleteSalesMan".equals(choiceFunction)) 
@@ -169,12 +140,10 @@ public class ScannerChoice
 								//上面的嵌套结束
 							}else if ("N".equals(choice) || "n".equals(choice)) 
 									{
-										boolNext = false;
 										MainPage.salesManManagementPage();
 									}
 					 	System.err.println("\t输入有误！");
-				} while (boolNext);
+				} while (true);
 			}	
-			
 			
 }

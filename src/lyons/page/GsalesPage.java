@@ -39,25 +39,23 @@ public final class GsalesPage
 					}else if (gNUm<10)
 							{
 								System.out.println("\t\t该商品已不足10件");
-							}else {
-								System.out.println("\t\t-");
-							}
+							}else 
+								{
+									System.out.println("\t\t-");
+								}
 					System.out.println("\t");
 				}
-				//下面的代码块完全是写着玩,就是逼着用户输入0. 如果用户不输入数字，怎么办？//已解决！
-				boolean bool = true;
 				do
 				{
 					System.out.println("\n\n输入 0 返回上一级菜单");
 					String choice = ScannerChoice.ScannerChoString();
 					
-					if (choice.equals("0"))
+					if ("0".equals(choice))
 					{
 						MainPage.salesManManagementPage();
-						bool = false;
 					}
 					MainPage.commodityManagementPage();
-				} while (bool);
+				} while (true);
 			}
 	}
 }

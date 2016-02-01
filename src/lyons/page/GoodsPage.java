@@ -20,7 +20,7 @@ public final class GoodsPage extends ScannerChoice
 				System.out.println("\t正在执行添加商品操作\n");
 				
 				System.out.println("\n請輸入添加商品-名称");
-				String goodsName = ScannerChoSting();
+				String goodsName = ScannerChoString();
 				
 				System.out.println("\n請輸入添加商品-价格");
 				double goodsPrice = ScannerInfo();
@@ -28,7 +28,7 @@ public final class GoodsPage extends ScannerChoice
 				System.out.println("\n請輸入添加商品-数量");
 				int goodsNumber = ScannerInfoInt();
 				
-				Goods goods  = new Goods(goodsName,goodsPrice,goodsNumber); //创建商品对象
+				Goods goods  = new Goods(goodsName,goodsPrice,goodsNumber);
 				boolean bool = new GoodsDao().addGoods(goods);
 				
 					if (bool)
@@ -43,7 +43,6 @@ public final class GoodsPage extends ScannerChoice
 
 	/*
 	 * 2.更改商品 已实现！
-	 *  //前半部分代码居然出现多次（更改商品信息，删除商品，关键字查询商品），等会儿整合。//已整合
 	 */
 			public static void  upateGoodsPage()
 			{
@@ -53,76 +52,74 @@ public final class GoodsPage extends ScannerChoice
 					//调用查找商品函数，显示将要更改的商品
 					int gid = QueryPrint.query("upateGoodsPage"); //返回的是查询的信息编号
 		
-					//进行 更改商品
 				System.out.println("\n--------请选择您要更改的内容\n");
 				System.out.println("\t1.更改商品-名称");
 				System.out.println("\t2.更改商品-价格");
 				System.out.println("\t3.更改商品-数量");
 				System.out.println("\n请输入选项,或者按0返回上一级菜单.");
-					 boolean boolNext = true;
-						 do
-						{
-							 String choice = ScannerChoString();
-							 if ("0".equals(choice) || "1".equals(choice) || "2".equals(choice) || "3".equals(choice))
-							 { 
-								 boolNext = false;
-								 int info = Integer.parseInt(choice);
-								 switch (info)
-								 {
-								 case 0:
-									 MainPage.MaintenancePage();
-									 break;
-								 case 1:
-									 System.out.println("请输入商品-新名称");
-									 String gname = ScannerInfoString();
-									 Goods goodsName = new Goods(gid,gname);
-									 boolean boolName = new GoodsDao().updateGoods(1, goodsName);
-									 if (boolName)
-									 {
-										 System.out.println("\n\t！！成功更新商品名至数据库！！\n");
-									 }else 
-									 	{
-										 	System.err.println("\n\t！！更新商品名失敗！！");
-									 	}
-									 changedInfoNext("upateGoodsPage");
-									 break;
-								 case 2:
-									 System.out.println("请输入商品-新价格 ");
-									 double gprice = ScannerInfo();
-									 Goods  goodsPrice = new Goods(gid,gprice);
-									 boolean boolPrice = new GoodsDao().updateGoods(2,goodsPrice);
-									 
-									 if (boolPrice)
-									 {
-										 System.out.println("\n\t！！成功更新商品价格至数据库！！\n");
-									 }else 
-									 	{
-										 	System.err.println("\n\t！！更新商品价格失敗！！");
-									 	}
-									 changedInfoNext("upateGoodsPage");
-									 break;
-								 case 3:
-									 System.out.println("请输入商品-新数量 ");
-									 int gNum = ScannerInfoInt();	
-									 Goods  goodsNum= new Goods(gid,gNum);
-									 boolean boolNum = new GoodsDao().updateGoods(3,goodsNum);
-									 if (boolNum)
-									 {
-										 System.out.println("\n\t！！成功更新商品数量至数据库！！\n");
-									 }else 
-									 	{
-										 	System.err.println("\n\t！！更新商品数量失敗！！");
-									 	}
-									 	changedInfoNext("upateGoodsPage");
-									 break;
-								 default:
-									 System.out.println("请输入正确的选择！");
-								 break;
-								 }
-							 }
-							 System.err.println("！输入有误！");
-							System.out.println("请重新选择,或者按0返回上一级菜单.");
-						 } while (boolNext);	
+				 do
+				{
+					 String choice = ScannerChoString();
+					 String regex = "[0-3]";
+					 if (choice.matches(regex))
+					 { 
+						 int info = Integer.parseInt(choice);
+						 switch (info)
+						 {
+						 case 0:
+							 MainPage.MaintenancePage();
+							 break;
+						 case 1:
+							 System.out.println("请输入商品-新名称");
+							 String gname = ScannerInfoString();
+							 Goods goodsName = new Goods(gid,gname);
+							 boolean boolName = new GoodsDao().updateGoods(1, goodsName);
+							 if (boolName)
+							 {
+								 System.out.println("\n\t！！成功更新商品名至数据库！！\n");
+							 }else 
+							 	{
+								 	System.err.println("\n\t！！更新商品名失敗！！");
+							 	}
+							 changedInfoNext("upateGoodsPage");
+							 break;
+						 case 2:
+							 System.out.println("请输入商品-新价格 ");
+							 double gprice = ScannerInfo();
+							 Goods  goodsPrice = new Goods(gid,gprice);
+							 boolean boolPrice = new GoodsDao().updateGoods(2,goodsPrice);
+							 
+							 if (boolPrice)
+							 {
+								 System.out.println("\n\t！！成功更新商品价格至数据库！！\n");
+							 }else 
+							 	{
+								 	System.err.println("\n\t！！更新商品价格失敗！！");
+							 	}
+							 changedInfoNext("upateGoodsPage");
+							 break;
+						 case 3:
+							 System.out.println("请输入商品-新数量 ");
+							 int gNum = ScannerInfoInt();	
+							 Goods  goodsNum= new Goods(gid,gNum);
+							 boolean boolNum = new GoodsDao().updateGoods(3,goodsNum);
+							 if (boolNum)
+							 {
+								 System.out.println("\n\t！！成功更新商品数量至数据库！！\n");
+							 }else 
+							 	{
+								 	System.err.println("\n\t！！更新商品数量失敗！！");
+							 	}
+							 	changedInfoNext("upateGoodsPage");
+							 break;
+						 default:
+							 System.out.println("请输入正确的选择！");
+						 break;
+						 }
+					 }
+					 System.err.println("！输入有误！");
+					System.out.println("请重新选择,或者按0返回上一级菜单.");
+				 } while (true);	
 			}
 	
 	/*
@@ -137,14 +134,12 @@ public final class GoodsPage extends ScannerChoice
 				int gid = QueryPrint.query("deleteGoodsPage"); //返回的是查询的信息编号
 				
 				//确认是否真的删除！
-					boolean bool = true;
 					do
 					{
 						System.out.println("\n确认删除该商品：Y/N");
-						String choice = ScannerNext();
+						String choice = ScannerChoString();
 							if ("y".equals(choice) || "Y".equals(choice))
 							{
-								bool = false;//跳出do-while循环
 									//进行刪除-数据库操作
 									boolean boolDeleteGoods = new GoodsDao().deleteGoods(gid);//調用刪除功能
 									
@@ -155,14 +150,13 @@ public final class GoodsPage extends ScannerChoice
 										{
 											System.err.println("\n\t！！刪除该商品失敗！！");
 										}
-									changedInfoNext("deleteGoodsPage"); //
+									changedInfoNext("deleteGoodsPage"); 
 							}else if ("N".equals(choice) || "n".equals(choice)) 
 									{
-										bool = false;
 										MainPage.MaintenancePage();
 									}
 						System.out.println("\t!!输入有误,请重新输入!!\n");
-					} while (bool);
+					} while (true);
 				
 				
 			}
@@ -182,13 +176,12 @@ public final class GoodsPage extends ScannerChoice
 				//思考：1. 如果用户不输入数字，怎么办？	可能答案在while括号中
 				//用户查找的信息在数据库中无，怎样判断？（已经解决，等会儿总结方法）
 				//用户选择上面的提示信息
-					 boolean bool = true;
 						 do
 						{
 							 String  info = ScannerChoString();
-							 if ("0".equals(info) || "1".equals(info) || "2".equals(info) || "3".equals(info))
+							 String regex = "[0-3]";
+							 if (info.matches(regex))
 							 { 
-								 bool = false;
 								 int choice = Integer.parseInt(info);
 								 switch (choice)
 								 {
@@ -211,57 +204,58 @@ public final class GoodsPage extends ScannerChoice
 										 queryGoodsPage();
 									 } else
 									 	  {
-												 if (choice == 1) //打印目录，不要放在功能函数中，会影响其他程序调用
-												 {	
-													 System.out.println("\t\t\t\t\t商品按照 数量升序 列表\n\n");
-												 }else if (choice == 2) {
-													 System.out.println("\t\t\t\t\t商品按照 价格升序 列表\n\n");
-												 }else{
-													 System.out.println("\t\t\t\t\t您所查找的商品如下\n\n");
-												 }
-												 System.out.println("\t商品编号\t\t商品名称\t\t商品价格\t\t商品数量\t\t备注\n");
-												 
-												 //遍历数组（存放用户查找的信息） 
-												 for (int i = 0,length = goodsList.size(); i < length; i++)
+											 if (choice == 1) //打印目录，不要放在功能函数中，会影响其他程序调用
+											 {	
+												 System.out.println("\t\t\t\t\t商品按照 数量升序 列表\n\n");
+											 }else if (choice == 2) 
+													 {
+														 System.out.println("\t\t\t\t\t商品按照 价格升序 列表\n\n");
+													 }else
+														 {
+															 System.out.println("\t\t\t\t\t您所查找的商品如下\n\n");
+														 }
+											 System.out.println("\t商品编号\t\t商品名称\t\t商品价格\t\t商品数量\t\t备注\n");
+											 
+											 //遍历数组（存放用户查找的信息） 
+											 for (int i = 0,length = goodsList.size(); i < length; i++)
+											 {
+												 Goods goods = goodsList.get(i);
+												 System.out.print("\t"+goods.getGid()+"\t\t"+goods.getGname()+"\t\t"+goods.getGprice()+"\t\t"+goods.getGnum());
+												 int gnum = goods.getGnum();
+												 if (gnum ==0)
 												 {
-													 Goods goods = goodsList.get(i);
-													 System.out.print("\t"+goods.getGid()+"\t\t"+goods.getGname()+"\t\t"+goods.getGprice()+"\t\t"+goods.getGnum());
-													 int gnum = goods.getGnum();
-													 if (gnum ==0)
-													 {
-														 System.out.println("\t\t该商品已售空！");
-													 }else if (gnum<10)
-													 {
-														 System.out.println("\t\t该商品已不足10件");
-													 }else 
-													 {
-														 System.out.println("\t\t-");
-													 }
-													 System.out.println("\t");
-											  }
-												 	System.out.println("---------------------");
-													boolean boolNext = true;
-													 do
+													 System.out.println("\t\t该商品已售空！");
+												 }else if (gnum<10)
+														 {
+															 System.out.println("\t\t该商品已不足10件");
+														 }else 
+															 {
+																 System.out.println("\t\t-");
+															 }
+												 System.out.println("\t");
+											 }
+											 	System.out.println("---------------------");
+												 do
+												{
+													 System.out.println("输入 0 返回上一级菜单");
+													 String choiceNext = ScannerChoString();
+													
+													 if ("0".equals(choiceNext))
 													{
-														 System.out.println("输入 0 返回上一级菜单");
-														 String choiceNext = ScannerChoString();
-														
-														 if ("0".equals(choiceNext))
-														{
-															 MainPage.MaintenancePage();
-															 bool = false;
-														}
-														 System.err.println("输入有误！");
-													} while (boolNext);
+														 MainPage.MaintenancePage();
+													}
+													 System.err.println("输入有误！");
+												} while (true);
 									 	  }
 									 break;
 								 default:
 								 break;
 								 }
+							 break;
 							 }
 							 System.err.println("输入有误！");
 							 System.out.println("请重新选择,或者按0返回上一级菜单.");
-						} while (bool);
+						} while (true);
 	
 					 //用户选择操作完查询后的下一步
 
@@ -306,17 +300,16 @@ public final class GoodsPage extends ScannerChoice
 					{
 						System.out.println("\t\t该商品已售空！");
 					}else if (gNum<10) 
-					{
-						System.out.println("\t\t该商品已不足10件");
-					}else
-					{
-						System.out.println("\t\t-");
-					}
+							{
+								System.out.println("\t\t该商品已不足10件");
+							}else
+								{
+									System.out.println("\t\t-");
+								}
 					System.out.println("\t");
 				}
 				//下一步
 				System.out.println("---------------------");
-				boolean bool = true;
 				do
 				{
 					System.out.println("输入 0 返回上一级菜单");
@@ -325,11 +318,9 @@ public final class GoodsPage extends ScannerChoice
 					if (choice.equals("0"))
 					{
 						MainPage.MaintenancePage();
-						bool = false;
 					}
 					System.out.println("输入有误！");
-				} while (bool);
+				} while (true);
 			}
-	
 	}
 }

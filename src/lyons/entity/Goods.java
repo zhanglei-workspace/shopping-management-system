@@ -62,7 +62,7 @@ public final class Goods
 		this.gname  = gname;
 	}
 
-	//共有-get、set-方法。惡心的代碼機器生成
+	//共有-get、set-方法。
 		public int getGid()
 		{
 			return gid;

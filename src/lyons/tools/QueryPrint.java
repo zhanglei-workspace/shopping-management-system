@@ -34,24 +34,24 @@ public final class QueryPrint
 						ScannerChoice.changedInfoNext(oper);
 						
 				}else	//查到有此商品，实现进行 更改商品 信息操作！
-				{		//这些重复的代码让我想吐！！！
-					Goods goods = goodsList.get(0);
-					
-					System.out.println("\t\t\t\t\t商品列表\n\n");
-					System.out.println("\t商品编号\t\t商品名称\t\t商品价格\t\t商品数量\t\t备注\n");
-					System.out.print("\t"+goods.getGid()+"\t\t"+goods.getGname()+"\t\t"+goods.getGprice()+"\t\t"+goods.getGnum());
-					if (goods.getGnum()==0)
-					{
-						System.out.println("\t\t该商品已售空");
-					}else if (goods.getGnum()<10)
-							{
-								System.out.println("\t\t该商品已不足10件");
-							}else {
-								System.out.println("\t\t-");
-							}
-					gid =	goods.getGid(); //将商品编号返回给调用者
-					
-				}
+					{		
+						Goods goods = goodsList.get(0);
+						
+						System.out.println("\t\t\t\t\t商品列表\n\n");
+						System.out.println("\t商品编号\t\t商品名称\t\t商品价格\t\t商品数量\t\t备注\n");
+						System.out.print("\t"+goods.getGid()+"\t\t"+goods.getGname()+"\t\t"+goods.getGprice()+"\t\t"+goods.getGnum());
+						if (goods.getGnum()==0)
+						{
+							System.out.println("\t\t该商品已售空");
+						}else if (goods.getGnum()<10)
+								{
+									System.out.println("\t\t该商品已不足10件");
+								}else 
+									{
+										System.out.println("\t\t-");
+									}
+						gid = goods.getGid(); //将商品编号返回给调用者
+					}
 		 return gid;
 		} 
 	
@@ -94,7 +94,7 @@ public final class QueryPrint
 										gid = goods.getGid(); //将商品编号返回给调用者,
 									}else 
 										{
-										gid = -2;
+											gid = -2;
 										}
 							}
 						}

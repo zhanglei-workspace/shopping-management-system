@@ -14,24 +14,25 @@ public final class SalesManPage extends ScannerChoice
 	 */
 	public static void  addSalesManPage()
 	{
-			System.out.println("\t正在执行添加售货员操作\n");
-			
-			System.out.println("\n添加售货员-姓名");
-			String sName = ScannerChoSting();
-			
-			System.out.println("\n添加售货员-密码");
-			String sPssswd = ScannerChoSting();
-			
-			SalesMan salesMan = new SalesMan(sName,sPssswd);//创建售货员对象
-			boolean bool = new SalesManDao().addSalesMan(salesMan);
-			
-				if (bool)
+		System.out.println("\t正在执行添加售货员操作\n");
+		
+		System.out.println("\n添加售货员-姓名");
+		String sName = ScannerChoString();
+		
+		System.out.println("\n添加售货员-密码");
+		String sPssswd = ScannerChoString();
+		
+		SalesMan salesMan = new SalesMan(sName,sPssswd);
+		boolean bool = new SalesManDao().addSalesMan(salesMan);
+		
+			if (bool)
+			{
+				System.out.println("\n\t!您已成功添加售货员到数据库!");
+			}else 
 				{
-					System.out.println("\n\t!您已成功添加售货员到数据库!");
-				}else {
 					System.out.println("添加售货员失败");	
 				}
-			choiceSalesManNext("addSalesMan");
+		choiceSalesManNext("addSalesMan");
 	}
 	
 	/*
@@ -63,57 +64,57 @@ public final class SalesManPage extends ScannerChoice
 					System.out.println("\n--------请选择您要更改的内容\n");
 					System.out.println("\t1.更改售货员-姓名");
 					System.out.println("\t2.更改售货员-密码");
-					boolean boolNext = true;
 					do
 					{
 						String choice = ScannerChoString();
-						if ("0".equals(choice) || "1".equals(choice) || "2".equals(choice))
+						String regex  = "[0-2]";
+						if (choice.matches(regex))
 						{
 							int info = Integer.parseInt(choice);
-							boolNext = false;
-								switch (info)
-								{
-								case 0:
-										MainPage.salesManManagementPage();
-									break;
-								case 1:
-										System.out.println("更改售货员-新姓名");
-										String sNewName = ScannerInfoString();
-										
-										SalesMan salesManName = new SalesMan(salesMan.getSId(),sNewName,null);
-										boolean boolsName = new SalesManDao().updateSalesMan(1, salesManName);
-										
-										if (boolsName)
+							switch (info)
+							{
+							case 0:
+									MainPage.salesManManagementPage();
+								break;
+							case 1:
+									System.out.println("更改售货员-新姓名");
+									String sNewName = ScannerInfoString();
+									
+									SalesMan salesManName = new SalesMan(salesMan.getSId(),sNewName,null);
+									boolean boolsName = new SalesManDao().updateSalesMan(1, salesManName);
+									
+									if (boolsName)
+									{
+										System.out.println("\n\t！！成功更新售货员名字至数据库！！\n");
+									}else 
 										{
-											System.out.println("\n\t！！成功更新售货员名字至数据库！！\n");
-										}else {
 											System.err.println("\n\t！！更新售货员名字失敗！！");
 										}
-										choiceSalesManNext("updateSalesMan");
-									break;
-								case 2:
-										System.out.println("更改售货员-新密码");
-										String sNewPasswd = ScannerInfoString();
-										
-										SalesMan salesManPasswd = new SalesMan(salesMan.getSId(),null,sNewPasswd);
-										boolean boolsPasswd = new SalesManDao().updateSalesMan(2, salesManPasswd);
-										
-										if (boolsPasswd)
+									choiceSalesManNext("updateSalesMan");
+								break;
+							case 2:
+									System.out.println("更改售货员-新密码");
+									String sNewPasswd = ScannerInfoString();
+									
+									SalesMan salesManPasswd = new SalesMan(salesMan.getSId(),null,sNewPasswd);
+									boolean boolsPasswd = new SalesManDao().updateSalesMan(2, salesManPasswd);
+									
+									if (boolsPasswd)
+									{
+										System.out.println("\n\t！！成功更新售货员密码至数据库！！\n");
+									}else 
 										{
-											System.out.println("\n\t！！成功更新售货员密码至数据库！！\n");
-										}else {
 											System.err.println("\n\t！！更新售货员密码失敗！！");
 										}
-										choiceSalesManNext("updateSalesMan");
-									break;
-								default:
-									break;
-								}
+									choiceSalesManNext("updateSalesMan");
+								break;
+							default:
+								break;
+							}
 						}
 						System.out.println("\t!输入有误!");
 						System.out.println("\n请选择选项.或者按 0 返回上一级菜单.");
-					} while (boolNext);
-		
+					} while (true);
 				}
 	}
 
@@ -146,14 +147,12 @@ public final class SalesManPage extends ScannerChoice
 						System.out.println();
 					}
 					//确认是否真的删除！
-					boolean bool = true;
 					do
 					{
 						System.out.println("\n确认删除该售货员：Y/N");
-						String choice = ScannerNext();
+						String choice = ScannerChoString();
 						if ("y".equals(choice) || "Y".equals(choice))
 						{
-							bool = false;//跳出do-while循环
 							//进行刪除-数据库操作
 							
 							boolean boolDeleteSalesMan = new SalesManDao().deleteSalesMan(sName);//調用刪除功能
@@ -162,17 +161,16 @@ public final class SalesManPage extends ScannerChoice
 							{
 								System.err.println("\t！！已成功刪除该售货员！！\n");
 							}else 
-							{
-								System.err.println("\t！！刪除该售货员失敗！！");
-							}
-							choiceSalesManNext("deleteGoods"); //选择下一步
+								{
+									System.err.println("\t！！刪除该售货员失敗！！");
+								}
+							choiceSalesManNext("deleteGoods"); 
 						}else if ("N".equals(choice) || "n".equals(choice)) 
 						{
-							bool = false;
 							MainPage.salesManManagementPage();
 						}
 						System.err.println("\t!!输入有误,请重新输入!!");
-					} while (bool);
+					} while (true);
 				}
 	}
 	
@@ -211,7 +209,6 @@ public final class SalesManPage extends ScannerChoice
 	public static void displaySalesManPage()
 	{
 		ArrayList<SalesMan> salesManList = new SalesManDao().displaySalesMan();
-		//SalesManList 为空的情况没有考虑//已优化！
 		if (salesManList.size() <= 0)
 		{
 			System.err.println("\t！！售货员列表为空！！");
@@ -227,20 +224,17 @@ public final class SalesManPage extends ScannerChoice
 					System.out.println("\t"+salesMan.getSId()+"\t\t\t"+salesMan.getSName()+"\t\t\t"+salesMan.getSPassWord());
 					System.out.println();
 				}
-				//下面的代码块完全是写着玩,就是逼着用户输入0. 如果用户不输入数字，怎么办？
-				boolean bool = true;
 				do
 				{
 					System.out.println("\n\n输入 0 返回上一级菜单");
 					String choice = ScannerChoString();
 					
-					if (choice.equals("0"))
+					if ("0".equals(choice))
 					{
 						MainPage.salesManManagementPage();
-						bool = false;
 					}
 					System.err.print("\t输入有误！");
-				} while (bool);
+				} while (true);
 			}
 	}
 }

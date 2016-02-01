@@ -317,7 +317,7 @@ public final class MainPage extends ScannerChoice
 												do
 												{
 													System.out.println("确认购买：Y/N");
-													String choShopping = ScannerChoSting(); 
+													String choShopping = ScannerChoString(); 
 													if (choShopping.equals("y") || choShopping.equals("Y"))
 													{
 														System.out.println("\n总价："+allPrice+" $");
