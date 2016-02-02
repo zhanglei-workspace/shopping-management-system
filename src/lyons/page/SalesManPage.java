@@ -17,10 +17,10 @@ public final class SalesManPage extends ScannerChoice
 		System.out.println("\t正在执行添加售货员操作\n");
 		
 		System.out.println("\n添加售货员-姓名");
-		String sName = ScannerChoString();
+		String sName = ScannerInfoString();
 		
 		System.out.println("\n添加售货员-密码");
-		String sPssswd = ScannerChoString();
+		String sPssswd = ScannerInfoString();
 		
 		SalesMan salesMan = new SalesMan(sName,sPssswd);
 		boolean bool = new SalesManDao().addSalesMan(salesMan);
@@ -66,7 +66,7 @@ public final class SalesManPage extends ScannerChoice
 					System.out.println("\t2.更改售货员-密码");
 					do
 					{
-						String choice = ScannerChoString();
+						String choice = ScannerInfoString();
 						String regex  = "[0-2]";
 						if (choice.matches(regex))
 						{
@@ -150,7 +150,7 @@ public final class SalesManPage extends ScannerChoice
 					do
 					{
 						System.out.println("\n确认删除该售货员：Y/N");
-						String choice = ScannerChoString();
+						String choice = ScannerInfoString();
 						if ("y".equals(choice) || "Y".equals(choice))
 						{
 							//进行刪除-数据库操作
@@ -227,7 +227,7 @@ public final class SalesManPage extends ScannerChoice
 				do
 				{
 					System.out.println("\n\n输入 0 返回上一级菜单");
-					String choice = ScannerChoString();
+					String choice = ScannerInfoString();
 					
 					if ("0".equals(choice))
 					{

@@ -20,13 +20,13 @@ public final class GoodsPage extends ScannerChoice
 				System.out.println("\t正在执行添加商品操作\n");
 				
 				System.out.println("\n請輸入添加商品-名称");
-				String goodsName = ScannerChoString();
+				String goodsName = ScannerInfoString();
 				
 				System.out.println("\n請輸入添加商品-价格");
 				double goodsPrice = ScannerInfo();
 			
 				System.out.println("\n請輸入添加商品-数量");
-				int goodsNumber = ScannerInfoInt();
+				int goodsNumber = ScannerNum();
 				
 				Goods goods  = new Goods(goodsName,goodsPrice,goodsNumber);
 				boolean bool = new GoodsDao().addGoods(goods);
@@ -59,7 +59,7 @@ public final class GoodsPage extends ScannerChoice
 				System.out.println("\n请输入选项,或者按0返回上一级菜单.");
 				 do
 				{
-					 String choice = ScannerChoString();
+					 String choice = ScannerInfoString();
 					 String regex = "[0-3]";
 					 if (choice.matches(regex))
 					 { 
@@ -100,7 +100,7 @@ public final class GoodsPage extends ScannerChoice
 							 break;
 						 case 3:
 							 System.out.println("请输入商品-新数量 ");
-							 int gNum = ScannerInfoInt();	
+							 int gNum = ScannerNum();	
 							 Goods  goodsNum= new Goods(gid,gNum);
 							 boolean boolNum = new GoodsDao().updateGoods(3,goodsNum);
 							 if (boolNum)
@@ -137,7 +137,7 @@ public final class GoodsPage extends ScannerChoice
 					do
 					{
 						System.out.println("\n确认删除该商品：Y/N");
-						String choice = ScannerChoString();
+						String choice = ScannerInfoString();
 							if ("y".equals(choice) || "Y".equals(choice))
 							{
 									//进行刪除-数据库操作
@@ -178,7 +178,7 @@ public final class GoodsPage extends ScannerChoice
 				//用户选择上面的提示信息
 						 do
 						{
-							 String  info = ScannerChoString();
+							 String  info = ScannerInfoString();
 							 String regex = "[0-3]";
 							 if (info.matches(regex))
 							 { 
@@ -238,7 +238,7 @@ public final class GoodsPage extends ScannerChoice
 												 do
 												{
 													 System.out.println("输入 0 返回上一级菜单");
-													 String choiceNext = ScannerChoString();
+													 String choiceNext = ScannerInfoString();
 													
 													 if ("0".equals(choiceNext))
 													{
@@ -263,7 +263,7 @@ public final class GoodsPage extends ScannerChoice
 						boolean boolNext = true;
 						 do
 						{
-							 String choice = ScannerChoString();
+							 String choice = ScannerInfoString();
 								
 							 if ("0".equals(choice))
 							 { 
@@ -313,7 +313,7 @@ public final class GoodsPage extends ScannerChoice
 				do
 				{
 					System.out.println("输入 0 返回上一级菜单");
-					String choice = ScannerChoString();
+					String choice = ScannerInfoString();
 					
 					if (choice.equals("0"))
 					{

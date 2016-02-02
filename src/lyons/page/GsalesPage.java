@@ -48,7 +48,7 @@ public final class GsalesPage
 				do
 				{
 					System.out.println("\n\n输入 0 返回上一级菜单");
-					String choice = ScannerChoice.ScannerChoString();
+					String choice = ScannerChoice.ScannerInfoString();
 					
 					if ("0".equals(choice))
 					{

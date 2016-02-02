@@ -42,7 +42,7 @@ public final class MainPage extends ScannerChoice
 
 				do
 				{
-					 String choice = ScannerChoString();
+					 String choice = ScannerInfoString();
 					 String regex = "[0-3]"; 							//正则表达式
 					 if (choice.matches(regex))
 					 { 
@@ -91,7 +91,7 @@ public final class MainPage extends ScannerChoice
 			
 			do
 			{
-				String choice = ScannerChoString();
+				String choice = ScannerInfoString();
 				String regex = "[0-5]";
 				if (choice.matches(regex))
 				{
@@ -138,7 +138,7 @@ public final class MainPage extends ScannerChoice
 			
 			do
 			{
-				 String choice = ScannerChoString();
+				 String choice = ScannerInfoString();
 				 String regex = "[0-2]";
 				 if (choice.matches(regex))
 					{
@@ -226,7 +226,7 @@ public final class MainPage extends ScannerChoice
 			
 			do
 			{
-				String choice = ScannerChoString();
+				String choice = ScannerInfoString();
 				String regex  = "[0-2]";
 				if (choice.matches(regex))
 				{
@@ -285,7 +285,7 @@ public final class MainPage extends ScannerChoice
 							 		
 							// 默认用户输入的编号是int类型
 							 	//传参gid，调用精确查询商品
-							 	int shoppingGid = ScannerInfoInt();
+							 	int shoppingGid = ScannerNum();
 								
 							 	ArrayList<Goods> goodsList = new QueryPrint().queryGoodsKey(shoppingGid,null);
 								if (goodsList == null || goodsList.size() == 0) //判断结果：查无此商品
@@ -300,7 +300,7 @@ public final class MainPage extends ScannerChoice
 										System.out.println("--请输入购买数量--");
 										do
 										{
-											int choicegoodsNum = ScannerInfoInt();//获取用户要购买的数量
+											int choicegoodsNum = ScannerNum();//获取用户要购买的数量
 											
 											if (choicegoodsNum > gNum)
 											{
@@ -317,7 +317,7 @@ public final class MainPage extends ScannerChoice
 												do
 												{
 													System.out.println("确认购买：Y/N");
-													String choShopping = ScannerChoString(); 
+													String choShopping = ScannerInfoString(); 
 													if (choShopping.equals("y") || choShopping.equals("Y"))
 													{
 														System.out.println("\n总价："+allPrice+" $");
@@ -396,7 +396,7 @@ public final class MainPage extends ScannerChoice
 		
 		do
 		{
-			String choice = ScannerChoString();
+			String choice = ScannerInfoString();
 			String regex  = "[0-5]";
 			if (choice.matches(regex))
 			{

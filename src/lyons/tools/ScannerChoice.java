@@ -16,56 +16,54 @@ import lyons.page.SalesManPage;
 public class ScannerChoice
 {
 	/*
-	 * 获取用户--界面选择
-	 *         选项选择
-	 * @return int
-	 */
-		public static int ScannerCho()
-		{
-			Scanner scanner = new Scanner(System.in);
-			System.out.print("您的选择：");
-			int info = scanner.nextInt();
-			System.out.println();
-			return info;
-		}
-		/*
-		 * 获取用户--界面选择
-		 *       --选项选择
-		 * @return String
-		 */
-		public static String ScannerChoString()
-		{
-			Scanner scanner = new Scanner(System.in);
-			System.out.print("您的选择：");
-			return scanner.next();						//返回所读取信息
-		}
-
-	/*
 	 * 获取用户--輸入图书信息
+	 * 商品价格
 	 * @return double 
 	 */
 		public static double ScannerInfo()
 		{
-			Scanner scanner = new Scanner(System.in);
-			System.out.print("请输入：");
-			double info = scanner.nextDouble();
-			return info;
+			Scanner sc = new Scanner(System.in);
+			System.out.print("保留小数点后两位,请输入：");
+			String info = sc.next();
+
+			String regex = "(([1-9][0-9]*)\\.([0-9]{2}))|[0]\\.([0-9]{2})";//保留小数点后2位小数
+			if (info.matches(regex))
+			{
+				return Double.parseDouble(info);
+			}else 
+				{
+					System.err.println("！输入有误！");
+					ScannerInfo();
+				}
+			return -1.00;
 		}
 		/*
 		 * 获取用户--輸入图书信息
+		 * 商品数量
 		 * @return int 
 		 */
-		public static int ScannerInfoInt()
+		public static int ScannerNum()
 		{
-			Scanner scanner = new Scanner(System.in);
+			Scanner sc = new Scanner(System.in);
 			System.out.print("请输入：");
-			int info = scanner.nextInt();
+			String num = sc.next();
 			
-			return info;
+			String regex = "([1-9])|([1-9][0-9]+)";//商品数量
+			if (num.matches(regex))
+			{
+				return Integer.parseInt(num);
+			}else 
+				{
+					System.err.println("！输入有误！");
+					ScannerNum();
+				}
+			return 0;
 		}
 		
 		/*
-		 * 获取用户--輸入图书信息
+		 * *获取用户--界面选择
+		 *        --选项选择
+		 *        --用户输入
 		 * @return Sting 
 		 */
 			public static String ScannerInfoString()
@@ -84,7 +82,7 @@ public class ScannerChoice
 			 do
 			{
 					System.out.println("是否继续进行-当前操作:(Y/N)");
-					String choice = ScannerChoice.ScannerChoString();
+					String choice = ScannerChoice.ScannerInfoString();
 				
 					 if ("y".equals(choice) || "Y".equals(choice)) //在JAVA: Equals比较的是值,==比较的是地址
 						{
@@ -119,7 +117,7 @@ public class ScannerChoice
 				 do
 				{		
 						System.out.println("是否继续进行-当前操作:(Y/N)");
-						String choice = ScannerChoice.ScannerChoString();
+						String choice = ScannerChoice.ScannerInfoString();
 					
 						 if ( "y".equals(choice) || "Y".equals(choice) ) //在JAVA: Equals比较的是值,==比较的是地址  .将比较的常量放在前面，方直空指针异常
 							{
