@@ -4,7 +4,6 @@ package lyons.tools;
  * 各種完成操作后的 选择下一步
  * 以及界面選擇操作
  * @author 張磊
- *
  */
 
 import java.util.Scanner;
@@ -20,23 +19,29 @@ public class ScannerChoice
 	 * 商品价格
 	 * @return double 
 	 */
-		public static double ScannerInfo()
+	public static double ScannerInfo()
+	{
+		double num = 0.00;
+		do
 		{
 			Scanner sc = new Scanner(System.in);
 			System.out.print("保留小数点后两位,请输入：");
 			String info = sc.next();
-
+			
 			String regex = "(([1-9][0-9]*)\\.([0-9]{2}))|[0]\\.([0-9]{2})";//保留小数点后2位小数
 			if (info.matches(regex))
 			{
-				return Double.parseDouble(info);
+				num = Double.parseDouble(info);
 			}else 
 				{
 					System.err.println("！输入有误！");
-					ScannerInfo();
+					continue;
 				}
-			return -1.00;
-		}
+			break;
+		} while (true);
+			
+		return num;
+	}
 		/*
 		 * 获取用户--輸入图书信息
 		 * 商品数量
@@ -44,20 +49,26 @@ public class ScannerChoice
 		 */
 		public static int ScannerNum()
 		{
-			Scanner sc = new Scanner(System.in);
-			System.out.print("请输入：");
-			String num = sc.next();
-			
+			int num = 0;
 			String regex = "([1-9])|([1-9][0-9]+)";//商品数量
-			if (num.matches(regex))
+			do
 			{
-				return Integer.parseInt(num);
-			}else 
+				Scanner sc = new Scanner(System.in);
+				System.out.print("请输入：");
+				String nums = sc.next();
+				
+				if (nums.matches(regex))
 				{
-					System.err.println("！输入有误！");
-					ScannerNum();
-				}
-			return 0;
+					num = Integer.parseInt(nums);
+				}else 
+					{
+						System.err.println("！输入有误！");
+						continue;
+					}
+			 break;
+			} while (true);
+			
+			return num;
 		}
 		
 		/*

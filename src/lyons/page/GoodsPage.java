@@ -34,9 +34,10 @@ public final class GoodsPage extends ScannerChoice
 					if (bool)
 					{
 						System.out.println("\n\t!您已成功添加商品到数据库!");			
-					}else {
-						System.out.println("添加商品失败");	
-					}
+					}else 
+						{
+							System.out.println("添加商品失败");	
+						}
 					//用户选择操作完 添加商品 后的下一步。
 					changedInfoNext("addGoodsPage");
 			}
@@ -315,7 +316,7 @@ public final class GoodsPage extends ScannerChoice
 					System.out.println("输入 0 返回上一级菜单");
 					String choice = ScannerInfoString();
 					
-					if (choice.equals("0"))
+					if ("0".equals(choice))
 					{
 						MainPage.MaintenancePage();
 					}

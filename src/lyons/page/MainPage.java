@@ -12,6 +12,7 @@ import lyons.dao.SalesManDao;
 import lyons.entity.Goods;
 import lyons.entity.Gsales;
 import lyons.entity.SalesMan;
+import lyons.tools.Arith;
 import lyons.tools.QueryPrint;
 import lyons.tools.ScannerChoice;
 
@@ -308,65 +309,65 @@ public final class MainPage extends ScannerChoice
 												System.err.println("\t！！仓库储备不足！！");
 												System.out.println("--请重新输入购买数量--");
 											}else 
-											{
-												double allPrice = choicegoodsNum*gPrice; //double 与 int 做运算，java处理的很烂（BigDecimal），银行系统用java开发得哭死
-												System.out.println("\t\t\t  购物车结算\n");
-												System.out.println("\t\t商品名称\t商品单价\t购买数量\t总价\n");
-												System.out.println("\t\t"+goods.getGname()+"\t"+gPrice+" $\t"+choicegoodsNum+"\t"+allPrice+" $\n");
-												
-												do
 												{
-													System.out.println("确认购买：Y/N");
-													String choShopping = ScannerInfoString(); 
-													if (choShopping.equals("y") || choShopping.equals("Y"))
+													double allPrice = Arith.mul(choicegoodsNum, gPrice);//利用BigDecimal作乘法运算
+													System.out.println("\t\t\t  购物车结算\n");
+													System.out.println("\t\t商品名称\t商品单价\t购买数量\t总价\n");
+													System.out.println("\t\t"+goods.getGname()+"\t"+gPrice+" $\t"+choicegoodsNum+"\t"+allPrice+" $\n");
+													
+													do
 													{
-														System.out.println("\n总价："+allPrice+" $");
-														System.out.println("\n实际缴费金额");
-														
-														do
+														System.out.println("确认购买：Y/N");
+														String choShopping = ScannerInfoString(); 
+														if ("y".equals(choShopping) || "Y".equals(choShopping))
 														{
-															double amount = ScannerInfo();
-															double balance = amount-allPrice;  //用户交钱与购买物品总价间的差额
-															if (balance < 0)
-															{
-																System.err.println("\t！！缴纳金额不足！！");
-																System.out.println("\n请重新输入缴纳金额($)");
-															}else{																
-																
-	/*	这里是购物结算操作数据库！！！！！！----------------------	//1.更goods表数量2.增加sales表数量
-															商品gid goods.getGid(),购买数量choicegoodsNum。
-															原商品数量gNum。结算员Id  salesManSid
-															*/
+															System.out.println("\n总价："+allPrice+" $");
+															System.out.println("\n实际缴费金额");
 															
-																//对sales表进行操作
-																Gsales gSales = new Gsales(goods.getGid(),salesManSid,choicegoodsNum);
-																boolean insert = new GoodsDao().shoppingSettlement(gSales);
-																
-																//对goods表操作
-																int goodsNewNum = gNum - choicegoodsNum; //现在goods表中该商品数量
-																Goods newGoods = new Goods(goods.getGid(),goodsNewNum);
-																boolean update = new GoodsDao().updateGoods(3,newGoods);
-										
-																	if (update && insert)
-																	{
-																		System.out.println("找零："+balance);
-																		System.out.println("\n谢谢光临，欢迎下次惠顾");
-																	}else 
-																		{
-																			System.err.println("！支付失败！"); //出现这个错误一定是数据库操作有问题！
-																		}
-																shoppingSettlementPage(salesManSid);//最后跳转到到购物结算页面
-   //	结束购物结算操作数据库！！！！！！-----------------------------------
-																 }
-														} while (true);	
-														
-													}else if (choShopping.equals("N") || choShopping.equals("n")) 
+															do
 															{
-																shoppingSettlementPage(salesManSid);
-															}
-													System.err.println("\t！！请确认购物意向！！");
-												} while (true);
-											}
+																double amount = ScannerInfo();
+																double balance = Arith.sub(amount, allPrice);  //用户交钱与购买物品总价间的差额
+																if (balance < 0)
+																{
+																	System.err.println("\t！！缴纳金额不足！！");
+																	System.out.println("\n请重新输入缴纳金额($)");
+																}else{																
+																	
+		/*	这里是购物结算操作数据库！！！！！！----------------------	//1.更goods表数量2.增加sales表数量
+																商品gid goods.getGid(),购买数量choicegoodsNum。
+																原商品数量gNum。结算员Id  salesManSid
+																*/
+																
+																	//对sales表操作
+																	Gsales gSales = new Gsales(goods.getGid(),salesManSid,choicegoodsNum);
+																	boolean insert = new GoodsDao().shoppingSettlement(gSales);
+																	
+																	//对goods表操作
+																	int goodsNewNum = gNum - choicegoodsNum; //现在goods表中该商品数量
+																	Goods newGoods = new Goods(goods.getGid(),goodsNewNum);
+																	boolean update = new GoodsDao().updateGoods(3,newGoods);
+											
+																		if (update && insert)
+																		{
+																			System.out.println("找零："+balance);
+																			System.out.println("\n谢谢光临，欢迎下次惠顾");
+																		}else 
+																			{
+																				System.err.println("！支付失败！"); //出现这个错误一定是数据库操作有问题！
+																			}
+																	shoppingSettlementPage(salesManSid);//最后跳转到到购物结算页面
+	   //	结束购物结算操作数据库！！！！！！-----------------------------------
+																	 }
+															} while (true);	
+															
+														}else if ("N".equals(choShopping) || "n".equals(choShopping)) 
+																{
+																	shoppingSettlementPage(salesManSid);
+																}
+														System.err.println("\t！！请确认购物意向！！");
+													} while (true);
+												}
 										} while (true);
 									}					
 								break;

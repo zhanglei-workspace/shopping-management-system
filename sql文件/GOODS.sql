@@ -4,7 +4,7 @@ CREATE TABLE GOODS
 (
        gid     NUMBER(10) primary key,
        gname   VARCHAR2(20) NOT NULL UNIQUE,
-       gprice  NUMBER(18,1) NOT NULL,
+       gprice  NUMBER(18,2) NOT NULL,
        gnum    NUMBER(11) NOT NULL
 );
 
