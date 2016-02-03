@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<classpath>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry exported="true" kind="lib" path="C:/app/Mycomputer/product/11.2.0/dbhome_1/jdbc/lib/ojdbc6.jar"/>
-	<classpathentry kind="output" path="bin"/>
-</classpath>

@@ -1,0 +1,16 @@
+     # target #
+.metadata
+.settings
+.classpath
+.project
+.gitattributes
+*.class
+    
+    # sql #
+*~
+
+# Generated files #
+bin/
+
+
+
