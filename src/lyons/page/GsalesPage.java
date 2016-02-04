@@ -6,17 +6,17 @@ import lyons.dao.GsalesDao;
 import lyons.entity.Gsales;
 import lyons.tools.ScannerChoice;
 
+/**
+ * 当日卖出商品列表界面
+ * @author lyons(zhanglei)
+ */
+
 public final class GsalesPage
 {
-	/*
-	 * 每日卖出商品列表界面
-	 *gSid,gId,sId,date,sNum
-	 */
 	public static void dailySaleGoodsPage()
 	{
-		
 		System.out.println("\t正在执行列出当日售出商品列表操作\n");
-		ArrayList<Gsales> GsalesList = new GsalesDao().dailyGsales();//接收今日售出商品数组集
+		ArrayList<Gsales> GsalesList = new GsalesDao().dailyGsales();//当日售出商品数组集
 
 		if (GsalesList.size() <= 0)
 		{
@@ -29,7 +29,7 @@ public final class GsalesPage
 	
 				for (int i = 0,length = GsalesList.size(); i < length; i++)
 				{
-					//获取售出商品：gname,gprice,gnum, allSum (各种商品的销售总和)
+					//获取售出商品：gname,gprice,gnum, allSum (单种商品的销售总和)
 					Gsales gSales = GsalesList.get(i);
 					System.out.print("\t"+gSales.getGName()+"\t\t"+gSales.getGPrice()+" $\t\t"+gSales.getGNum()+"\t\t"+gSales.getAllSnum());
 					int gNUm = gSales.getGNum();
@@ -43,18 +43,17 @@ public final class GsalesPage
 								{
 									System.out.println("\t\t-");
 								}
-					System.out.println("\t");
+				  System.out.println("\t");
 				}
 				do
 				{
 					System.out.println("\n\n输入 0 返回上一级菜单");
 					String choice = ScannerChoice.ScannerInfoString();
-					
 					if ("0".equals(choice))
 					{
 						MainPage.salesManManagementPage();
 					}
-					MainPage.commodityManagementPage();
+				 MainPage.commodityManagementPage();
 				} while (true);
 			}
 	}

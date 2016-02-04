@@ -1,13 +1,9 @@
 package lyons.page;
-/**
- * 商超购物管理系统               
- * @author 张磊
- * @version 1.0
- */
 
 import java.util.ArrayList;
 
 import lyons.dao.GoodsDao;
+import lyons.dao.GsalesDao;
 import lyons.dao.SalesManDao;
 import lyons.entity.Goods;
 import lyons.entity.Gsales;
@@ -16,23 +12,28 @@ import lyons.tools.Arith;
 import lyons.tools.QueryPrint;
 import lyons.tools.ScannerChoice;
 
+/**
+ * 商超购物管理系统主界面            
+ * @author 张磊
+ * @version 1.0
+ */
+
 public final class MainPage extends ScannerChoice
 {
 
-	/*
+	/**
 	 * 入口函数
-	 * @param args
 	 */
-		public static void main(String[] args)
-		{
-			MainPage.mianPage();
-		}
-	/*
+	public static void main(String[] args)
+	{
+		MainPage.mianPage();
+	}
+	
+	/**
 	 * 主界面 已实现！已校验！
 	 */
 		public static void  mianPage()
 		{
-			
 			System.out.println("***************************\n");
 			System.out.println("\t 1.商品维护\n");
 			System.out.println("\t 2.前台收银\n");
@@ -40,42 +41,41 @@ public final class MainPage extends ScannerChoice
 			System.out.println("***************************");
 			
 			System.out.println("\n请输入选项,或者按0退出.");
-
-				do
-				{
-					 String choice = ScannerInfoString();
-					 String regex = "[0-3]"; 							//正则表达式
-					 if (choice.matches(regex))
-					 { 
-						 int info = Integer.parseInt(choice);
-						 switch (info)
-						 {
-						 case 0:
-							 System.out.println("------------------");
-							 System.out.println("您已经退出系统!");
-							 System.exit(1);							//退出程序，返回值随便设置
-							 break;
-						 case 1:
-							 MaintenancePage();
-							 break;
-						 case 2:
-							 checkstandLogPage();
-							 break;
-						 case 3:
-							 commodityManagementPage();
-							 break;
-						 default:
+			do
+			{
+				 String choice = ScannerInfoString();
+				 String regex = "[0-3]";//正则表达式
+				 if (choice.matches(regex))
+				 { 
+					 int info = Integer.parseInt(choice);
+					 switch (info)
+					 {
+					 case 0:
+						 System.out.println("------------------");
+						 System.out.println("您已经退出系统!");
+						 System.exit(1);//退出程序，返回值随便设置
 						 break;
-						 }
+					 case 1:
+						 MaintenancePage();
+						 break;
+					 case 2:
+						 checkstandLogPage();
+						 break;
+					 case 3:
+						 commodityManagementPage();
+						 break;
+					 default:
+					 break;
 					 }
-					 System.err.println("!输入有误!");
-					 System.out.println("重新选择或者按0退出.");
-				} while (true);
+				 }
+				 System.err.println("!输入有误!");
+				 System.out.println("重新选择或者按0退出.");
+			} while (true);
 			
 		}
 		
-	/*
-	 * 1.商品维护界面 已校验！
+	/**
+	 * 1.商品维护界面
 	 */
 		public static void MaintenancePage()
 		{
@@ -89,7 +89,6 @@ public final class MainPage extends ScannerChoice
 			System.out.println("***************************");
 			
 			System.out.println("\n请输入选项,或者按 0 返回上一级菜单.");
-			
 			do
 			{
 				String choice = ScannerInfoString();
@@ -126,8 +125,8 @@ public final class MainPage extends ScannerChoice
 			}while(true);
 		}
 
-	/*
-	 * 2.前台收银登陆界面  已实现！
+	/**
+	 * 2.前台收银登陆界面
 	 */
 		public static void checkstandLogPage()
 		{
@@ -150,54 +149,41 @@ public final class MainPage extends ScannerChoice
 								mianPage();
 								break;
 							case 1:
-								int logTimes = 2;															   //剩余登陆次数,有三次机会
-								boolean flagLog = true;
+								int loginTimes = 3;//3次登陆机会
 								
-								do
+								while (loginTimes!=0)
 								{
+									loginTimes--;
 									System.out.println("---用户名---");
 									String sName = ScannerInfoString();
 									System.out.println("---密码---");
 									String sPssWord = ScannerInfoString();
 									
-									ArrayList<SalesMan> salesManInfo = new SalesManDao().checkstandLog(sName); //从数据库中获取用户密码
+									ArrayList<SalesMan> salesManInfo = new SalesManDao().checkstandLog(sName); //以用户名从数据库中获取用户密码.
 									
-									if (salesManInfo == null || salesManInfo.size() == 0)					   //没有此用户的情况！
+									if (salesManInfo == null || salesManInfo.size() == 0)//没有此用户的情况！
 									{
-										if (logTimes == 0)
-										{
-											flagLog = false;
-											System.out.println("------------------");
-											System.err.println("\t！！您已被强制退出系统！！");
-											System.exit(1);		
-										}
 										System.err.println("\t!!用户名输入有误!!\n");
-										System.out.println("\n剩余登陆次数："+logTimes);
-										logTimes--;
+										System.out.println("\n剩余登陆次数："+loginTimes);
 									}else 
 										{
-											SalesMan salesMan = salesManInfo.get(0); 						  //此地，只返回了一组数值，只遍历1次即可
-										
-											if (sPssWord.equals(salesMan.getSPassWord()))					  //验证密码，登陆成功了！！
+											SalesMan salesMan = salesManInfo.get(0);//此地，只返回了一组数值，只遍历1次即可
+											
+											if (sPssWord.equals(salesMan.getSPassWord()))//验证密码，登陆成功了！！
 											{
-												flagLog = false;
 												System.out.println("\t  ---账户成功登陆---");
-												shoppingSettlementPage(salesMan.getSId());					  //获取营业员的编号，把营业员的编号传给这个函数
+												shoppingSettlementPage(salesMan.getSId());//参数为营业员编号sId
 											}else 
 												{
-													if (logTimes == 0)
-													{
-														flagLog = false;
-														System.out.println("------------------");
-														System.err.println("\t！！您已被强制退出系统！！");
-														System.exit(1);			
-													}
 													System.err.println("\t!!密码错误!!\n");
-													System.out.println("\n剩余登陆次数："+logTimes);
-													logTimes--;
+													System.out.println("\n剩余登陆次数："+loginTimes);
 												}
 										}
-								} while (flagLog);
+								}
+								//loginTimes = 0
+								System.out.println("------------------");
+								System.err.println("\t！！您已被强制退出系统！！");
+								System.exit(1);			
 								break;
 							case 2:
 								System.out.println("------------------");
@@ -213,8 +199,8 @@ public final class MainPage extends ScannerChoice
 			}while(true);
 		}
 
-	/*
-	 * 3.商品管理界面  已实现！
+	/**
+	 * 3.商品管理界面
 	 */
 		public static void commodityManagementPage()
 		{
@@ -224,7 +210,6 @@ public final class MainPage extends ScannerChoice
 			System.out.println("***************************");
 			
 			System.out.println("\n请输入选项,或者按 0 返回上一级菜单.");
-			
 			do
 			{
 				String choice = ScannerInfoString();
@@ -252,8 +237,8 @@ public final class MainPage extends ScannerChoice
 			}while(true);
 		}
 					
-	/*
-	 * 购物结算界面  已实现！
+	/**
+	 * 购物结算界面
 	 */
 		public static void shoppingSettlementPage(int salesManSid)
 		{
@@ -284,19 +269,18 @@ public final class MainPage extends ScannerChoice
 							default:
 								System.out.println("--按商品编号选择商品--");
 							 		
-							// 默认用户输入的编号是int类型
 							 	//传参gid，调用精确查询商品
 							 	int shoppingGid = ScannerNum();
 								
 							 	ArrayList<Goods> goodsList = new QueryPrint().queryGoodsKey(shoppingGid,null);
-								if (goodsList == null || goodsList.size() == 0) //判断结果：查无此商品
+								if (goodsList == null || goodsList.size() == 0)
 								{
 									System.err.println("\t！！查无此商品 ！！\n");
 								}else 
 									{
-										Goods goods = goodsList.get(0); //获取这一组数值，并将其实例化
-										int gNum = goods.getGnum();		//商品数量
-										double gPrice = goods.getGprice();      //获取商品价格
+										Goods goods = goodsList.get(0);
+										int gNum = goods.getGnum();	
+										double gPrice = goods.getGprice(); 
 										
 										System.out.println("--请输入购买数量--");
 										do
@@ -305,7 +289,6 @@ public final class MainPage extends ScannerChoice
 											
 											if (choicegoodsNum > gNum)
 											{
-												//大于仓库数目了！
 												System.err.println("\t！！仓库储备不足！！");
 												System.out.println("--请重新输入购买数量--");
 											}else 
@@ -334,14 +317,13 @@ public final class MainPage extends ScannerChoice
 																	System.out.println("\n请重新输入缴纳金额($)");
 																}else{																
 																	
-		/*	这里是购物结算操作数据库！！！！！！----------------------	//1.更goods表数量2.增加sales表数量
-																商品gid goods.getGid(),购买数量choicegoodsNum。
-																原商品数量gNum。结算员Id  salesManSid
-																*/
+		/*	这里是购物结算操作数据库！！！！！！----------------------	  1.更改goods表数量 
+		  														  2.增加sales表数量
+																原商品数量gNum。 结算员Id  salesManSid */
 																
 																	//对sales表操作
 																	Gsales gSales = new Gsales(goods.getGid(),salesManSid,choicegoodsNum);
-																	boolean insert = new GoodsDao().shoppingSettlement(gSales);
+																	boolean insert = new GsalesDao().shoppingSettlement(gSales);
 																	
 																	//对goods表操作
 																	int goodsNewNum = gNum - choicegoodsNum; //现在goods表中该商品数量
@@ -379,8 +361,8 @@ public final class MainPage extends ScannerChoice
 			} while (true);
 		}
 
-	/*
-	 * 售货员管理界面 已实现！
+	/**
+	 * 售货员管理界面
 	 */
 	public static void salesManManagementPage()
 	{
@@ -394,7 +376,6 @@ public final class MainPage extends ScannerChoice
 		System.out.println("***************************");
 		
 		System.out.println("\n请输入选项,或者按 0 返回上一级菜单.");
-		
 		do
 		{
 			String choice = ScannerInfoString();
@@ -431,5 +412,3 @@ public final class MainPage extends ScannerChoice
 		}while(true);
 	}
 }
-				
-

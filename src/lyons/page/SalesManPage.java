@@ -7,9 +7,14 @@ import lyons.entity.SalesMan;
 import lyons.tools.QueryPrint;
 import lyons.tools.ScannerChoice;
 
+/**
+ * 操作售货员界面           
+ * @author lyons(zhanglei)
+ */
+
 public final class SalesManPage extends ScannerChoice
 {
-	/*
+	/**
 	 * 1.添加售货员界面 已实现！
 	 */
 	public static void  addSalesManPage()
@@ -25,18 +30,18 @@ public final class SalesManPage extends ScannerChoice
 		SalesMan salesMan = new SalesMan(sName,sPssswd);
 		boolean bool = new SalesManDao().addSalesMan(salesMan);
 		
-			if (bool)
+		if (bool)
+		{
+			System.out.println("\n\t!您已成功添加售货员到数据库!");
+		}else 
 			{
-				System.out.println("\n\t!您已成功添加售货员到数据库!");
-			}else 
-				{
-					System.out.println("添加售货员失败");	
-				}
-		choiceSalesManNext("addSalesMan");
+				System.out.println("添加售货员失败");	
+			}
+	 choiceSalesManNext("addSalesMan");
 	}
 	
-	/*
-	 * 2.更改售货员界面 已实现！
+	/**
+	 * 2.更改售货员界面
 	 */
 	public static void updateSalesManPage()
 	{
@@ -49,14 +54,14 @@ public final class SalesManPage extends ScannerChoice
 			if (salesManList.size() <= 0)
 			{
 				System.err.println("\t！！查无此人！！");
-				choiceSalesManNext("updateSalesMan"); //选择下一步
+				choiceSalesManNext("updateSalesMan");
 			}else 
 				{
 					//显示将要更改的售货员信息
 					System.out.println("\t\t\t售货员信息\n\n");
 					System.out.println("\t售货员编号\t\t售货员姓名\t\t售货员密码");
 					
-					SalesMan salesMan = salesManList.get(0); //上面的精确查找中，只能返回一组数。无需遍历！
+					SalesMan salesMan = salesManList.get(0); //上面的精确查找中，只能返回一组数值。无需遍历！
 					System.out.println("\t"+salesMan.getSId()+"\t\t\t"+salesMan.getSName()+"\t\t\t"+salesMan.getSPassWord());
 					System.out.println();
 					
@@ -118,7 +123,7 @@ public final class SalesManPage extends ScannerChoice
 				}
 	}
 
-	/*
+	/**
 	 * 3.删除售货员界面
 	 */
 	public static void deleteSalesManPage()
@@ -133,7 +138,7 @@ public final class SalesManPage extends ScannerChoice
 			if (salesManList.size() <= 0)
 			{
 				System.err.println("\t！！查无此人！！");
-				choiceSalesManNext("deleteSalesMan"); //选择下一步
+				choiceSalesManNext("deleteSalesMan");
 			}else 
 				{
 					//显示将要删除的售货员信息
@@ -154,7 +159,6 @@ public final class SalesManPage extends ScannerChoice
 						if ("y".equals(choice) || "Y".equals(choice))
 						{
 							//进行刪除-数据库操作
-							
 							boolean boolDeleteSalesMan = new SalesManDao().deleteSalesMan(sName);//調用刪除功能
 							
 							if (boolDeleteSalesMan)
@@ -175,7 +179,7 @@ public final class SalesManPage extends ScannerChoice
 	}
 	
 	
-	/*
+	/**
 	 * 4.查询售货员界面 已实现！
 	 */
 		public static void querySalesManPage()
@@ -186,25 +190,26 @@ public final class SalesManPage extends ScannerChoice
 			
 			ArrayList<SalesMan> salesManList = new SalesManDao().querySalesMan(sName);
 				
-				if (salesManList.size() <=0)
+			if (salesManList.size() <=0)
+			{
+				System.err.println("\t！没有人员符合查询条件！");
+			}else 
 				{
-					System.err.println("\t！没有人员符合查询条件！");
-				}else 
+					System.out.println("\t\t\t所有售货员列表\n\n");
+					System.out.println("\t售货员编号\t\t售货员姓名\t\t售货员密码");
+					
+					for (int i = 0,length = salesManList.size(); i < length; i++)
 					{
-						System.out.println("\t\t\t所有售货员列表\n\n");
-						System.out.println("\t售货员编号\t\t售货员姓名\t\t售货员密码");
-						
-						for (int i = 0,length = salesManList.size(); i < length; i++)
-						{
-							SalesMan salesMan = salesManList.get(i);
-							System.out.println("\t"+salesMan.getSId()+"\t\t\t"+salesMan.getSName()+"\t\t\t"+salesMan.getSPassWord());
-							System.out.println();
-						}
+						SalesMan salesMan = salesManList.get(i);
+						System.out.println("\t"+salesMan.getSId()+"\t\t\t"+salesMan.getSName()+"\t\t\t"+salesMan.getSPassWord());
+						System.out.println();
 					}
-				choiceSalesManNext("querySalesMan"); //参数：告诉被调用者是谁在调用！以确定一下步的选择
+				}
+		 choiceSalesManNext("querySalesMan"); //param：调用者
 		}
-	/*
-	 * 5.显示所有售货员界面 已实现！
+		
+	/**
+	 * 5.显示所有售货员界面
 	 */
 	public static void displaySalesManPage()
 	{

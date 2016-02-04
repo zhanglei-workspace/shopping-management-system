@@ -10,12 +10,9 @@ import lyons.db.DbClose;
 import lyons.db.DbConn;
 import lyons.entity.SalesMan;
 
-
-
 /**
- * 销售人员管理功能实现
- * @author 张磊
- *
+ * 数据库SalesMan表操作
+ * @author lyons(zhanglei)
  */
 public final class SalesManDao
 {
@@ -23,41 +20,45 @@ public final class SalesManDao
 	 PreparedStatement pstmt = null;
 	 ResultSet 		rs 	 	 = null;
 	
-	/*
-	 * 前台收银登陆  已实现！
-	 * 如果该用户存在，返回给调用者这一条信息
+	/**
+	 * 1.前台收银登陆
+	 * @param sName 用户名
+	 * @return ArrayList<SalesMan> sPassWord,sId
 	 */
-	 	public ArrayList<SalesMan> checkstandLog(String sName)
-		{
-	 		ArrayList<SalesMan> salesManInfo = new ArrayList<SalesMan>();
-			conn = DbConn.getconn();
-			String sql = "SELECT SID,SPASSWORD FROM SALESMAN WHERE SNAME=?";
-					try
+ 	public ArrayList<SalesMan> checkstandLog(String sName)
+	{
+ 		ArrayList<SalesMan> salesManInfo = new ArrayList<SalesMan>();
+		conn = DbConn.getconn();
+		String sql = "SELECT SID,SPASSWORD FROM SALESMAN WHERE SNAME=?";
+				try
+				{
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1,sName);
+					
+					rs 	  = pstmt.executeQuery();
+					while (rs.next())
 					{
-						pstmt = conn.prepareStatement(sql);
-						pstmt.setString(1,sName);
-						
-						rs 	  = pstmt.executeQuery();
-						while (rs.next())
-						{
-							String sPassWord = rs.getString("spassword");
-							int sId = rs.getInt("sId");
-							SalesMan salesMan = new SalesMan(sId,sPassWord); //创建Goods对象，并赋值。
-							salesManInfo.add(salesMan);						//添加到数组类中！
-						}
-					} catch (SQLException e1)
-					{
-						e1.printStackTrace();
-					}finally
-					{
-						DbClose.queryClose(pstmt, rs, conn);
+						String sPassWord = rs.getString("spassword");
+						int sId = rs.getInt("sId");
+						SalesMan salesMan = new SalesMan(sId,sPassWord); 
+						salesManInfo.add(salesMan);						
 					}
-		return salesManInfo;
-		}
-	/*
-	 * 1.添加售货员- 已实现！
+				} catch (SQLException e1)
+				{
+					e1.printStackTrace();
+				}finally
+				{
+					DbClose.queryClose(pstmt, rs, conn);
+				}
+	 return salesManInfo;
+	}
+
+ 	/**
+	 * 2.添加售货员
+	 * @param sName 用户名
+	 * @return boolean
 	 */
-		public boolean addSalesMan(SalesMan salesman)
+		public boolean addSalesMan(SalesMan sName)
 		{
 			boolean bool = false;
 			conn = DbConn.getconn();
@@ -66,8 +67,8 @@ public final class SalesManDao
 				try
 				{
 					pstmt = conn.prepareStatement(sql);
-					pstmt.setString(1,salesman.getSName());
-					pstmt.setString(2,salesman.getSPassWord());
+					pstmt.setString(1,sName.getSName());
+					pstmt.setString(2,sName.getSPassWord());
 					
 					int rs = pstmt.executeUpdate();
 					if (rs > 0)
@@ -84,24 +85,27 @@ public final class SalesManDao
 		return bool;
 		}
 	
-	/*
-	 * 2.更改售货员  已实现！
+	/**
+	 * 3.更改售货员信息
+	 * @param key 	要更改项
+	 * @param sName 用户名
+	 * @return boolean
 	 */
-	public  boolean updateSalesMan(int key,SalesMan salesMan)
+	public  boolean updateSalesMan(int key,SalesMan sName)
 	{
 		
 		boolean bool = false;
 		conn = DbConn.getconn();
 			switch (key)
 			{
-			case 1:			//		System.out.println("\t\t1.更改售货员姓名");
+			case 1:		//	3.1 更改售货员姓名
 						String sqlName = "UPDATE SALESMAN SET SNAME=? WHERE SID=?";
 						
 						try
 					{
 						pstmt = conn.prepareStatement(sqlName);
-						pstmt.setString(1, salesMan.getSName());
-						pstmt.setInt(2,salesMan.getSId());
+						pstmt.setString(1, sName.getSName());
+						pstmt.setInt(2,sName.getSId());
 						
 						int rs = pstmt.executeUpdate();
 						if (rs > 0)
@@ -115,14 +119,14 @@ public final class SalesManDao
 								DbClose.addClose(pstmt,conn);
 							}
 				break;
-			case 2:			//		System.out.println("\t\t2.更改售货员密码");
+			case 2:		//	3.2 更改售货员密码
 						String sqlPrice = "UPDATE SALESMAN SET SPASSWORD=? WHERE SID=?";
 						
 						try
 					{
 						pstmt = conn.prepareStatement(sqlPrice);
-						pstmt.setString(1,salesMan.getSPassWord());
-						pstmt.setInt(2, salesMan.getSId());
+						pstmt.setString(1,sName.getSPassWord());
+						pstmt.setInt(2, sName.getSId());
 						
 						int rs = pstmt.executeUpdate();
 						if (rs > 0)
@@ -140,41 +144,41 @@ public final class SalesManDao
 				break;
 			}
 		return bool;
-		
-		
 	}
 
-	/*
-	 * 3.删除售货员 已实现！
+	/**
+	 * 4.删除售货员
+	 * @param sName 用户名
+	 * @return boolean
 	 */
 	public boolean deleteSalesMan(String sName)
 	{
 		boolean bool = false;
 		conn = DbConn.getconn();
 		String sql = "DELETE FROM SALESMAN WHERE SNAME=?";
-		
-			try
+		try
+		{
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,sName);
+			int rs = pstmt.executeUpdate();
+			if (rs > 0)
 			{
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1,sName);
-				int rs = pstmt.executeUpdate();
-				if (rs > 0)
-				{
-					bool = true;
+				bool = true;
+			}
+		} catch (SQLException e)
+		{
+			e.printStackTrace();
+		}finally{
+					DbClose.addClose(pstmt,conn);
 				}
-			} catch (SQLException e)
-			{
-				e.printStackTrace();
-			}finally{
-						DbClose.addClose(pstmt,conn);
-					}
-		return bool;
+	 return bool;
 	}
 	
-	/*
-	 * 4.模糊查询售货员 已实现！
+	/**
+	 * 5.模糊查询售货员
+	 * @param sName 用户名
+	 * @return ArrayList<SalesMan>
 	 */
-	
 	public ArrayList<SalesMan> querySalesMan(String sName)
 	{
 		ArrayList<SalesMan> SalesManList = new ArrayList<SalesMan>();
@@ -206,36 +210,37 @@ public final class SalesManDao
 		return SalesManList;
 	}
 	
-	/*
-	 * 5.显示所有售货员 已实现！
+	/**
+	 * 6.显示所有售货员
+	 * @return ArrayList<SalesMan>
 	 */
-		public  ArrayList<SalesMan> displaySalesMan()
+	public  ArrayList<SalesMan> displaySalesMan()
+	{
+		ArrayList<SalesMan> salesManList = new ArrayList<SalesMan>();
+		conn = DbConn.getconn(); 
+		String sql = "SELECT * FROM SALESMAN";
+		
+		try
 		{
-			ArrayList<SalesMan> salesManList = new ArrayList<SalesMan>();
-			conn = DbConn.getconn(); 
-			String sql = "SELECT * FROM SALESMAN";
+			pstmt = conn.prepareStatement(sql);
+			rs =  pstmt.executeQuery();
+			while (rs.next())
+			{
+				int sId = rs.getInt(1);
+				String sName = rs.getString(2);
+				String sSpassWord = rs.getString(3);
 				
-				try
+				SalesMan salesMan = new SalesMan(sId,sName,sSpassWord);
+				salesManList.add(salesMan);
+			}
+		} catch (SQLException e)
+		{
+			e.printStackTrace();
+		}finally
 				{
-					pstmt = conn.prepareStatement(sql);
-					rs =  pstmt.executeQuery();
-					while (rs.next())
-					{
-						int sId = rs.getInt(1);
-						String sName = rs.getString(2);
-						String sSpassWord = rs.getString(3);
-						
-						SalesMan salesMan = new SalesMan(sId,sName,sSpassWord);
-						salesManList.add(salesMan);
-					}
-				} catch (SQLException e)
-				{
-					e.printStackTrace();
-				}finally
-						{
-							DbClose.queryClose(pstmt, rs, conn);
-						}
-			return salesManList;
-		}
+					DbClose.queryClose(pstmt, rs, conn);
+				}
+	 return salesManList;
+	}
 	
 }

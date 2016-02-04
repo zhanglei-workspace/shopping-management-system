@@ -5,12 +5,10 @@
 .project
 .gitattributes
 *.class
-    
-    # sql #
-*~
+
+	#sql#
+
+	*.~sql
 
 # Generated files #
 bin/
-
-
-

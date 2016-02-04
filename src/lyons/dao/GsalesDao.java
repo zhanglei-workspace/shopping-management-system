@@ -11,45 +11,42 @@ import lyons.db.DbConn;
 import lyons.entity.Gsales;
 
 /**
- * 商品售卖情况
- * @author 张磊
+ * 数据库gSales表操作
+ * @author lyons(zhanglei)
  */
 public final class GsalesDao
 {
-	/*
-	 * 每日卖出商品列表
-	 *
+	
+	Connection        conn  = null;
+	PreparedStatement pstmt = null;
+	ResultSet 		  rs    = null;
+	
+	/**
+	 * 1.当天卖出的商品
+	 * @return ArrayList<Gsales> 商品信息,包括 allSum (单种商品的销售总和)
 	 */
-	
-	
 	public ArrayList<Gsales> dailyGsales()
 	{
-		Connection        conn  = null;
-	    PreparedStatement pstmt = null;
-		ResultSet 		rs 	 	 = null;
-		 
 		ArrayList<Gsales> GsalesList = new ArrayList<Gsales>(); 
 		conn = DbConn.getconn();
 
-		//我的天！终于研究出这句sql来了！trunc(sdate) =trunc(sysdate)
-		//sql: gname,gprice,gnum, allSum (各种商品的销售总和)
-		//oracle语句解释见sql文件！
+		//售卖时间=当前时间 trunc(sdate) =trunc(sysdate) 单位：天
+		//sql语句解释见files/sql/java_sql.sql
 		String sql = "select gname,gprice,gnum, allSum from goods, (select gid as salesid,sum(snum) as allSum from gsales where trunc(sdate) =trunc(sysdate) group by gid) where gid = salesid"; 
 		try
 		{
 			pstmt = conn.prepareStatement(sql);
 			rs 	  = pstmt.executeQuery();
+			while (rs.next())
+			{
+				String gName = rs.getString(1);
+				double gPrice = rs.getDouble(2);
+				int gNum = rs.getInt(3);
+				int allSnum = rs.getInt("allSum");
 				
-				while (rs.next())
-				{
-					String gName = rs.getString(1);
-					double gPrice = rs.getDouble(2);
-					int gNum = rs.getInt(3);
-					int allSnum = rs.getInt("allSum");
-					
-					Gsales Gsales = new Gsales(gName,gPrice,gNum,allSnum);	//创建Gsales对象，并赋值。
-					GsalesList.add(Gsales);						//添加到数组类中！
-				}
+				Gsales Gsales = new Gsales(gName,gPrice,gNum,allSnum);
+				GsalesList.add(Gsales);						
+			}
 		} catch (SQLException e)
 		{
 			e.printStackTrace();
@@ -57,8 +54,40 @@ public final class GsalesDao
 				{
 					DbClose.queryClose(pstmt,rs,conn);
 				}
-		return GsalesList;	//需要返回给调用者值:gid，各销售商品总和
-		
+		return GsalesList;
 	}
-
+	
+	/**
+	 *2.购物结算-向sales表中插入商品数据！
+	 *@param gSales 售卖商品对象
+	 *@return boolean
+	 */
+	public boolean shoppingSettlement(Gsales gSales)
+	{
+		boolean bool = false;
+		conn = DbConn.getconn();
+		String sql = "INSERT INTO GSALES(GID,SID,SNUM) VALUES(?,?,?)";
+		
+		try
+		{
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1,gSales.getGId());
+			pstmt.setInt(2,gSales.getSId());
+			pstmt.setInt(3,gSales.getSNum());
+			
+			int rs = pstmt.executeUpdate();
+			if (rs > 0)
+			{
+				bool = true;
+			}
+		} catch (SQLException e)
+		{
+			e.printStackTrace();
+		}finally
+		{
+			DbClose.addClose(pstmt,conn);
+		}
+		return bool;
+	}
+	
 }

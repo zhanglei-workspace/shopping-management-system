@@ -5,13 +5,21 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * 关闭操作数据库时产生的资源流
+ * @author lyons(zhanglei)
+ */
 public final class DbClose
 {
-	/*
+	/**
 	 * 关闭 添加功能 资源
+	 * @param pstmt,rs,conn
 	 */
 		public static void addClose(PreparedStatement pstmt, Connection conn)
 		{
+			/*
+			 * 多个 try-catch 出发点：安全
+			 */
 			try
 			{
 				if (pstmt != null)
@@ -34,8 +42,9 @@ public final class DbClose
 			}
 		}
 		
-		/*
-		 * 关闭 商品查询 商品更改 列出售货员资源
+		/**
+		 * 关闭资源
+		 * @param pstmt,rs,conn
 		 */
 		public static void queryClose(PreparedStatement pstmt, ResultSet rs, Connection conn)
 		{
