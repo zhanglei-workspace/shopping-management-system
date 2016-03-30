@@ -4,6 +4,7 @@
 .classpath
 .project
 .gitattributes
+.mymetadata
 *.class
 
 	# Package Files #
