@@ -6,6 +6,11 @@
 .gitattributes
 *.class
 
+	# Package Files #
+*.jar
+*.war
+*.ear
+
 	#sql#
 
 	*.~sql

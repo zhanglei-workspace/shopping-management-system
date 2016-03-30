@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>HandleRegister</servlet-name>
+    <servlet-class>lyons.control.HandleRegister</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>HandleLogin</servlet-name>
+    <servlet-class>lyons.control.HandleLogin</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>GoodsDao</servlet-name>
+    <servlet-class>lyons.dao.GoodsDao</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>HandleExit</servlet-name>
+    <servlet-class>lyons.control.HandleExit</servlet-class>
+  </servlet>
+
+
+ 
+
+
+  <servlet-mapping>
+    <servlet-name>HandleRegister</servlet-name>
+    <url-pattern>/lyons.control/HandleRegister</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>HandleLogin</servlet-name>
+    <url-pattern>/lyons.control/HandleLogin</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>GoodsDao</servlet-name>
+    <url-pattern>/lyons.dao/GoodsDao</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>HandleExit</servlet-name>
+    <url-pattern>/lyons.control/HandleExit</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>navbar.jsp</welcome-file>
+    <welcome-file>/jsp/join/login.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>

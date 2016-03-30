@@ -38,7 +38,7 @@ README
 
 
 ##<a name="project0"/>___0# Java基础项目___
-   ####JDBC连接oracle数据库，java实现购物管理
+####JDBC连接oracle数据库，java实现购物管理
    
 ###概要需求：
 ### 一、项目背景
