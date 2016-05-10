@@ -3,11 +3,11 @@
 <%@page import="lyons.entity.Login"%>
 <%
 	
-	Login isLogin = (Login)session.getAttribute("loginBean");
-	if(isLogin==null)
-	{%>
-		<jsp:forward page="login.jsp" />
-	<%}
+	Login Logined = (Login)session.getAttribute("loginBean");
+	if(Logined==null)
+	{
+		response.sendRedirect("lyons.eaby/jsp/join/login.jsp");
+	}
 %>
 
 

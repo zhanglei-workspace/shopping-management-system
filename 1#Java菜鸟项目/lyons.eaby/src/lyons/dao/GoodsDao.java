@@ -50,7 +50,8 @@ public class GoodsDao extends HttpServlet
 
 		response.setContentType("text/html;chartset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
-		String value = request.getParameter("key");
+		String value = null;
+		value = request.getParameter("key");
 		int key = Integer.parseInt(value);
 		queryGoods(request, response, key);
 		System.out.println("检测是否有key:"+key);
@@ -130,23 +131,32 @@ public class GoodsDao extends HttpServlet
 							}
 				break;
 			case 3:
-					//	key=3
-					String sqlGname = "SELECT * FROM GOODS WHERE GNAME LIKE '%'||?||'%'";
-					try
-					{
-						pstmt = conn.prepareStatement(sqlGname);
-//						pstmt.setString(1, nameGet);
-						rs = pstmt.executeQuery();
-						while (rs.next())
-						{
-						}
-					} catch (SQLException e)
-					{
-						e.printStackTrace();
-					}finally
-					{
-						DbClose.allClose(pstmt, rs, conn);
-					}
+					//	key=3 商品详情
+    			    String sqlDetail= "select * from commodity";
+                    try
+                    {
+                        pstmt = conn.prepareStatement(sqlDetail);
+                        rs = pstmt.executeQuery();
+                        System.out.println("3执行数据库操作");
+                        while (rs.next())
+                        {
+                            rowSet = new CachedRowSetImpl();
+                            rowSet.populate(rs);
+                            goods.setRowSet(rowSet);
+                            System.out.println("3已经从数据库中获取到值，并塞进行集");
+                            
+                            //问题代码
+                            request.getRequestDispatcher("../jsp/browse/showDetail.jsp").forward(request, response);
+                        }
+                    } catch (SQLException e)
+                    {
+                        System.out.println("有异常抛出");
+                        e.printStackTrace();
+                        response.sendRedirect("/lyons.eaby/index.jsp");
+                    }finally
+                            {
+                                DbClose.allClose(pstmt, rs, conn);
+                            }
 					break;
 			case 4:
 					//key=4 浏览商品
@@ -155,26 +165,14 @@ public class GoodsDao extends HttpServlet
 					{
 						pstmt = conn.prepareStatement(sqlList);
 						rs = pstmt.executeQuery();
-						System.out.println("执行数据库操作");
+						System.out.println("4执行数据库操作");
 						while (rs.next())
 						{
 							rowSet = new CachedRowSetImpl();
 							rowSet.populate(rs);
 							goods.setRowSet(rowSet);
-							System.out.println("已经从数据库中获取到值，并塞进行集");
+							System.out.println("4已经从数据库中获取到值，并塞进行集");
 							request.getRequestDispatcher("/jsp/browse/showGoods.jsp").forward(request, response);
-							/*goods = new Goods();
-							//将信息加入到实体类中
-							
-						     goods.setCommodity_number(rs.getString(1));
-						     goods.setCommodity_name(rs.getString(2));
-						     goods.setCommodity_made(rs.getString(3));
-						     goods.setCommodity_price(rs.getInt(4));
-						     goods.setCommodity_mess(rs.getString(5));
-						     goods.setCommodity_pic(rs.getString(6));
-							 goods.setCommodity_id(rs.getInt(7));
-							 
-							 goodsList.add(goods);*/
 						}
 					} catch (SQLException e)
 					{
