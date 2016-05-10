@@ -19,6 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
  	 <jsp:useBean id="loginBean" class="lyons.entity.Login" scope="session"/>
+ 
  	 <% request.setCharacterEncoding("UTF-8"); %>
  		<ul class="user">
     			<li>

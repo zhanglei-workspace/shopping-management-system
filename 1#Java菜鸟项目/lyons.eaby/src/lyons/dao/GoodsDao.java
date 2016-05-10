@@ -161,7 +161,8 @@ public class GoodsDao extends HttpServlet
 							rowSet = new CachedRowSetImpl();
 							rowSet.populate(rs);
 							goods.setRowSet(rowSet);
-							System.out.println("是否有值");
+							System.out.println("已经从数据库中获取到值，并塞进行集");
+							request.getRequestDispatcher("/jsp/browse/showGoods.jsp").forward(request, response);
 							/*goods = new Goods();
 							//将信息加入到实体类中
 							
@@ -178,6 +179,7 @@ public class GoodsDao extends HttpServlet
 					} catch (SQLException e)
 					{
 						e.printStackTrace();
+						response.sendRedirect("/lyons.eaby/jsp/browse/showGoods.jsp");
 					}finally
 							{
 								DbClose.allClose(pstmt, rs, conn);

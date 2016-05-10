@@ -57,7 +57,7 @@
     			<li><a class="on" href="index.jsp">首  页</a></li>
     			<li><a href="#">我的订单</a></li>
     			<li><a href="#"> 购物车</a></li>
-    			<li><a href="#">浏览商品</a></li>
+    			<li><a href="lyons.dao/GoodsDao?key=4">浏览商品</a></li>
     			<li><a href="#">查询商品</a></li>
     		</ul>
    		</div>
