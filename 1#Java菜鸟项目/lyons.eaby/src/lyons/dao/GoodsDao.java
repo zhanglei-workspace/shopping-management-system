@@ -132,7 +132,7 @@ public class GoodsDao extends HttpServlet
 				break;
 			case 3:
 					//	key=3 商品详情
-    			    String sqlDetail= "select * from commodity";
+    			  /*  String sqlDetail= "select * from commodity";
                     try
                     {
                         pstmt = conn.prepareStatement(sqlDetail);
@@ -156,7 +156,7 @@ public class GoodsDao extends HttpServlet
                     }finally
                             {
                                 DbClose.allClose(pstmt, rs, conn);
-                            }
+                            }*/
 					break;
 			case 4:
 					//key=4 浏览商品

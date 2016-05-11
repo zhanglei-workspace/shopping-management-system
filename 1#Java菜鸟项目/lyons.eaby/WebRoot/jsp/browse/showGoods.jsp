@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../join/isLogin.jsp" %>
 <%@ include file="/index.jsp" %>
 <%@page import="com.sun.rowset.CachedRowSetImpl"%>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
 <html>
@@ -29,7 +29,7 @@
   	<table border="1" bordercolor="#00ff00" cellpadding="10" cellspacing="2" width="500" height="80">
   		  <caption><b>商品简略信息表</b><br></caption>
   		    <tr>
-  		        <th>商品编号</th>
+  		        <th>序号</th>
   		        <th>商品名称</th>
   		        <th>商品价格</th>
   		        <th>查看详情</th>
@@ -97,21 +97,26 @@
   			   boolean flag = true;
   			   for(int i=1,j=goods.getPageSize();i<=j&&flag;i++)
   			   {
-  			       int number = rowSet.getInt(1);
+  			       int ID = rowSet.getInt(1);
   			       String name = rowSet.getString(2);
+  			       String made = rowSet.getString(3);
   			       String price = rowSet.getString(4);
-  			       String commodity = "("+number+","+name+","+price+")#"+price;//尾缀#，便于计算购物车价格
+  			       String number = rowSet.getString(5);
+  			       String pic = rowSet.getString(6);
+  			       
+  			       String commodity = null;
+  			       commodity = ID+","+name+","+made+","+price+","+number+","+pic;//尾缀#，便于计算购物车价格
   			       commodity = commodity.replaceAll("\\p{Blank}","");
   			       
-  			       String shopCarButton = "<form action='#' method='post'>"+
-  			                       "<input type='hidden' name='shopCar' value="+commodity+">"+
+  			       String shopCarButton = "<form action='lyons.goods/PutGoodsToCar' method='post'>"+
+  			                       "<input type='hidden' name='GoodsCar' value="+commodity+">"+
   			                       "<input type='submit' value='加入购物车'></form>";
-  			       String detail = "<form action='lyons.dao/GoodsDao?key=3' method='post'>"+
-  			                       "<input type='hidden' name='detail' value="+price+">"+
+  			       String detail = "<form action='jsp/browse/showDetail.jsp' method='post'>"+
+  			                       "<input type='hidden' name='detail' value="+commodity+">"+
   			                       "<input type='submit' value='商品详情'></form>";
   			       %>
-  			           <tr>
-  			               <td><%= number %></td>
+  			           <tr <% if(i%2 == 0){%> bgcolor="#FFE4B5" <%}else{%> bgcolor="#FFFACD" <%};//隔行换颜色%>>
+  			               <td><%= i %></td>
   			               <td><%= name %></td>
   			               <td><%= price %>￥</td>
   			               <td><%= detail %></td>

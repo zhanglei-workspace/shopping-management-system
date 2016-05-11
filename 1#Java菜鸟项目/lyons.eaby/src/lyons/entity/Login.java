@@ -14,7 +14,7 @@ public class Login implements Serializable
 	private static final long serialVersionUID = -69203680249861342L;
 	private String username = "";
 	private String backNews = "未登录";
-	LinkedList<String> car;      //购物车
+	LinkedList<String> car = null;      //购物车
 	
 	
 	public Login()
