@@ -86,8 +86,11 @@ public class PutGoodsToCar extends HttpServlet
     {
         
         PrintWriter out = response.getWriter();
-        out.print("<center><font size=5 color=red><B>"+goodsName+"</B></font>&nbsp;已成功添加购物车<br><br>");
-        out.print("<a href=/lyons.eaby/jsp/browse/showGoods.jsp>返回继续购物</a>&nbsp;or&nbsp;");
+        out.print("<br><br><br>");
+        out.print("<center><font size=5 color=red><B>"+goodsName+"</B></font>&nbsp;已成功添加购物车");
+        out.print("<br><br><br>");
+        out.print("<a href=/lyons.eaby/jsp/browse/showGoods.jsp>返回继续购物</a>");
+        out.print("&nbsp;or&nbsp;");
         out.print("<a href=/lyons.eaby/jsp/shoppingCar/lookShoppingCar.jsp>查看购物车</a></center>");
         
     }

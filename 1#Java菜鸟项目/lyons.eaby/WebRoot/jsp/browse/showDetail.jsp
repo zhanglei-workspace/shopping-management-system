@@ -16,7 +16,6 @@
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-
   </head>
   
   <body>
@@ -27,7 +26,7 @@
                 <th>名称</th>
                 <th>产地</th>
                 <th>价格(￥)</th>
-                <th>数量</th>
+                <th>余量</th>
                 <th>添加到购物车</th>
             </tr>
             

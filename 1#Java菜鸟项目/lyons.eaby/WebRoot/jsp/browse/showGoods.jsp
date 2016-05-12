@@ -103,9 +103,10 @@
   			       String price = rowSet.getString(4);
   			       String number = rowSet.getString(5);
   			       String pic = rowSet.getString(6);
+  			       String category = rowSet.getString(7);
   			       
   			       String commodity = null;
-  			       commodity = ID+","+name+","+made+","+price+","+number+","+pic;//尾缀#，便于计算购物车价格
+  			       commodity = ID+","+name+","+made+","+price+","+number+","+pic+","+category;//尾缀#，便于计算购物车价格
   			       commodity = commodity.replaceAll("\\p{Blank}","");
   			       
   			       String shopCarButton = "<form action='lyons.goods/PutGoodsToCar' method='post'>"+

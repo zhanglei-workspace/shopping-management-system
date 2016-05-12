@@ -11,21 +11,13 @@ import javax.servlet.http.HttpSession;
 
 import lyons.entity.Login;
 
-/**
- * 
- * 处理删除 购物车 商品
- * 
- * @author  Lyons(zhanglei)
- * @version  [版本号, 2016 5 11]
- * @since  [应用/版本]
- */
-public class DeleteGoodsFromCar extends HttpServlet
+public class BuyGoods extends HttpServlet
 {
     
     /**
      * Constructor of the object.
      */
-    public DeleteGoodsFromCar()
+    public BuyGoods()
     {
         super();
     }
@@ -42,28 +34,39 @@ public class DeleteGoodsFromCar extends HttpServlet
     public void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException
     {
-        
-      doPost(request, response);
+        doPost(request, response);
     }
     
+
     public void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException
     {
         
-        response.setContentType("text/html;setchar=UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        int deleteID = -1;
-        deleteID =  Integer.parseInt(request.getParameter("ID"));
-        System.out.println("删除数组下标为："+deleteID);
         
+        //从模型中直接拿取购物车信息
         HttpSession session = request.getSession(true);
         Login loginBean = (Login)session.getAttribute("loginBean");
         LinkedList<String> car = null;
         car = loginBean.getCar();
-        car.remove(deleteID);
-        loginBean.setCar(car);
         
-        request.getRequestDispatcher("/jsp/shoppingCar/lookShoppingCar.jsp").forward(request, response);
+        //购物车是否为空
+        if (car.size()!=0)
+        {
+            /**
+             * 写到这里了，下一步往数据库中写入的删除
+             */
+            for (int i = 0; i < car.size(); i++)
+            {
+                car.get(4);
+            }
+            
+            //付款成功，清除数据模型中的数据
+            car.clear();
+        }
+        return;
+     
     }
 
     public void init()
