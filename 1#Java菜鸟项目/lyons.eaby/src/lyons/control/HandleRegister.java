@@ -58,12 +58,19 @@ public class HandleRegister extends HttpServlet
 		Register userBean = new Register();
 		request.setAttribute("userBean", userBean);
 		
-		String username = request.getParameter("username").trim();
-		String userpass = request.getParameter("userpass").trim();
-		String again_userpass = request.getParameter("again_userpass").trim();
-		String phone = request.getParameter("phone").trim();
-		String address = request.getParameter("address").trim();
-		String realname = request.getParameter("realname").trim();
+		String username = "";
+		String userpass = "";
+		String again_userpass = "";
+		String phone = "";
+		String address = "";
+		String realname = "";
+		
+		username = request.getParameter("username").trim();
+		userpass = request.getParameter("userpass").trim();
+		again_userpass = request.getParameter("again_userpass").trim();
+		phone = request.getParameter("phone").trim();
+		address = request.getParameter("address").trim();
+		realname = request.getParameter("realname").trim();
 		
 		if (username==null)
 		{
@@ -118,7 +125,8 @@ public class HandleRegister extends HttpServlet
 								}
 							} catch (SQLException e)
 							{
-								backNews = "该用户名已被注册"+"<br>"+e;
+							    System.out.println(e);
+								backNews = "该用户名已被注册"+"<br>";
 								userBean.setBackNews(backNews);
 								request.getRequestDispatcher("/jsp/join/register.jsp").forward(request, response);
 							}finally

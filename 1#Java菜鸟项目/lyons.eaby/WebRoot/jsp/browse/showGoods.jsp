@@ -149,8 +149,8 @@
   	 </tr>
   	 <tr>
   	     <td>
-  	         <form action="" method="post">
   	         <br>总计：<%= totalRecord %>记录.
+  	         <form action="" method="post">
   	             每页显示<input type="text" name="newPageSize" value="<%= PageSize %>" size="2">条.
   	                 <input type="submit" value="确定">
   	         </form>

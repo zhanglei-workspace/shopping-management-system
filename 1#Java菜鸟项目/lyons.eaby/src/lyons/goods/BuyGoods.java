@@ -9,6 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import lyons.db.DbClose;
+import lyons.db.DbConn;
 import lyons.entity.Login;
 
 public class BuyGoods extends HttpServlet
@@ -51,16 +57,57 @@ public class BuyGoods extends HttpServlet
         LinkedList<String> car = null;
         car = loginBean.getCar();
         
-        //购物车是否为空
+        //购物车是否为空，向数据库中删除与插入数据
         if (car.size()!=0)
         {
-            /**
-             * 写到这里了，下一步往数据库中写入的删除
-             */
-            for (int i = 0; i < car.size(); i++)
+           /* Connection        conn  = null;
+            PreparedStatement pstmt = null;
+            
+            conn = DbConn.getConn();*/
+            
+            //将商品数据遍历到数组中,并对应  修改sqlCommodity、写入sqlOrder
+            for (int i = 0,m=car.size(); i < m; i++)
             {
-                car.get(4);
+                String[] goods = null;
+                goods = car.get(i).split(",");
+                    
+         /*       String sqlCommodity = "update Commodity set commodity_balance=? where commodity_number=?";
+                String sqlOrder = "";
+                try
+                {
+                    pstmt = conn.prepareStatement(sqlCommodity);
+                    
+                    pstmt.setString(1,username);
+                    pstmt.setString(2,userpass); 
+                    pstmt.setString(3,phone);
+                    pstmt.setString(4,address);
+                    pstmt.setString(5,realname);
+                    
+                    int rs = pstmt.executeUpdate();
+                    if (rs > 0)
+                    {
+                        backNews = "注册成功";
+                        userBean.setBackNews(backNews);
+                        request.getRequestDispatcher("/jsp/join/register.jsp")
+                                                                    .forward(request, response);
+                    }
+                } catch (SQLException e)
+                {
+                    backNews = "该用户名已被注册"+"<br>"+e;
+                    userBean.setBackNews(backNews);
+                    request.getRequestDispatcher("/jsp/join/register.jsp")
+                                                                    .forward(request, response);
+                }finally
+                {
+                    DbClose.close(pstmt, conn);
+                }*/
+                    
+                    
+                    
+                System.out.println();
             }
+            
+            
             
             //付款成功，清除数据模型中的数据
             car.clear();

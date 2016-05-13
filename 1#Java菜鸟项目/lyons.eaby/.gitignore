@@ -41,3 +41,24 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# target #
+.metadata
+.settings
+.classpath
+.project
+.gitattributes
+.mymetadata
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+#sql#
+*.~sql
+
+# Generated files #
+bin/
+

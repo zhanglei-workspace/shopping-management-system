@@ -24,19 +24,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  		<ul class="user">
     			<li>
     				<%
-    					if(loginBean.getUsername()==""||loginBean.getUsername()==null)
-    					{%>
+    				    String str = null;
+    				    str = loginBean.getUsername();
+    					if(str.equals("userNull")||str==null)
+    					{
+    					   HttpSession s= request.getSession(true);
+                           s.invalidate();
+                        %>
 	     					<a href="jsp/join/login.jsp">登录</a>or<a href="jsp/join/register.jsp">注册</a>
-    					<%}else
-    						{%>
-	    						<dl>
-	    							<dt>
-			    						<a>欢迎您,<b><font color="red"><%=loginBean.getUsername() %></font></b></a>
-			    						<a href="<%= path %>/lyons.control/HandleExit"><font color="#CDC9C9">退出</font></a>
-	    							</dt>
-	    						</dl>
-    						<%}
+    					<%
+    					   return;
+    					}
     				 %>
+   						<dl>
+   							<dt>
+	    						<a>欢迎您,<b><font color="red"><%= str %></font></b></a>
+	    						<a href="<%= path %>/lyons.control/HandleExit"><font color="#CDC9C9">退出</font></a>
+   							</dt>
+   						</dl>
     			</li>
     		</ul>
   </body>

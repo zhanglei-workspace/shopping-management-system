@@ -32,6 +32,10 @@ public class Login implements Serializable
 	}
 	public String getUsername()
 	{
+	    if (username.trim()=="")
+        {
+            return "userNull";
+        }
 		return username;
 	}
 	public void setUsername(String username)

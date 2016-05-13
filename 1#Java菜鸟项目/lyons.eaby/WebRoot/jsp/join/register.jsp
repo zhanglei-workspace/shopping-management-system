@@ -33,7 +33,7 @@
 					</tr>
 						<tr>
 							<td>
-								状态:<jsp:getProperty name="userBean" property="backNews"/>
+								状态:<FONT color=red><jsp:getProperty name="userBean" property="backNews"/></FONT>
 							</td>
 							<td>
 								<input type="image" src="<%= path %>/image/page/submit.png" alt="submit" height="40" width="100"/>
