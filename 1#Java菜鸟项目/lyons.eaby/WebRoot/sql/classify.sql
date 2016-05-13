@@ -5,7 +5,6 @@ create table classify
        gid   number(11) primary key,
        gname varchar2(200) not null
 );
-
 -- 为classify表主键gid生成唯一 序列
 create sequence classify_seq
        start with   1

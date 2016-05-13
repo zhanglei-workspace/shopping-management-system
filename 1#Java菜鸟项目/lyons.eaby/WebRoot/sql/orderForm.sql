@@ -3,8 +3,9 @@
 create table orderForm 
 (
      id number(10) primary key,
-     username varchar2(255),
-     mess varchar2(255),
+     commodity_name varchar2(255) not null,
+     commodity_price NUMBER(18,2) not null,
+     orderDate DATE DEFAULT SYSDATE NOT NULL,
      sum number(18,2) 
 );
 
@@ -16,7 +17,7 @@ CREATE SEQUENCE orderForm_seq
        MINVALUE        1
        MAXVALUE     100000
        NOCYCLE
-       CACHE           10
+       CACHE           10;
        
 --´¥·¢Æ÷
 
@@ -25,5 +26,5 @@ CREATE TRIGGER  orderForm_trigger
        FOR EACH ROW 
        BEGIN
            SELECT orderForm_seq.nextval into :new.id FROM dual;
-       END
+       END;
 commit;
