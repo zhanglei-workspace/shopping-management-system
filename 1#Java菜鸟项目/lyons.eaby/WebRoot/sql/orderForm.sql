@@ -3,9 +3,10 @@
 create table orderForm 
 (
      id number(10) primary key,
+     username number(10) not null,
+     orderDate DATE DEFAULT SYSDATE NOT NULL,
      commodity_name varchar2(255) not null,
      commodity_price NUMBER(18,2) not null,
-     orderDate DATE DEFAULT SYSDATE NOT NULL,
      sum number(18,2) 
 );
 

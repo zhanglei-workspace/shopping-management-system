@@ -53,6 +53,7 @@
   			if(request.getParameter("newPageSize")!=null)
   			{
   			   PageSize = Integer.parseInt(request.getParameter("newPageSize"));
+  			   currentPage = 1;//从第一页开始显示
   			}
   			//检查是否用户点击了下、上一页操作
   			if(request.getParameter("currentPage") != null)
@@ -147,11 +148,11 @@
   	         </form>
   	     </td>
   	 </tr>
+  	 
   	 <tr>
-  	     <td>
-  	         <br>总计：<%= totalRecord %>记录.
+  	     <td><BR>
   	         <form action="" method="post">
-  	             每页显示<input type="text" name="newPageSize" value="<%= PageSize %>" size="2">条.
+  	            总计：<%= totalRecord %>条记录.每页显示<input type="text" name="newPageSize" value="<%= PageSize %>" size="2">条.
   	                 <input type="submit" value="确定">
   	         </form>
   	     </td>
