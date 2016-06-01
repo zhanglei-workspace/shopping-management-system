@@ -80,7 +80,7 @@
     <url-pattern>/lyons.goods/BuyGoods</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
-    <welcome-file>navbar.jsp</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
     <welcome-file>/jsp/join/login.jsp</welcome-file>
   </welcome-file-list>
 </web-app>

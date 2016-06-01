@@ -1,7 +1,6 @@
 package lyons.control;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -9,9 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class HandleExit extends HttpServlet
+public class HandleExit extends HttpServlet 
 {
-
+ /**
+     * serialVersionUID
+     */
+    private static final long serialVersionUID = 1L;
 	/**
 	 * Constructor of the object.
 	 */
@@ -36,8 +38,7 @@ public class HandleExit extends HttpServlet
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException
 	{
-		response.setCharacterEncoding("text/html;chartset=UTF-8");
-		HttpSession session = request.getSession(true);
+		HttpSession session = request.getSession(true);//true一定要写。否则，获取不到当前session时会自动创建一个
 		session.invalidate();
 		response.sendRedirect("/lyons.eaby/jsp/join/login.jsp");
 		

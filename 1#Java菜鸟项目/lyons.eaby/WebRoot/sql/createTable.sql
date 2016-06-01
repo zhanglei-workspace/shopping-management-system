@@ -59,6 +59,7 @@ create trigger commodity_trigger
 create table orderForm 
 (
      id number(10) primary key,
+     username varchar2(255) not null,
      commodity_name varchar2(255) not null,
      commodity_price NUMBER(18,2) not null,
      orderDate DATE DEFAULT SYSDATE NOT NULL,

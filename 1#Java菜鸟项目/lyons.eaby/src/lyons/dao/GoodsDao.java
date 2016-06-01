@@ -1,6 +1,7 @@
 package lyons.dao;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -93,7 +94,7 @@ public class GoodsDao extends HttpServlet
 		switch (key)
 		{
 			case 1:
-					//	key=1商品 数量 升序查询
+					/*//	key=1商品 数量 升序查询
 					String sqlGnum = "SELECT * FROM GOODS ORDER BY GNUM ASC";
 					try
 					{
@@ -109,10 +110,10 @@ public class GoodsDao extends HttpServlet
 					}finally
 							{
 								DbClose.allClose(pstmt, rs, conn);
-							}
+							}*/
 				break;
 			case 2:
-				 	//	key=2
+				/* 	//	key=2
 					String sqlGprice = "SELECT * FROM GOODS ORDER BY GPRICE ASC";
 					try
 					{
@@ -128,36 +129,35 @@ public class GoodsDao extends HttpServlet
 					}finally
 							{
 							DbClose.allClose(pstmt, rs, conn);
-							}
+							}*/
 				break;
 			case 3:
-					//	key=3 商品详情
-    			  /*  String sqlDetail= "select * from commodity";
-                    try
+			  /*  //	key=3 购物完成后再次从数据库中获取商品最新信息
+                String sqlListClear= "select * from commodity";
+                try
+                {
+                    pstmt = conn.prepareStatement(sqlListClear);
+                    rs = pstmt.executeQuery();
+                    System.out.println("3执行数据库操作");
+                    while (rs.next())
                     {
-                        pstmt = conn.prepareStatement(sqlDetail);
-                        rs = pstmt.executeQuery();
-                        System.out.println("3执行数据库操作");
-                        while (rs.next())
+                        rowSet = new CachedRowSetImpl();
+                        rowSet.populate(rs);
+                        goods.setRowSet(rowSet);
+                        System.out.println("3已经从数据库中获取到值，并塞进行集");
+                    }
+                } catch (SQLException e)
+                {
+                    System.out.println("GoodsDao.java k=3 再次查询时出现异常："+e);
+                    PrintWriter out = response.getWriter();
+                    out.print(e+"<br>");
+                    out.print("返回"+"");
+                    out.print("<a href=/lyons.eaby/jsp/shoppingCar/lookShoppingCar.jsp>购物车</a>");
+                }finally
                         {
-                            rowSet = new CachedRowSetImpl();
-                            rowSet.populate(rs);
-                            goods.setRowSet(rowSet);
-                            System.out.println("3已经从数据库中获取到值，并塞进行集");
-                            
-                            //问题代码
-                            request.getRequestDispatcher("../jsp/browse/showDetail.jsp").forward(request, response);
-                        }
-                    } catch (SQLException e)
-                    {
-                        System.out.println("有异常抛出");
-                        e.printStackTrace();
-                        response.sendRedirect("/lyons.eaby/index.jsp");
-                    }finally
-                            {
-                                DbClose.allClose(pstmt, rs, conn);
-                            }*/
-					break;
+                            DbClose.allClose(pstmt, rs, conn);
+                        }*/
+                break;
 			case 4:
 					//key=4 浏览商品
 					String sqlList= "select * from commodity";

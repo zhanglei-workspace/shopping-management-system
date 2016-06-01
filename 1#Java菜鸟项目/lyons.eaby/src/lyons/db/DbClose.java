@@ -70,4 +70,41 @@ public class DbClose
 			e.printStackTrace();
 		}
 	}
+
+    public static void close(PreparedStatement pstmtOrder, PreparedStatement pstmtCommodity, Connection conn)
+    {
+        try
+        {
+            if (pstmtOrder != null)
+            {
+                pstmtOrder.close();
+            }
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        
+        try
+        {
+            if (pstmtCommodity != null)
+            {
+                pstmtCommodity.close();
+            }
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+        }  
+        
+        try
+        {
+            if (conn != null)
+            {
+                conn.close();
+            }
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        
+    }
 }

@@ -59,7 +59,8 @@ public class PutGoodsToCar extends HttpServlet
                 //将物品信息放进模型中
                 HttpSession session = request.getSession(true);
                 Login loginBean = (Login)session.getAttribute("loginBean");
-                LinkedList<String> car = loginBean.getCar();
+                LinkedList<String> car = null;
+                car = loginBean.getCar();
                /* if (request.getAttribute("clear")!=null) //购物车完成结算，清空数据！
                 {
                    car = null;
