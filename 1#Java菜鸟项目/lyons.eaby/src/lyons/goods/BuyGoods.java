@@ -25,6 +25,11 @@ public class BuyGoods extends HttpServlet
 {
     
     /**
+     * serialVersionUID
+     */
+    private static final long serialVersionUID = 1132L;
+
+    /**
      * Constructor of the object.
      */
     public BuyGoods()
@@ -81,7 +86,7 @@ public class BuyGoods extends HttpServlet
                     String sqlCommodity = null;
                     String sqlOrder = null;
                     sqlCommodity = "update Commodity set commodity_balance=? where commodity_number=?";
-                    sqlOrder = "insert into orderForm(username,commodity_name,commodity_price) values(?,?,?)";
+                    sqlOrder = "insert into orderForm(username,commodity_name,commodity_price,sum) values(?,?,?,?)";
     
                         try
                         {
@@ -89,7 +94,7 @@ public class BuyGoods extends HttpServlet
                             pstmtOrder = conn.prepareStatement(sqlOrder);
                             
                             pstmtOrder.setString(1,userName);
-        //                    pstmtOrder.setInt(4,1);//默认数量为1，后期再增添选择购买数量
+                            pstmtOrder.setInt(4,1);//默认数量为1，后期再增添选择购买数量
                             
                            /* 2-安踏运动鞋-福州-120-800-002.jpg-1-
                             10-ipad5-北京-5900-500-010.jpg-4-
@@ -113,9 +118,9 @@ public class BuyGoods extends HttpServlet
                                     case 2:
                                         break;
                                     case 3:
-                                            int commodity_price = 0;
-                                            commodity_price = Integer.parseInt(goods[3]);
-                                            pstmtOrder.setInt(3,commodity_price); 
+                                            Double commodity_price = 0.00;
+                                            commodity_price = Double.parseDouble(goods[3]);
+                                            pstmtOrder.setDouble(3,commodity_price); 
                                         break;
                                     case 4:
                                             int commodity_balance = -1;
@@ -271,7 +276,6 @@ public class BuyGoods extends HttpServlet
     public void init()
         throws ServletException
     {
-        // Put your code here
     }
     
 }

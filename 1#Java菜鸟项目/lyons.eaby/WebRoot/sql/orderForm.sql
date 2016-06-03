@@ -3,11 +3,11 @@
 create table orderForm 
 (
      id number(10) primary key,
-     username number(10) not null,
+     username varchar2(255) not null,
      orderDate DATE DEFAULT SYSDATE NOT NULL,
      commodity_name varchar2(255) not null,
      commodity_price NUMBER(18,2) not null,
-     sum number(18,2) 
+     sum number(10) 
 );
 
 --Éú³ÉÐòÁÐ
