@@ -92,6 +92,7 @@ public class HandleRegister extends HttpServlet
 					{
 						userBean.setBackNews("请正确填写11位手机号");
 						request.getRequestDispatcher("/jsp/join/register.jsp").forward(request, response);
+						return;
 					}
 				}else 
 					{

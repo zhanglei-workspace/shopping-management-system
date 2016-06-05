@@ -16,6 +16,11 @@ public class PutGoodsToCar extends HttpServlet
 {
     
     /**
+     * serialVersionUID
+     */
+    private static final long serialVersionUID = 97434567L;
+
+    /**
      * Constructor of the object.
      */
     public PutGoodsToCar()

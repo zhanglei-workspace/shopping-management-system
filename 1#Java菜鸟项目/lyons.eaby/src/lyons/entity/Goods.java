@@ -15,7 +15,7 @@ public class Goods implements Serializable
 	
 	CachedRowSetImpl rowSet = null; //表中所有的行集对象
 	
-	private int pageSize = 1;	//每页显示多少条记录
+	private int pageSize = 5;	//每页显示多少条记录(默认为5条)
 	private int currentPage = 1;//当前页数
 	private int totalRecord = 1;//总记录数
 	private int totalPage = 1;	 //总页数

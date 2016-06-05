@@ -265,7 +265,7 @@ public class BuyGoods extends HttpServlet
             out.print("<br><br><br>");
             out.print("<a href=/lyons.eaby/jsp/browse/showGoods.jsp>返回继续购物</a>");
             out.print("&nbsp;or&nbsp;");
-            out.print("<a href=/lyons.eaby/jsp/order/lookOrderForm.jsp>查看订单</a></center>");
+            out.print("<a href=/lyons.eaby/lyons.dao/GoodsDao?key=3>查看订单</a></center>");
         } catch (IOException e)
         {
             e.printStackTrace();

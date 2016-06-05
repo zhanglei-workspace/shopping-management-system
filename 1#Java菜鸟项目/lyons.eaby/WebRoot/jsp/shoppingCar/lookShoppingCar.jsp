@@ -19,7 +19,7 @@
               if(items.size()==0)
               {%>
                     <font color=green> 购物车空空的，抓紧去 </font> 
-                    <a href="/lyons.eaby/jsp/browse/showGoods.jsp"><font color=red size=6>购物</font></a> 
+                    <a href="/lyons.eaby/lyons.dao/GoodsDao?key=4"><font color=red size=6>购物</font></a> 
               <%
                 return;
               }

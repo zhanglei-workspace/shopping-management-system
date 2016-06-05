@@ -17,7 +17,7 @@
 <body>
 	
 	<% 
-		/* 从浏览器中获取cookie */
+		/* 从本地磁盘中获取已保存的cookie */
 		request.setCharacterEncoding("UTF-8");
 		String username = "";
 		String userpass = "";
