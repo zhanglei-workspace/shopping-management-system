@@ -23,6 +23,11 @@ public class DeleteGoodsFromCar extends HttpServlet
 {
     
     /**
+     * serialVersionUID
+     */
+    private static final long serialVersionUID = 69765L;
+
+    /**
      * Constructor of the object.
      */
     public DeleteGoodsFromCar()

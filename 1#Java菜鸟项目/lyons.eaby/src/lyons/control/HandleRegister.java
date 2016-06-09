@@ -81,19 +81,16 @@ public class HandleRegister extends HttpServlet
 			userpass = "error";
 		}
 
+		String regex = "[\\d]{11}";
 		if (!(again_userpass.equals(userpass)))
 		{
 			userBean.setBackNews("两次密码不一致,注册失败");
 			request.getRequestDispatcher("/jsp/join/register.jsp").forward(request, response);
-		}else if (phone!=null&&phone.length()>0) 
+		}else if (phone!=null&&phone.length()>0&&!phone.matches(regex)) 
 				{
-					String regex = "[\\d]{11}";
-					if (!phone.matches(regex))
-					{
 						userBean.setBackNews("请正确填写11位手机号");
 						request.getRequestDispatcher("/jsp/join/register.jsp").forward(request, response);
 						return;
-					}
 				}else 
 					{
 						String backNews = ""; 
@@ -122,7 +119,7 @@ public class HandleRegister extends HttpServlet
 								{
 									backNews = "注册成功";
 									userBean.setBackNews(backNews);
-									request.getRequestDispatcher("/jsp/join/register.jsp").forward(request, response);
+									request.getRequestDispatcher("/jsp/join/registerSuccess.jsp").forward(request, response);
 								}
 							} catch (SQLException e)
 							{
