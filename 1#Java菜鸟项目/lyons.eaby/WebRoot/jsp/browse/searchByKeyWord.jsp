@@ -51,7 +51,7 @@
 			    <div class="search-box">
 			    <div class="logo"></div>
 			    
-			        <form class="search-form" action="/lyons.eaby/lyons.dao/GoodsDao" target="_self" id="search-form" method="post">
+			        <form class="search-form" action="/lyons.eaby/lyons.dao/GoodsDao?key=2" target="_self" id="search-form" method="post">
 			            <input type="text" class="search-text" name="keyWord" id="search_input" autocomplete="off"/>
 			            <input type="hidden" name="key" value="2" />
 			            <input type="submit" class="search-button" value=""/>
