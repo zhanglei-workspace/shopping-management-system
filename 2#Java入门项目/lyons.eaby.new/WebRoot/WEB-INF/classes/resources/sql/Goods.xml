@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Goods">
+
+    <!-- 数据库中Goods表与javaBean的变量名对应关系 -->
+	<!-- type:对应java对应表的实体类名  id:别名（可以与select等的id重名）-->
+	  <resultMap type="lyons.goods.entity.Goods" id="GoodsResult">  
+	<!-- (id:数据库表主键 result：数据库表普通的列)  property：javaBean中字段对应的变量名字-->
+	    <id column="commodity_number" jdbcType="INTEGER" property="commodity_number"/>
+	    <result column="commodity_name" jdbcType="VARCHAR" property="commodity_name"/>
+	    <result column="commodity_made" jdbcType="VARCHAR" property="commodity_made"/>
+	    <result column="commodity_price" jdbcType="DOUBLE" property="commodity_price"/>
+	    <result column="commodity_balance" jdbcType="INTEGER" property="commodity_balance"/>
+	    <result column="commodity_pic" jdbcType="VARCHAR" property="commodity_pic"/>
+	    <result column="commodity_id" jdbcType="INTEGER" property="commodity_id"/>
+	    
+	  </resultMap>
+	
+	<!-- 解释： id：为该sql语句起一个名字（用于SqlFaction调用该sql语句）resultMap：对应上述resultMap的id -->
+	       <!-- select查出来的信息放到<resultMap>对应的property变量名中 -->
+		<select id="goodsAllList"  resultMap="GoodsResult">
+		    SELECT * FROM commodity 
+		</select>
+                <!-- parameterType:根据条件查询，传递来的参数的类型 -->
+		<select id="queryGoodsByKey" parameterType="String" resultMap="GoodsResult">
+		    SELECT * FROM commodity 
+		    WHERE commodity_name LIKE '%'|| #{_parameter} ||'%'
+		</select>
+		
+		
+		<delete id="deleteOneGoodsById" parameterType="int">
+		  DELECT FROM commodity 
+		  where commodity_number = #{_parameter}
+		</delete>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--  
+  <select id="find" parameterType="long" resultMap="UserResult">
+    SELECT * FROM user WHERE id = #{id:INTEGER}
+  </select>
+
+  <select id="version" parameterType="long" resultType="int">
+    SELECT version FROM user WHERE id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="delete" parameterType="UserAlias">
+    DELETE FROM user WHERE id = #{id:INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="UserAlias" useGeneratedKeys="false">
+    INSERT INTO user
+    ( id,
+    username,
+    password,
+    administrator
+    )
+    VALUES
+    ( #{id},
+    #{username,jdbcType=VARCHAR},
+    #{password.encrypted:VARCHAR},
+    #{administrator,jdbcType=BOOLEAN}
+    )
+  </insert>
+
+  <update id="update" parameterType="UserAlias">
+    UPDATE user SET
+    username = #{username,jdbcType=VARCHAR},
+    password = #{password.encrypted,jdbcType=VARCHAR},
+    administrator = #{administrator,jdbcType=BOOLEAN}
+    WHERE
+    id = #{id,jdbcType=INTEGER}
+  </update>
+ -->
+<!--   Unique constraint check 
+  <select id="isUniqueUsername" parameterType="map" resultType="boolean">
+    SELECT (count(*) = 0)
+    FROM user
+    WHERE ((#{userId,jdbcType=BIGINT} IS NOT NULL AND id != #{userId,jdbcType=BIGINT}) OR #{userId,jdbcType=BIGINT} IS
+
+    NULL)  --><!-- other than me --><!--
+    AND (username = #{username,jdbcType=VARCHAR})
+  </select>
+-->
+</mapper>

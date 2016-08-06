@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="lyons.eaby.new"
+  id="myeclipse.1458093113269"
+  context-root="/lyons.eaby.new"
+  j2ee-spec="5.0"
+  archive="lyons.eaby.new.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

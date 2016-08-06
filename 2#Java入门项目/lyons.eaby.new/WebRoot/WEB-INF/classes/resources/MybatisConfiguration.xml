@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+<!--  
+  <settings>
+    <setting name="useGeneratedKeys" value="false"/>
+    <setting name="useColumnLabel" value="true"/>
+  </settings>
+
+  <typeAliases>
+    <typeAlias alias="UserAlias" type="org.apache.ibatis.submitted.complex_property.User"/>
+  </typeAliases>
+
+-->
+  <environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC">
+        <property name="" value=""/>
+      </transactionManager>
+      <!-- 连接本地oracle数据库信息 -->
+      <dataSource type="UNPOOLED">
+        <property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl"/>
+        <property name="username" value="scott"/>
+        <property name="password" value="tiger"/>
+      </dataSource>
+    </environment>
+  </environments>
+
+<!-- 整合资源，将其他的配置文件添加进 -->
+  <mappers>
+    <mapper resource="resources/sql/Goods.xml"/>
+    <mapper resource="resources/sql/Order.xml"/>
+  </mappers>
+
+</configuration>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+  
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>/jsp/join/login.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <!--  
+  <jsp-config>
+	  <taglib>
+	   <taglib-uri>http://java.sun.com/jsp/jstl/core</taglib-uri>
+	   <taglib-location>/WEB-INF/tld/c.tld</taglib-location>
+	  </taglib>
+  </jsp-config>
+  -->
+  
+  <servlet>
+    <servlet-name>HandleRegister</servlet-name>
+    <servlet-class>lyons.control.HandleRegister</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>HandleLogin</servlet-name>
+    <servlet-class>lyons.control.HandleLogin</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>HandleExit</servlet-name>
+    <servlet-class>lyons.control.HandleExit</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>PutGoodsToCar</servlet-name>
+    <servlet-class>lyons.goods.PutGoodsToCar</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DeleteGoodsFromCar</servlet-name>
+    <servlet-class>lyons.goods.DeleteGoodsFromCar</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>BuyGoods</servlet-name>
+    <servlet-class>lyons.action.BuyGoods</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>GoodsAction</servlet-name>
+    <servlet-class>lyons.goods.action.GoodsAction</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>OrderAction</servlet-name>
+    <servlet-class>lyons.order.action.OrderAction</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>LoginAction</servlet-name>
+    <servlet-class>lyons.user.action.LoginAction</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>RegisterAction</servlet-name>
+    <servlet-class>lyons.user.action.RegisterAction</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ExitAction</servlet-name>
+    <servlet-class>lyons.user.action.ExitAction</servlet-class>
+  </servlet>
+
+
+
+
+
+
+  
+
+  <servlet-mapping>
+    <servlet-name>HandleRegister</servlet-name>
+    <url-pattern>/control.action</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>HandleLogin</servlet-name>
+    <url-pattern>/lyons.control/HandleLogin</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>HandleExit</servlet-name>
+    <url-pattern>/lyons.control/HandleExit</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>PutGoodsToCar</servlet-name>
+    <url-pattern>/lyons.goods/PutGoodsToCar</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteGoodsFromCar</servlet-name>
+    <url-pattern>/lyons.goods/DeleteGoodsFromCar</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>BuyGoods</servlet-name>
+    <url-pattern>/BuyGoods.action</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>GoodsAction</servlet-name>
+    <url-pattern>/Goods.action</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>OrderAction</servlet-name>
+    <url-pattern>/Order.action</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>LoginAction</servlet-name>
+    <url-pattern>/Login.Action</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>RegisterAction</servlet-name>
+    <url-pattern>/Register.Action</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ExitAction</servlet-name>
+    <url-pattern>/Exit.Action</url-pattern>
+  </servlet-mapping>
+
+
+<!-- goodsDao-> GoodsAction-->
+</web-app>
