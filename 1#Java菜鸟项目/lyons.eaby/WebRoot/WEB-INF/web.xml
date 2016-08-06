@@ -5,44 +5,30 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
 	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>HandleRegister</servlet-name>
     <servlet-class>lyons.control.HandleRegister</servlet-class>
   </servlet>
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>HandleLogin</servlet-name>
     <servlet-class>lyons.control.HandleLogin</servlet-class>
   </servlet>
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>GoodsDao</servlet-name>
     <servlet-class>lyons.dao.GoodsDao</servlet-class>
   </servlet>
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>HandleExit</servlet-name>
     <servlet-class>lyons.control.HandleExit</servlet-class>
   </servlet>
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>PutGoodsToCar</servlet-name>
     <servlet-class>lyons.goods.PutGoodsToCar</servlet-class>
   </servlet>
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>DeleteGoodsFromCar</servlet-name>
     <servlet-class>lyons.goods.DeleteGoodsFromCar</servlet-class>
   </servlet>
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>BuyGoods</servlet-name>
     <servlet-class>lyons.goods.BuyGoods</servlet-class>
   </servlet>
@@ -53,7 +39,7 @@
 
   <servlet-mapping>
     <servlet-name>HandleRegister</servlet-name>
-    <url-pattern>/lyons.control/HandleRegister</url-pattern>
+    <url-pattern>/control.action</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>HandleLogin</servlet-name>

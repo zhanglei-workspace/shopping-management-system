@@ -32,7 +32,7 @@ public class HandleExit extends HttpServlet
 			throws ServletException, IOException
 	{
 
-		doPost(request, response);
+		this.doPost(request, response);
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)

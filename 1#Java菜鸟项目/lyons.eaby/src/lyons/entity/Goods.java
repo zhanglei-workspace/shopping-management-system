@@ -1,6 +1,5 @@
 package lyons.entity;
 
-import java.io.Serializable;
 
 import com.sun.rowset.CachedRowSetImpl;
 
@@ -9,9 +8,8 @@ import com.sun.rowset.CachedRowSetImpl;
  * @author lyons(zhanglei)
  *
  */
-public class Goods implements Serializable
+public class Goods 
 {
-	private static final long serialVersionUID = 1324861781715292607L;
 	
 	CachedRowSetImpl rowSet = null; //表中所有的行集对象
 	
@@ -25,7 +23,6 @@ public class Goods implements Serializable
 	public Goods(CachedRowSetImpl rowSet, int pageSize, int currentPage,
 			int totalPRecord, int totalPage)
 	{
-		super();
 		this.rowSet = rowSet;
 		this.pageSize = pageSize;
 		this.currentPage = currentPage;
@@ -83,11 +80,5 @@ public class Goods implements Serializable
         this.totalPage = totalPage;
     }
 
-    public static long getSerialVersionUID()
-    {
-        return serialVersionUID;
-    }
-
-	
 	
 }

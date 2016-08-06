@@ -222,6 +222,8 @@ public class GoodsDao extends HttpServlet
                             }
                     break;
 			case 4:
+			        StringBuffer url = request.getRequestURL();
+			        System.out.println("4324234=========="+url.toString());
 					//key=4 ‰Ø¿¿…Ã∆∑
 					String sqlList= "select * from commodity";
 					try
