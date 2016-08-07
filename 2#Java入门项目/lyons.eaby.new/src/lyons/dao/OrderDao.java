@@ -66,6 +66,54 @@ public class OrderDao
         return null;
     }
     
+    /**
+     * 
+     * 查询所有用户订单列表
+     * @return
+     */
+    public List<Order> queryOrderAllList()
+    {
+        try
+        {
+            sqlSession = dbAccess.getSqlSession();
+            return sqlSession.selectList("Order.queryOrderAllList");//对象封装传递多个参数
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }finally
+        {
+            sqlSesionClose();
+        }
+        
+        return null;
+    }
+    
+    
+    
+    
+    
+    /**
+     * 
+     * 根据商品唯一标识删除订单
+     * @param id
+     */
+    public void deleteOrderOneById(int id)
+    {
+        try
+        {
+            sqlSession = dbAccess.getSqlSession();
+            sqlSession.delete("Order.deleteOrderOneById",id);//对象封装传递多个参数
+            sqlSession.commit();//删除需要提交
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }finally
+        {
+            sqlSesionClose();
+        }
+    }
     
     
     /*
@@ -81,24 +129,26 @@ public class OrderDao
     
     
     
-    public static void main(String[] args)
-    {
-       List<Order> orderList =null;
-       Order order = new Order();
-       OrderDao orderDao = new OrderDao();
-       
-       order.setKeyWord("鞋");
-       order.setUserName("lyons");
-       orderList = orderDao.queryOrderByKeyName(order);
-       System.out.println(orderList.size());
-       
-       for (int i = 0,num=orderList.size(); i < num; i++)
-       {
-           System.out.print("货名："+orderList.get(i).getCommodity_name());
-           System.out.println("\t\t用户名："+orderList.get(i).getUserName());
-                
-       }
-       
-       
-    }
+    
+//    public static void main(String[] args)
+//    {
+//       List<Order> orderList =null;
+//       Order order = new Order();
+//       OrderDao orderDao = new OrderDao();
+//       
+//       order.setKeyWord("鞋");
+//       order.setUserName("lyons");
+//       orderList = orderDao.queryOrderByKeyName(order);
+//       System.out.println(orderList.size());
+//       
+//       for (int i = 0,num=orderList.size(); i < num; i++)
+//       {
+//           System.out.print("货名："+orderList.get(i).getCommodity_name());
+//           System.out.println("\t\t用户名："+orderList.get(i).getUserName());
+//                
+//       }
+//       
+//       
+//    }
+    
 }

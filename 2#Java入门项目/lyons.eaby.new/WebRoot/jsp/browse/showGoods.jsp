@@ -5,7 +5,6 @@
 
 <html>
   <head>
-    <base href="<%=basePath%>">
     
     <title>浏览商品</title>
     

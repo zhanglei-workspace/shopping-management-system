@@ -15,7 +15,8 @@
 	    <result column="commodity_price" jdbcType="DOUBLE" property="commodity_price"/>
 	    <result column="sum" jdbcType="INTEGER" property="sum"/>
 	  </resultMap>
-	  
+	 
+<!-- 查询订单系 --> 
 	  <!-- 自己配置该resultMap的原因是 id="OrderResult" 无对应的返回类型 
 	  <resultMap type="java.util.Map" id="queryOrderSum">
 	    <result column="commodity_name" jdbcType="VARCHAR" property="commodity_name"/>
@@ -50,10 +51,18 @@
 		    </if>
 		    
 		</select>
+		
+		<select id="queryOrderAllList" parameterType="lyons.order.entity.Order" resultMap="OrderResult">
+		        SELECT * FROM orderform 
+		</select>
 
 
-
-
+<!-- 删除订单系 --> 
+		<delete id="deleteOrderOneById" parameterType="int" >
+		    
+		        DELETE FROM orderform WHERE id = #{_parameter} 
+            
+		</delete>
 
 
 

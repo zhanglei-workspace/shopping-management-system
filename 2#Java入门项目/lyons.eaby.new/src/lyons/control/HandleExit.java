@@ -40,7 +40,7 @@ public class HandleExit extends HttpServlet
 	{
 		HttpSession session = request.getSession(true);//true一定要写。否则，获取不到当前session时会自动创建一个
 		session.invalidate();
-		response.sendRedirect("/lyons.eaby/jsp/join/login.jsp");
+		response.sendRedirect("/lyons.eaby.new/jsp/join/login.jsp");
 		
 	}
 

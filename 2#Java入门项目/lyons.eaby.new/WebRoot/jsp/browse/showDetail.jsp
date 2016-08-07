@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/index.jsp" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-    <base href="<%=basePath%>">
     
     <title>My JSP 'showDetail.jsp' starting page</title>
     
@@ -45,7 +48,7 @@
              </tr>
          </table>
          <br>
-         <img src="<%= path %>/image/goods/<%= details[5] %>" width="360" height="300"></img>
+         <img src="<%= basePath %>resource/image/goods/<%= details[5] %>" width="360" height="300"></img>
         </center>
   </body>
 </html>

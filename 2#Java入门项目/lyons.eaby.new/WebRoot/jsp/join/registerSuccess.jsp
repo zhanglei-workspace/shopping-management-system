@@ -19,7 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="description" content="This is my page">
 	<meta http-equiv="refresh" content="3; url=<%= path %>/jsp/join/login.jsp"> 
 	
-	<!-- <link rel="stylesheet" type="text/css" href="<%= path %>/css/nav.css">  -->
+	<!-- <link rel="stylesheet" type="text/css" href="<%= path %>/resource/css/nav.css">  -->
 
   </head>
   

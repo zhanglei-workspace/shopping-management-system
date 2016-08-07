@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -32,7 +36,7 @@
 	width:120px;
 	margin-right:1px;
 	text-align:center;
-	background:url(/lyons.eaby/image/page/nav.png);
+	background:url(/lyons.eaby.new/resource/image/page/nav.png);
  }
 .nav li a.on, .nav li a:hover
 	{
@@ -59,6 +63,7 @@
     			<li><a href="jsp/shoppingCar/lookShoppingCar.jsp"> 购物车</a></li>
     			<li><a href="Goods.action?key=4">浏览商品</a></li>
     			<li><a href="jsp/browse/searchByKeyWord.jsp">查询商品</a></li>
+    			<li><a href="<%= basePath %>Order.action?key=2">商品管理</a></li>
     		</ul>
    		</div>
   </body>

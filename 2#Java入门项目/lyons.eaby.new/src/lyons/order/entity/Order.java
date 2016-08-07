@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class Order
 {
-    private int id;                 //序号
+    private int id;                 //商品唯一标识
     private String userName;        //用户名
     private Date orderDate;         //订单日期
     private String commodity_name;  //商品名字

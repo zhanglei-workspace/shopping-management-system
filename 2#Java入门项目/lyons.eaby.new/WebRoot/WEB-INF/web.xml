@@ -66,7 +66,15 @@
     <servlet-class>lyons.user.action.ExitAction</servlet-class>
   </servlet>
 
-
+<!-- 旧类临时配置 -->
+  <servlet>
+    <servlet-name>aaa</servlet-name>
+    <servlet-class>lyons.goods.BuyGoods</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>aaa</servlet-name>
+    <url-pattern>/lyons.goods.BuyGoods</url-pattern>
+  </servlet-mapping>
 
 
 

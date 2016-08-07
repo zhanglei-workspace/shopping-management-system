@@ -55,7 +55,7 @@ public class PutGoodsToCar extends HttpServlet
         
         if (goods==null)
         {
-            response.sendRedirect("/lyons.eaby/index.jsp");
+            response.sendRedirect("/lyons.eaby.new/index.jsp");
         }else 
             {
                 String[] details = null;
@@ -95,9 +95,9 @@ public class PutGoodsToCar extends HttpServlet
         out.print("<br><br><br>");
         out.print("<center><font size=5 color=red><B>"+goodsName+"</B></font>&nbsp;已成功添加购物车");
         out.print("<br><br><br>");
-        out.print("<a href=/lyons.eaby/jsp/browse/showGoods.jsp>返回继续购物</a>");
+        out.print("<a href=/lyons.eaby.new/jsp/browse/showGoods.jsp>返回继续购物</a>");
         out.print("&nbsp;or&nbsp;");
-        out.print("<a href=/lyons.eaby/jsp/shoppingCar/lookShoppingCar.jsp>查看购物车</a></center>");
+        out.print("<a href=/lyons.eaby.new/jsp/shoppingCar/lookShoppingCar.jsp>查看购物车</a></center>");
         
     }
 

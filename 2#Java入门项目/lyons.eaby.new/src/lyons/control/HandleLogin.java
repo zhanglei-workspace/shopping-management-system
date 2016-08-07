@@ -186,7 +186,7 @@ public class HandleLogin extends HttpServlet
 		{
 			PrintWriter out = response.getWriter();
 			out.print(backNews+"<br>");
-			out.print("返回"+"<a href=/lyons.eaby/jsp/join/login.jsp>登陆界面</a>");
+			out.print("返回"+"<a href=/lyons.eaby.new/jsp/join/login.jsp>登陆界面</a>");
 		} catch (IOException e)
 		{
 			e.printStackTrace();

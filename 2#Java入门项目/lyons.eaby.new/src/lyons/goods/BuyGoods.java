@@ -29,23 +29,6 @@ public class BuyGoods extends HttpServlet
      */
     private static final long serialVersionUID = 1132L;
 
-    /**
-     * Constructor of the object.
-     */
-    public BuyGoods()
-    {
-        super();
-    }
-    
-    /**
-     * Destruction of the servlet. <br>
-     */
-    public void destroy()
-    {
-        super.destroy(); // Just puts "destroy" string in log
-        // Put your code here
-    }
-
     public void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException
     {
@@ -166,7 +149,7 @@ public class BuyGoods extends HttpServlet
                             PrintWriter out = response.getWriter();
                             out.print(e+"<br>");
                             out.print("返回"+"");
-                            out.print("<a href=/lyons.eaby/jsp/shoppingCar/lookShoppingCar.jsp>购物车</a>");
+                            out.print("<a href=/lyons.eaby.new/jsp/shoppingCar/lookShoppingCar.jsp>购物车</a>");
                             return;
                         }finally
                         {
@@ -239,7 +222,7 @@ public class BuyGoods extends HttpServlet
             PrintWriter out = response.getWriter();
             out.print(e+"<br>");
             out.print("返回"+"");
-            out.print("<a href=/lyons.eaby/jsp/shoppingCar/lookShoppingCar.jsp>购物车</a>");
+            out.print("<a href=/lyons.eaby.new/jsp/shoppingCar/lookShoppingCar.jsp>购物车</a>");
         }finally
                 {
                     DbClose.allClose(pstmt, rs, conn);
@@ -263,9 +246,9 @@ public class BuyGoods extends HttpServlet
             out.print("<br><br><br>");
             out.print("<center><font size=5 color=red><B>"+mess+"</B></font>&nbsp;");
             out.print("<br><br><br>");
-            out.print("<a href=/lyons.eaby/jsp/browse/showGoods.jsp>返回继续购物</a>");
+            out.print("<a href=/lyons.eaby.new/jsp/browse/showGoods.jsp>返回继续购物</a>");
             out.print("&nbsp;or&nbsp;");
-            out.print("<a href=/lyons.eaby/lyons.dao/GoodsDao?key=3>查看订单</a></center>");
+            out.print("<a href=/lyons.eaby.new/Order.action?key=1>查看订单</a></center>");
         } catch (IOException e)
         {
             e.printStackTrace();

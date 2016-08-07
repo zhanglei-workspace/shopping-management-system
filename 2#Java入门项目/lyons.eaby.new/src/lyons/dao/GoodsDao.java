@@ -8,7 +8,6 @@ import org.apache.ibatis.session.SqlSession;
 
 import lyons.db.DbAccess;
 import lyons.goods.entity.Goods;
-import lyons.order.entity.Order;
 
 /**
  * 商品维护类

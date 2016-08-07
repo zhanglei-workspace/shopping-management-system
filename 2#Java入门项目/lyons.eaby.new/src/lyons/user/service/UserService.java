@@ -58,7 +58,7 @@ public class UserService extends HttpServlet
               out.print("<br>");
               out.print("<center>" +
                       		"<font color=#008B8B> 客官，</font>" +
-                      		"<a href=/lyons.eaby/jsp/join/login.jsp><font color=red size=6>登陆</font></a>" +
+                      		"<a href=/lyons.eaby.new/jsp/join/login.jsp><font color=red size=6>登陆</font></a>" +
                       		"<font color=#008B8B> 之后才能操作哦  </font>" +
               		   "</center>");
               return "";

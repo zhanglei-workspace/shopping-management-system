@@ -2,10 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/navbar.jsp" %>
 <%@ page import="java.net.URLDecoder"%>
-<% 
-	String path = request.getContextPath();
-	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -39,7 +35,7 @@
 		}
 	%>
 	<div align="center">
-		<form action="<%= path %>/lyons.control/HandleLogin" method="post">
+		<form action="<%= basePath %>lyons.control/HandleLogin" method="post">
 		
 			<table border="0" cellpadding="15" cellspacing="1">
 				<tr>

@@ -1,13 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="navbar.jsp" %>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
 <html>
   <head>
-    <base href="<%=basePath%>">
     <title>首页</title>
     
 	<meta http-equiv="pragma" content="no-cache">
@@ -39,7 +34,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    						<dl>
    							<dt>
 	    						<a>欢迎您,<b><font color="red"><%= str %></font></b></a>
-	    						<a href="<%= path %>/lyons.control/HandleExit"><font color="#CDC9C9">退出</font></a>
+	    						<a href="<%= basePath %>lyons.control/HandleExit"><font color="#CDC9C9">退出</font></a>
    							</dt>
    						</dl>
     			</li>
@@ -52,7 +47,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 {%>
                     <center>
                     <br><br><br>
-                        <img src="image/page/first.jpg" width=700px height=500px /> 
+                        <img src="<%= basePath %>resource/image/page/first.jpg" width=700px height=500px /> 
                     </center>
                 <%}
             %>

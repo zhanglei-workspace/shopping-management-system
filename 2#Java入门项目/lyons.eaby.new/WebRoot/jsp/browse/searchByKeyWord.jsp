@@ -23,7 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
   <style type="text/css">
     body{background-color:  #008B8B;}
-    .bg-div{position:relative;background-image: url(../../image/page/river.jpg);width:1228px;height:690px;margin: 0 auto;}
+    .bg-div{position:relative;background-image: url(../../resource/image/page/river.jpg);width:1228px;height:690px;margin: 0 auto;}
     .logo{background-image: url(../../image/page/logo.png);height:53px;width: 107px; float: left;margin: -4px 18px 0 0;}
     .search-form{float: left; background-color: #fff;padding:5px;}
     .search-text{height:25px;line-height: 25px;float: left;width: 350px;border: 0;outline: none;}
@@ -48,7 +48,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<% request.setCharacterEncoding("UTF-8"); %>
 			<div class="nav">
 			<ul class="clearfix">
-			   <li><a href="/lyons.eaby/index.jsp">首  页</a></li>
+			   <li><a href="/lyons.eaby.new/index.jsp">首  页</a></li>
 			</ul>
 			</div>
 			 <div class="bg-div">

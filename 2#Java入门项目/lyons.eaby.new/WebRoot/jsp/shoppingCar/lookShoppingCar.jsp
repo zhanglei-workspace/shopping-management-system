@@ -53,9 +53,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                       <td><%= item[i]%></td>
 	                <%}
                  totalPrice += Double.parseDouble(item[3]); 
-            %> <td><a href='/lyons.eaby/lyons.goods/DeleteGoodsFromCar?ID=<%= j %>' >删除</a></td></tr><%
+            %> <td><a href='/lyons.eaby.new/lyons.goods/DeleteGoodsFromCar?ID=<%= j %>' >删除</a></td></tr><%
               }
-              String backPage = "<a href='/lyons.eaby/jsp/browse/showGoods.jsp'><font color=green><b>继续购物</b></font></a>";
+              String backPage = "<a href='/lyons.eaby.new/jsp/browse/showGoods.jsp'><font color=green><b>继续购物</b></font></a>";
            %>
        </table>
       
@@ -63,7 +63,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
            <tr>
               <td colspan=3>合计：<%= totalPrice %> RMB</td>
               <td>
-                    <form action="/lyons.eaby/lyons.goods/BuyGoods" method="post">
+                    <form action="<%= basePath %>lyons.goods.BuyGoods" method="post">
                         <input type="submit" value="确认付款"/>
                     </form>
               </td>
