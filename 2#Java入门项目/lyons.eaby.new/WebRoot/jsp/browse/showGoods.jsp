@@ -52,7 +52,7 @@
                    String detail = "<form action='jsp/browse/showDetail.jsp' method='post'>"+
                                    "<input type='hidden' name='detail' value="+commodity+">"+
                                    "<input type='submit' value='商品详情'></form>";      
-                   String shopCarButton = "<form action='lyons.goods/PutGoodsToCar' method='post'>"+
+                   String shopCarButton = "<form action='"+basePath+"lyons.goods/PutGoodsToCar' method='post'>"+
                                    "<input type='hidden' name='GoodsCar' value="+commodity+">"+
                                    "<input type='submit' value='加入购物车'></form>";
                %>

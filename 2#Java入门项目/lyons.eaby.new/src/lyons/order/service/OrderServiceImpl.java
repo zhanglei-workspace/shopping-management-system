@@ -1,6 +1,5 @@
 package lyons.order.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import lyons.dao.OrderDao;
@@ -45,15 +44,16 @@ public class OrderServiceImpl implements OrderService
     @Override
     public List<Order> orderListByKeyName(Order condition)
     {
-        //至少一个查询条件为真才能查询，否则返回空对象。
+        //至少一个查询条件为真才能查询，否则返回全部订单列表。
         if (!((condition.getUserName()==null||"".equals(condition.getUserName().trim()))&&
             (condition.getKeyWord()==null||"".equals(condition.getKeyWord().trim()))))
             {
                 return dao.queryOrderByKeyName(condition);
             }
         
-        return new ArrayList<Order>();
+        return orderAllList();
     }
+    
     
     /**
      * 删除单个“所有”订单
@@ -61,9 +61,32 @@ public class OrderServiceImpl implements OrderService
      * @return
      */
     @Override
-    public void deleteOrderOneById(int id)
+    public void deleteOrderOneById(String idstr)
     {
-       dao.deleteOrderOneById(id);
+        if (!(idstr==null || "".equals(idstr)))
+        {
+           int id = Integer.parseInt(idstr);
+           dao.deleteOrderOneById(id);
+        }
+        
+        return;
+        
+    }
+    
+    /**
+     * 
+     * 批量删除订单 By ids
+     * @param userName
+     * @return
+     */
+    @Override
+    public void deleteOrderBatch(String[] ids)
+    {
+        if (ids.length>0)
+        {
+            dao.deleteOrderBatch(ids);
+        }
+        
     }
     
 }

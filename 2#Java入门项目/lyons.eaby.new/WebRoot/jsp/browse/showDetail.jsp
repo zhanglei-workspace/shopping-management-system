@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/index.jsp" %>
-<%
-    String path = request.getContextPath();
-    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
@@ -35,7 +31,7 @@
             
             <%
             String detail = request.getParameter("detail");
-            String shopCarButton = "<form action='lyons.goods/PutGoodsToCar' method='post'>"+
+            String shopCarButton = "<form action='"+basePath+"lyons.goods/PutGoodsToCar"+"' method='post'>"+
                                    "<input type='hidden' name='GoodsCar' value="+detail+">"+
                                    "<input type='submit' value='加入购物车'></form>";
             String[] details = detail.split(",");

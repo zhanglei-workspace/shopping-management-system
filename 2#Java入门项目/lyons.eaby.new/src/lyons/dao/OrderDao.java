@@ -115,6 +115,35 @@ public class OrderDao
         }
     }
     
+    /**
+     * 
+     * 批量删除订单
+     * @param ids
+     */
+    public void deleteOrderBatch(String[] ids)
+    {
+        List<Integer> idList = new ArrayList<Integer>();
+        for (String id : ids)
+        {
+            idList.add(Integer.valueOf(id));
+        }
+        
+        try
+        {
+            sqlSession = dbAccess.getSqlSession();
+            sqlSession.delete("Order.deleteOrderBatch",idList);//对象封装传递多个参数
+            sqlSession.commit();//删除需要提交
+            idList.clear();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }finally
+        {
+            sqlSesionClose();
+        }
+        
+    }
     
     /*
      * 关闭数据库连接会话
@@ -127,28 +156,5 @@ public class OrderDao
         }
     }
     
-    
-    
-    
-//    public static void main(String[] args)
-//    {
-//       List<Order> orderList =null;
-//       Order order = new Order();
-//       OrderDao orderDao = new OrderDao();
-//       
-//       order.setKeyWord("鞋");
-//       order.setUserName("lyons");
-//       orderList = orderDao.queryOrderByKeyName(order);
-//       System.out.println(orderList.size());
-//       
-//       for (int i = 0,num=orderList.size(); i < num; i++)
-//       {
-//           System.out.print("货名："+orderList.get(i).getCommodity_name());
-//           System.out.println("\t\t用户名："+orderList.get(i).getUserName());
-//                
-//       }
-//       
-//       
-//    }
     
 }

@@ -5,8 +5,6 @@
 
 <mapper namespace="Order">
 
-
-
 	  <resultMap type="lyons.order.entity.Order" id="OrderResult">  
 	    <id column="id" jdbcType="INTEGER" property="id"/>
 	    <result column="username" jdbcType="VARCHAR" property="userName"/>
@@ -62,6 +60,18 @@
 		    
 		        DELETE FROM orderform WHERE id = #{_parameter} 
             
+		</delete>
+		
+		<delete id="deleteOrderBatch" parameterType="java.util.List">
+		  
+		  DELETE FROM orderform WHERE id 
+		  in(
+		      <!-- collection:指向集合 item:迭代出来的项 separator:自定义分割符-->
+		      <foreach collection="list" index="" item="item" separator=",">     
+		          #{item}
+		      </foreach>
+		    )
+		  
 		</delete>
 
 

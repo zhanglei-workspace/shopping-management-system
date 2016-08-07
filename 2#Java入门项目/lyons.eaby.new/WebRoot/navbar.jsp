@@ -59,11 +59,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    		<div>
   			<ul class="nav">
     			<li><a class="on" href="index.jsp?first=FP">首  页</a></li>
-    			<li><a href="Order.action?key=1">我的订单</a></li>
+    			<li><a href="<%= basePath %>Order.action?key=2">订单管理</a></li>
+    			<li><a href="<%= basePath %>Order.action?key=1">我的订单</a></li>
     			<li><a href="jsp/shoppingCar/lookShoppingCar.jsp"> 购物车</a></li>
-    			<li><a href="Goods.action?key=4">浏览商品</a></li>
+    			<li><a href="<%= basePath %>Goods.action?key=4">浏览商品</a></li>
     			<li><a href="jsp/browse/searchByKeyWord.jsp">查询商品</a></li>
-    			<li><a href="<%= basePath %>Order.action?key=2">商品管理</a></li>
     		</ul>
    		</div>
   </body>
