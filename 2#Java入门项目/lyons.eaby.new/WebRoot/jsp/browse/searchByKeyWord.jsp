@@ -24,10 +24,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <style type="text/css">
     body{background-color:  #008B8B;}
     .bg-div{position:relative;background-image: url(../../resource/image/page/river.jpg);width:1228px;height:690px;margin: 0 auto;}
-    .logo{background-image: url(../../image/page/logo.png);height:53px;width: 107px; float: left;margin: -4px 18px 0 0;}
+    .logo{background-image: url(../../resource/image/page/logo.png);height:53px;width: 107px; float: left;margin: -4px 18px 0 0;}
     .search-form{float: left; background-color: #fff;padding:5px;}
-    .search-text{height:25px;line-height: 25px;float: left;width: 350px;border: 0;outline: none;}
-    .search-button{background-image: url(../../image/page/search-button.png);width:29px;height:29px;float: left;border: 0}
+    
+    .search-text{height:25px;line-height: 25px;float: left;width: 270px;border: 0;outline: none;}
+    
+    .search-text-select{height:25px;line-height: 25px;float: left;width: 80px;border-style: #f00;;outline: none;float: left;}
+    
+    .search-button{background-image: url(../../resource/image/page/search-button.png);width:29px;height:29px;float: left;border: 0}
     .search-box{position:absolute;top:150px;left: 200px; }
     .suggest{width:388px; background-color:#fff;position:absolute;margin:0;padding:0;border-width:1px;border-style:solid;border-color: #999;}
     .suggest ul{list-style:none;display:block;margin:0;padding:0}
@@ -55,18 +59,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    <div class="search-box">
 			    <div class="logo"></div>
 			    
-			        <form class="search-form" action="<%= basePath %>Goods.action?key=2" target="_self" id="search-form" method="post">
-			            <input type="text" class="search-text" name="keyWord" id="search_input" autocomplete="off"/>
-			            <input type="hidden" name="key" value="2" />
+			        <form class="search-form" action="<%= basePath %>Goods.action" target="_self" id="search-form" method="post">
+			            <input type="hidden" name="key" value="1" />
+			            <input type="text" class="search-text" name="keyWord" id="search_input" autocomplete="off" placeholder="关键字"/>
+			            
+			            <select class="search-text-select" name="goodsClassify" id="search_input" >
+			             <option value="">选择分类</option>
+			             <option value="1">鞋</option>
+			             <option value="2">衬衫</option>
+			             <option value="3">手机</option>
+			             <option value="4">电子产品</option>
+			            </select>
 			            <input type="submit" class="search-button" value=""/>
 			        </form>
 			
 			    </div>
 			 </div>
 			 <div class="suggest" id="search-suggest" style="display:none">
-			                <ul id="search-result">
-			                    <li> 运动鞋 </li>
-			                </ul>
+			                <!-- <ul id="search-result">
+			                         <li>  </li>
+			                     </ul>
+			                 -->
 			</div>
  </body>
  <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>

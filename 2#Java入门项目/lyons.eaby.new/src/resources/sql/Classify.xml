@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Classify">
+
+	  <resultMap type="lyons.goods.entity.Classify" id="ClassifyResult">  
+	    <id column="id" jdbcType="INTEGER" property="id"/>
+	    <result column="gname" jdbcType="VARCHAR" property="gname"/>
+	  </resultMap>
+
+
+<!--  
+  <select id="find" parameterType="long" resultMap="UserResult">
+    SELECT * FROM user WHERE id = #{id:INTEGER}
+  </select>
+
+  <select id="version" parameterType="long" resultType="int">
+    SELECT version FROM user WHERE id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="delete" parameterType="UserAlias">
+    DELETE FROM user WHERE id = #{id:INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="UserAlias" useGeneratedKeys="false">
+    INSERT INTO user
+    ( id,
+    username,
+    password,
+    administrator
+    )
+    VALUES
+    ( #{id},
+    #{username,jdbcType=VARCHAR},
+    #{password.encrypted:VARCHAR},
+    #{administrator,jdbcType=BOOLEAN}
+    )
+  </insert>
+
+  <update id="update" parameterType="UserAlias">
+    UPDATE user SET
+    username = #{username,jdbcType=VARCHAR},
+    password = #{password.encrypted,jdbcType=VARCHAR},
+    administrator = #{administrator,jdbcType=BOOLEAN}
+    WHERE
+    id = #{id,jdbcType=INTEGER}
+  </update>
+ -->
+<!--   Unique constraint check 
+  <select id="isUniqueUsername" parameterType="map" resultType="boolean">
+    SELECT (count(*) = 0)
+    FROM user
+    WHERE ((#{userId,jdbcType=BIGINT} IS NOT NULL AND id != #{userId,jdbcType=BIGINT}) OR #{userId,jdbcType=BIGINT} IS
+
+    NULL)  --><!-- other than me --><!--
+    AND (username = #{username,jdbcType=VARCHAR})
+  </select>
+-->
+</mapper>

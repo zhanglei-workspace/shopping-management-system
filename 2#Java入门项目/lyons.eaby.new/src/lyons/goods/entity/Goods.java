@@ -12,7 +12,8 @@ import lyons.goods.entity.Goods;
  */
 public class Goods
 {
-    private List<Goods> goodsList = null;
+    private List<Goods>     goodsList = null;
+    private List<Classify>  ClassifyList = null;    //多表联立时使用
 
     private int commodity_number;      //商品编号
     private String commodity_name;     //商品名字
@@ -25,13 +26,13 @@ public class Goods
     public Goods()
     {
         goodsList = new ArrayList<Goods>();
+        ClassifyList = new ArrayList<Classify>();
     }
 
     public List<Goods> getGoodsList()
     {
         return goodsList;
     }
-
     public void setGoodsList(List<Goods> goodsList)
     {
         this.goodsList = goodsList;
@@ -105,6 +106,16 @@ public class Goods
     public void setCommodity_id(int commodity_id)
     {
         this.commodity_id = commodity_id;
+    }
+
+    public List<Classify> getClassifyList()
+    {
+        return ClassifyList;
+    }
+
+    public void setClassifyList(List<Classify> classifyList)
+    {
+        ClassifyList = classifyList;
     }
 
    

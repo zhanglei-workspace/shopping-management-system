@@ -82,10 +82,12 @@ public class OrderServiceImpl implements OrderService
     @Override
     public void deleteOrderBatch(String[] ids)
     {
-        if (ids.length>0)
+        if (ids==null||ids.length<=0)
         {
-            dao.deleteOrderBatch(ids);
+            String idTemp[] = {"-1"};
+            ids = idTemp;//·ÀÖ¹¿ÕÖ¸ÕëÒì³£
         }
+        dao.deleteOrderBatch(ids);
         
     }
     

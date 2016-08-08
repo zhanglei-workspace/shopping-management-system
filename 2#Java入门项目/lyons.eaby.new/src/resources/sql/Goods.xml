@@ -31,6 +31,31 @@
 		</select>
 		
 		
+		
+		
+		
+		
+		<select id="queryGoodsByKeyClassify" parameterType="lyons.goods.entity.Goods" resultMap="GoodsResult">
+			SELECT * FROM commodity a LEFT JOIN classify b
+	        ON  1=1
+	        <if test="keyWord != null and !(&quot;&quot;.equals(keyWord.trim()))" >
+	          and a.#{commodity_id} = b.#{gid} 
+	          and b.gid = a.#{}
+	        </if>
+	        
+	        <if test="keyWord != null and !(&quot;&quot;.equals(keyWord.trim()))">
+	        </if>
+		</select>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		<delete id="deleteOneGoodsById" parameterType="int">
 		  DELECT FROM commodity 
 		  where commodity_number = #{_parameter}

@@ -47,15 +47,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 <tr>
                                     <th><input type="checkbox" id="all" onclick="#"/></th>
                                     <th>序号</th>
+					                <th>订单所属</th>
                                     <th>商品名称</th>
 					                <th>商品价格</th>
 					                <th>订单数量</th>
-					                <th>订单日期</th>
                                     <th>操作</th>
                                 </tr>
 						              <%
 						               for (int i = 0,num=orderAllList.getOrderList().size(); i < num; i++)
 						               {
+						                   String userName = orderAllList.getOrderList().get(i).getUserName();
 						                   int ID = orderAllList.getOrderList().get(i).getId();
 						                   String name = orderAllList.getOrderList().get(i).getCommodity_name();
 						                   Double price = orderAllList.getOrderList().get(i).getCommodity_price();
@@ -65,10 +66,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						                   <tr <% if(i%2 == 0){%> bgcolor="#FFE4B5" <%}else{%> bgcolor="#FFFACD" <%};//隔行换颜色%>>
 						                   <td><input type="checkbox" name="deleteId" value=<%= ID %>></td>
 						                   <td><%= i %></td>
+						                   <td><%= userName %></td>
 						                   <td><%= name %></td>
 						                   <td><%= price%> $</td>
 						                   <td><%= number %> </td>
-						                   <td><a href="#">查看详情</a></td>
 						                   <td>
 						                       <a href="#">修改</a>&nbsp;&nbsp;&nbsp;
 						                       <a href="<%= basePath %>Order.action?key=4&id=<%= ID %>">删除</a>

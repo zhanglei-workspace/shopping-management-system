@@ -18,18 +18,18 @@ import lyons.user.service.UserService;
 
 /**
  * 
- * 处理商品
+ * 处理商品  等待代码重构，太乱
  * @author  lyons(zhanglei)
  * 
  */
+@SuppressWarnings("serial")
 public class GoodsAction extends HttpServlet
 {
 
-    /**
-     * serialVersionUID
-     */
-    private static final long serialVersionUID = 001;
-
+    String user = "";
+    String value = "";
+    String keyWord = "";
+    String goodsClassify = "";
     public void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException
     {
@@ -43,21 +43,18 @@ public class GoodsAction extends HttpServlet
         request.setCharacterEncoding("UTF-8");
         
         //判断是否登陆
-        String user = "";
         user = (new UserService()).isLogin(request, response).trim();
         if ( "".equals(user) || user == null ){return;}
         
-        String value = "";
         value = request.getParameter("key");
         int key = Integer.parseInt(value);
-        
-        String keyWord = "";
         keyWord = request.getParameter("keyWord");
-        queryCondition(key,keyWord,request,response);//key 代表查询条件，keyWord代表要查询的关键字
+        goodsClassify = request.getParameter("goodsClassify");
         
+        queryCondition(key,keyWord,goodsClassify,request,response);//key 代表查询条件，keyWord代表要查询的关键字
     }
 
-    public void queryCondition(int key, String keyWord,HttpServletRequest request, HttpServletResponse response) 
+    public void queryCondition(int key, String keyWord,String goodsClassify,HttpServletRequest request, HttpServletResponse response) 
          throws IOException, ServletException
     {
         response.setContentType("text/html;charset=UTF-8");
@@ -77,7 +74,20 @@ public class GoodsAction extends HttpServlet
         switch (key)
         {
             case 1:
-                   //key=1 管理员查询他人
+                    //key=1 查询商品信息 关键字+分类
+                    goodsList = goodsService.queryGoodsByKey(keyWord);
+                    if(goodsList.size()>0)
+                    {
+                        goods.setGoodsList(goodsList);
+                        session.setAttribute("goods", goods);
+                        request.getRequestDispatcher("/jsp/browse/showGoods.jsp").forward(request, response);
+                    }else 
+                    {
+                        out.print("<br><br><br><center>");
+                        out.print("<font color=green> 亲,查询出错啦.更换关键字再次 </font>");
+                        out.print("<a href=/lyons.eaby.new/jsp/browse/searchByKeyWord.jsp><font color=red size=6>查询</font></a>");
+                        out.print("</center>");     
+                    }
                     
                 break;
             case 2:
@@ -88,7 +98,6 @@ public class GoodsAction extends HttpServlet
                     {
                         goods.setGoodsList(goodsList);
                         session.setAttribute("goods", goods);
-                        System.out.println("2已经从数据库中获取到值，并塞进行集");
                         request.getRequestDispatcher("/jsp/browse/showGoods.jsp").forward(request, response);
                     }else 
                         {

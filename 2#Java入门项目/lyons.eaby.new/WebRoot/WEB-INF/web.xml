@@ -48,8 +48,6 @@
     <servlet-class>lyons.goods.action.GoodsAction</servlet-class>
   </servlet>
   <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>OrderAction</servlet-name>
     <servlet-class>lyons.order.action.OrderAction</servlet-class>
   </servlet>
@@ -64,6 +62,10 @@
   <servlet>
     <servlet-name>ExitAction</servlet-name>
     <servlet-class>lyons.user.action.ExitAction</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>TalkAction</servlet-name>
+    <servlet-class>lyons.talk.action.TalkAction</servlet-class>
   </servlet>
 
 <!-- 旧类临时配置 -->
@@ -124,6 +126,10 @@
   <servlet-mapping>
     <servlet-name>ExitAction</servlet-name>
     <url-pattern>/Exit.Action</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>TalkAction</servlet-name>
+    <url-pattern>/Talk.Action</url-pattern>
   </servlet-mapping>
 
 
