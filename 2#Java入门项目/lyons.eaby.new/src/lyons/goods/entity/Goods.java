@@ -15,13 +15,13 @@ public class Goods
     private List<Goods>     goodsList = null;
     private List<Classify>  ClassifyList = null;    //多表联立时使用
 
-    private int commodity_number;      //商品编号
+    private int commodity_number = -1; //商品编号
     private String commodity_name;     //商品名字
     private String commodity_made;     //产地
     private Double commodity_price;    //商品价格
     private int commodity_balance;     //商品数量
     private String commodity_pic;      //商品图片
-    private int commodity_id;          //商品分类代号
+    private int commodity_id = -1;     //商品分类代号
     
     public Goods()
     {

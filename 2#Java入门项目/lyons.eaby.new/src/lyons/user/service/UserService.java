@@ -53,7 +53,7 @@ public class UserService extends HttpServlet
           //判断用户是否登陆
           String user = "";
           user = username.getUsername();//登陆者的用户名
-          if (user.equals("userNull"))
+          if ("userNull".equals(user)||user==null)
           {
               out.print("<br>");
               out.print("<center>" +

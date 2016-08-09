@@ -2,6 +2,9 @@ package lyons.talk.action;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.ref.PhantomReference;
+import java.lang.ref.ReferenceQueue;
+import java.lang.ref.WeakReference;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -30,6 +33,14 @@ public class TalkAction extends HttpServlet
         System.out.println("================");
         
         out.print("fghj"+"你发誓");
+        
+//        String str = new String();
+//        WeakReference aWeak =new WeakReference(str);//好好研究研究这个写法  虚引用
+//        
+//        String str = new String("hi~");
+//        ReferenceQueue q=new ReferenceQueue();
+//        PhantomReference pr=new PhantomReference (str,q);
+//        str=null;
         
         out.flush();
         out.close();

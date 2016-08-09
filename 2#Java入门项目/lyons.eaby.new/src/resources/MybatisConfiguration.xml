@@ -31,10 +31,11 @@
     </environment>
   </environments>
 
-<!-- 整合资源，将其他的配置文件添加进 -->
+<!-- 整合资源，将其他的配置文件添加进 ,路径也是从src写起-->
   <mappers>
     <mapper resource="resources/sql/Goods.xml"/>
     <mapper resource="resources/sql/Order.xml"/>
+    <mapper resource="resources/sql/Classify.xml"/>
   </mappers>
 
 </configuration>

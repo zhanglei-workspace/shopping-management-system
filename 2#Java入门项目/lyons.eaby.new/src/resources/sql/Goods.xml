@@ -8,7 +8,8 @@
     <!-- 数据库中Goods表与javaBean的变量名对应关系 -->
 	<!-- type:对应java对应表的实体类名  id:别名（可以与select等的id重名）-->
 	  <resultMap type="lyons.goods.entity.Goods" id="GoodsResult">  
-	<!-- (id:数据库表主键 result：数据库表普通的列)  property：javaBean中字段对应的变量名字-->
+<!-- (id:数据库表主键 result：数据库表普通的列)  property：javaBean中字段对应的变量名字-->
+<!-- column：与查询的列名相同并非数据库里面的列名。比如select id a from 表名 查询的列名用了别名a那么就得对应的修改column="a"-->
 	    <id column="commodity_number" jdbcType="INTEGER" property="commodity_number"/>
 	    <result column="commodity_name" jdbcType="VARCHAR" property="commodity_name"/>
 	    <result column="commodity_made" jdbcType="VARCHAR" property="commodity_made"/>
@@ -16,8 +17,13 @@
 	    <result column="commodity_balance" jdbcType="INTEGER" property="commodity_balance"/>
 	    <result column="commodity_pic" jdbcType="VARCHAR" property="commodity_pic"/>
 	    <result column="commodity_id" jdbcType="INTEGER" property="commodity_id"/>
+
+<!-- collection：代表对应一个集合  resultMap：引用Classify.XML的映射关系 配置这个的原因是引用子表查询了 -->    
+	    <collection property="ClassifyList" resultMap="Classify.ClassifyResult" />
 	    
 	  </resultMap>
+	  
+	  
 	
 	<!-- 解释： id：为该sql语句起一个名字（用于SqlFaction调用该sql语句）resultMap：对应上述resultMap的id -->
 	       <!-- select查出来的信息放到<resultMap>对应的property变量名中 -->
@@ -31,19 +37,17 @@
 		</select>
 		
 		
-		
-		
-		
-		
+		<!-- （关键字||分类）or（关键字&&分类） 查询 --> <!-- 多表联立不用别名是为了方便，详情见上面配置column加的注释 -->
+		<!-- 如果引用了外表，并且与主表的查询的列名相同，那么就不得不使用别名加以区分。目的：防止查询的列在column中多对一 -->
 		<select id="queryGoodsByKeyClassify" parameterType="lyons.goods.entity.Goods" resultMap="GoodsResult">
-			SELECT * FROM commodity a LEFT JOIN classify b
-	        ON  1=1
-	        <if test="keyWord != null and !(&quot;&quot;.equals(keyWord.trim()))" >
-	          and a.#{commodity_id} = b.#{gid} 
-	          and b.gid = a.#{}
+				  SELECT * FROM commodity 
+				  INNER JOIN classify  
+			      ON commodity.commodity_id = classify.gid
+	        <if test="commodity_name != null and !(&quot;&quot;.equals(commodity_name.trim()))">
+	          and commodity.commodity_name LIKE '%'|| #{commodity_name} ||'%'
 	        </if>
-	        
-	        <if test="keyWord != null and !(&quot;&quot;.equals(keyWord.trim()))">
+	        <if test="commodity_id > 0" >
+	           and commodity.commodity_id=#{commodity_id} 
 	        </if>
 		</select>
 		

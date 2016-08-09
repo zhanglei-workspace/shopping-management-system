@@ -71,8 +71,33 @@ public class GoodsDao
 	    return null;
 	}
 	
+	   /**
+     * 
+     * 查询商品列表-commodity.sql
+     * 根据（关键字||分类）or（关键字&&分类）
+     * @return 商品列表数组
+     * 
+     */
+	public List<Goods> queryGoodsByKeyClassify(Goods goodsList)
+	{
+	    try
+        {
+            sqlSession = dbAccess.getSqlSession();
+            return sqlSession.selectList("Goods.queryGoodsByKeyClassify", goodsList);
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }finally
+        {
+            sqlSesionClose();
+        }
+	    
+	    return null;
+	}
     
     
+	
     
     /**
      * 删除单个商品

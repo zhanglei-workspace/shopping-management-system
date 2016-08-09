@@ -15,10 +15,11 @@ import javax.servlet.http.HttpSession;
 import lyons.goods.entity.Goods;
 import lyons.goods.service.GoodsServiceImpl;
 import lyons.user.service.UserService;
+import lyons.util.Iconst;
 
 /**
  * 
- * 处理商品  等待代码重构，太乱
+ * 处理Goods表  等待代码重构，太乱
  * @author  lyons(zhanglei)
  * 
  */
@@ -74,20 +75,17 @@ public class GoodsAction extends HttpServlet
         switch (key)
         {
             case 1:
-                    //key=1 查询商品信息 关键字+分类
-                    goodsList = goodsService.queryGoodsByKey(keyWord);
+                    //key=1 查询商品信息 （关键字||分类）or（关键字&&分类）
+                    goodsList = goodsService.queryGoodsByKeyClassify(keyWord,goodsClassify);
                     if(goodsList.size()>0)
                     {
                         goods.setGoodsList(goodsList);
                         session.setAttribute("goods", goods);
                         request.getRequestDispatcher("/jsp/browse/showGoods.jsp").forward(request, response);
                     }else 
-                    {
-                        out.print("<br><br><br><center>");
-                        out.print("<font color=green> 亲,查询出错啦.更换关键字再次 </font>");
-                        out.print("<a href=/lyons.eaby.new/jsp/browse/searchByKeyWord.jsp><font color=red size=6>查询</font></a>");
-                        out.print("</center>");     
-                    }
+                        {
+                            out.print(Iconst.QUERY_BY_CONDITION_NULL);     
+                        }
                     
                 break;
             case 2:
@@ -101,10 +99,7 @@ public class GoodsAction extends HttpServlet
                         request.getRequestDispatcher("/jsp/browse/showGoods.jsp").forward(request, response);
                     }else 
                         {
-                            out.print("<br><br><br><center>");
-                            out.print("<font color=green> 亲,查询出错啦.更换关键字再次 </font>");
-                            out.print("<a href=/lyons.eaby.new/jsp/browse/searchByKeyWord.jsp><font color=red size=6>查询</font></a>");
-                            out.print("</center>");     
+                            out.print(Iconst.QUERY_BY_CONDITION_NULL);
                         }
                     break;
             case 3:
