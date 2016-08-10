@@ -6,5 +6,5 @@ create table vip
        userpass varchar2(255) not null,
        phone    varchar2(255),
        address  varchar2(255),
-       realname varchar2(255) 
+       realname varchar2(255)  
 );

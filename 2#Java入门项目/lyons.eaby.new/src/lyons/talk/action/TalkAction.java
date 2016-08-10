@@ -45,7 +45,6 @@ public class TalkAction extends HttpServlet
         out.flush();
         out.close();
         
-        
     }
     
     public String query()

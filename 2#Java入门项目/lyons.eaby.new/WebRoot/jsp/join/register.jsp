@@ -4,16 +4,15 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-	<base href="<%=basePath%>">
-	
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>register</title>
 </head>
 <body>
-		<jsp:useBean id="userBean" class="lyons.entity.Register" scope="request"/>
 		<% request.setCharacterEncoding("UTF-8"); %>
+         <jsp:useBean id="userBean" class="lyons.user.entity.Register" scope="session" ></jsp:useBean>
 		<div align="center">
-			<form action="<%= basePath %>control.action" method="post">
+			<form action="<%= basePath %>Register.action" method="post">
 				<table border="1" cellpadding="10" cellspacing="1">
 					<tr>
 						<td>用户姓名:<input name="username" placeholder="*必填"/></td>
@@ -29,7 +28,7 @@
 					</tr>
 						<tr>
 							<td>
-								状态:<FONT color=red><jsp:getProperty name="userBean" property="backNews"/></FONT>
+								状态:<FONT color="red"><jsp:getProperty name="userBean" property="backNews"/></FONT>
 							</td>
 							<td>
 								<input type="image" src="<%= basePath %>resource/image/page/submit.png" alt="submit" height="40" width="100"/>

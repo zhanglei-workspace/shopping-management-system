@@ -3,7 +3,7 @@ package lyons.goods.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import lyons.dao.GoodsDao;
+import lyons.dao.GoodsDaoImpl;
 import lyons.goods.entity.Goods;
 
 /**
@@ -13,9 +13,9 @@ import lyons.goods.entity.Goods;
  * @author  (Lyons)zhanglei
  * 
  */
-public class GoodsServiceImpl implements GoodsService
+public class GoodsServiceImpl
 {
-    GoodsDao goodsDao = new GoodsDao();
+    GoodsDaoImpl goodsDaoImpl = new GoodsDaoImpl();
     
     /**
      * 
@@ -23,10 +23,9 @@ public class GoodsServiceImpl implements GoodsService
      * 查询全部商品列表
      * @return
      */
-    @Override
     public List<Goods> queryList()
     {
-        return goodsDao.queryGoods();
+        return goodsDaoImpl.goodsAllList();
     }
     
     /**
@@ -35,10 +34,9 @@ public class GoodsServiceImpl implements GoodsService
      * 根据关键字查询
      * @return
      */
-    @Override
     public List<Goods> queryGoodsByKey(String keyWord)
     {
-        return goodsDao.queryGoodsByKey(keyWord);
+        return goodsDaoImpl.queryGoodsByKey(keyWord);
     }
 
     /**
@@ -67,7 +65,7 @@ public class GoodsServiceImpl implements GoodsService
             goodsList.setCommodity_name(keyWord);
         }
         
-        return goodsDao.queryGoodsByKeyClassify(goodsList);
+        return goodsDaoImpl.queryGoodsByKeyClassify(goodsList);
     }
     
     

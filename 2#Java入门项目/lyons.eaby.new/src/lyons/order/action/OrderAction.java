@@ -33,7 +33,6 @@ public class OrderAction extends HttpServlet
     {
         this.doPost(request, response);
     }
-
     
     public void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException
@@ -112,9 +111,7 @@ public class OrderAction extends HttpServlet
                     orderList = orderService.orderAllList();
                  }else if ("3".equals(key)) {
                              //将查询信息封装到对象中
-                             order.setUserName(queryUserName);
-                             order.setKeyWord(keyWord);
-                             orderList = orderService.orderListByKeyName(order);
+                             orderList = orderService.orderListByKeyName(queryUserName,keyWord);
                          }
         
         order.setOrderList(orderList);

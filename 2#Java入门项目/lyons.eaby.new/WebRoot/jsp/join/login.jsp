@@ -35,7 +35,7 @@
 		}
 	%>
 	<div align="center">
-		<form action="<%= basePath %>lyons.control/HandleLogin" method="post">
+		<form action="<%= basePath %>Login.action" method="post">
 		
 			<table border="0" cellpadding="15" cellspacing="1">
 				<tr>

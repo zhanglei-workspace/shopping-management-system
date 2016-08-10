@@ -26,14 +26,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
   
-  		<jsp:useBean id="loginBean" class="lyons.entity.Login" scope="session"/>
+  		<jsp:useBean id="loginBean" class="lyons.user.entity.Login" scope="session"/>
    		<% request.setCharacterEncoding("UTF-8"); %>
    		
    		<%
 			if(loginBean.getBackNews()=="未登录"||loginBean.getBackNews()==null)
 			{%>
 			//需要修改代码
-				登录失败，请<a href="<%= basePath %>jsp/join/login.jsp">重新登录</a>or<a href="<%= basePath %>jsp/join/register.jsp">注册</a>
+				登录失败，请<a href="<%= basePath %>jsp/join/login.jsp">重新登录</a>or<a href="<%= basePath %>Register.action">注册</a>
 			<%}else
 				{%>
 				<b><font color="red"><%=loginBean.getBackNews() %></font></b>

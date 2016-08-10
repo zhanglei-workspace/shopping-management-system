@@ -13,7 +13,7 @@
   </head>
   
   <body>
- 	 <jsp:useBean id="loginBean" class="lyons.entity.Login" scope="session"/>
+ 	 <jsp:useBean id="loginBean" class="lyons.user.entity.Login" scope="session"/>
  
  	 <% request.setCharacterEncoding("UTF-8"); %>
  		<ul class="user">
@@ -26,7 +26,7 @@
     					   HttpSession s= request.getSession(true);
                            s.invalidate();
                         %>
-	     					<a href="jsp/join/login.jsp">登录</a>or<a href="jsp/join/register.jsp">注册</a>
+	     					<a href="<%= basePath %>jsp/join/login.jsp">登录</a>or<a href="<%= basePath %>jsp/join/register.jsp">注册</a>
     					<%
     					   return;
     					}
@@ -34,7 +34,7 @@
    						<dl>
    							<dt>
 	    						<a>欢迎您,<b><font color="red"><%= str %></font></b></a>
-	    						<a href="<%= basePath %>lyons.control/HandleExit"><font color="#CDC9C9">退出</font></a>
+	    						<a href="<%= basePath %>Exit.action"><font color="#CDC9C9">退出</font></a>
    							</dt>
    						</dl>
     			</li>

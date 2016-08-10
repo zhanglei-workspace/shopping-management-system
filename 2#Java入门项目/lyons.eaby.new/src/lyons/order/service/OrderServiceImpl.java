@@ -1,8 +1,10 @@
 package lyons.order.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import lyons.dao.OrderDao;
+
+import lyons.dao.OrderDaoImpl;
 import lyons.order.entity.Order;
 
 /**
@@ -10,16 +12,14 @@ import lyons.order.entity.Order;
  * 订单接口实现类
  * @author  lyons(zhanglei)
  */
-public class OrderServiceImpl implements OrderService
+public class OrderServiceImpl
 {
-    
-    OrderDao dao = new OrderDao();
+    OrderDaoImpl dao = new OrderDaoImpl();
     
     /**
      * 查询所有用户所有订单列表
      * @return
      */
-    @Override
     public List<Order> orderAllList()
     {
         return dao.queryOrderAllList();
@@ -30,10 +30,9 @@ public class OrderServiceImpl implements OrderService
      * @param userName
      * @return
      */
-    @Override
     public List<Order> orderList(String userName)
     {
-        return dao.queryOrderList(userName);
+        return dao.queryOrderListByuserName(userName);
     }
     
     /**
@@ -41,17 +40,26 @@ public class OrderServiceImpl implements OrderService
      * @param condition
      * @return
      */
-    @Override
-    public List<Order> orderListByKeyName(Order condition)
+    public List<Order> orderListByKeyName(String queryUserName,String keyWord)
     {
-        //至少一个查询条件为真才能查询，否则返回全部订单列表。
-        if (!((condition.getUserName()==null||"".equals(condition.getUserName().trim()))&&
-            (condition.getKeyWord()==null||"".equals(condition.getKeyWord().trim()))))
-            {
-                return dao.queryOrderByKeyName(condition);
-            }
+        //用户什么都没有输入时返回全部订单列表
+        if (queryUserName==null && "".equals(queryUserName.trim())&& keyWord==null && "".equals(keyWord.trim()))
+        {
+            return orderAllList();
+        }
         
-        return orderAllList();
+        Order orderList = new Order();
+        if (!(queryUserName==null || "".equals(queryUserName.trim())))
+        {
+            orderList.setUserName(queryUserName);
+        }
+        if (!(keyWord==null || "".equals(keyWord.trim())))
+        {
+            orderList.setKeyWord(keyWord);
+        }
+        
+        return dao.queryOrderByKeyName(orderList);
+        
     }
     
     
@@ -60,7 +68,6 @@ public class OrderServiceImpl implements OrderService
      * @param userName
      * @return
      */
-    @Override
     public void deleteOrderOneById(String idstr)
     {
         if (!(idstr==null || "".equals(idstr)))
@@ -79,15 +86,19 @@ public class OrderServiceImpl implements OrderService
      * @param userName
      * @return
      */
-    @Override
     public void deleteOrderBatch(String[] ids)
     {
+        List<Integer> idList = new ArrayList<Integer>();
         if (ids==null||ids.length<=0)
         {
             String idTemp[] = {"-1"};
             ids = idTemp;//防止空指针异常
         }
-        dao.deleteOrderBatch(ids);
+        for (String id : ids)
+        {
+            idList.add(Integer.valueOf(id));
+        }
+        dao.deleteOrderBatch(idList);
         
     }
     

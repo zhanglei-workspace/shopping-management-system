@@ -61,7 +61,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    
 			        <form class="search-form" action="<%= basePath %>Goods.action" target="_self" id="search-form" method="post">
 			            <input type="hidden" name="key" value="1" />
-			            <input type="text" class="search-text" name="keyWord" id="search_input" autocomplete="off" placeholder="关键字"/>
+			            <input type="text" class="search-text" name="keyWord" id="search_input" autocomplete="off" placeholder="请输入商品关键字"/>
 			            
 			            <select class="search-text-select" name="goodsClassify" id="search_input" >
 			             <option value="">选择分类</option>

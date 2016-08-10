@@ -3,11 +3,12 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="Goods">
+<mapper namespace="lyons.dao.GoodsDao"><!-- 面向接口编程。与此类关联，作为空间名 -->
 
     <!-- 数据库中Goods表与javaBean的变量名对应关系 -->
 	<!-- type:对应java对应表的实体类名  id:别名（可以与select等的id重名）-->
 	  <resultMap type="lyons.goods.entity.Goods" id="GoodsResult">  
+	  
 <!-- (id:数据库表主键 result：数据库表普通的列)  property：javaBean中字段对应的变量名字-->
 <!-- column：与查询的列名相同并非数据库里面的列名。比如select id a from 表名 查询的列名用了别名a那么就得对应的修改column="a"-->
 	    <id column="commodity_number" jdbcType="INTEGER" property="commodity_number"/>
@@ -18,21 +19,26 @@
 	    <result column="commodity_pic" jdbcType="VARCHAR" property="commodity_pic"/>
 	    <result column="commodity_id" jdbcType="INTEGER" property="commodity_id"/>
 
-<!-- collection：代表对应一个集合  resultMap：引用Classify.XML的映射关系 配置这个的原因是引用子表查询了 -->    
-	    <collection property="ClassifyList" resultMap="Classify.ClassifyResult" />
+<!-- 作为主表时使用该标签。 collection：代表对应一个集合  resultMap：引用Classify.XML的映射关系 配置这个的原因是引用子表查询了 -->    
+	    <collection property="goodsClassifyList" resultMap="lyons.dao.GoodsClassifyDao.ClassifyResult" /><!-- 一对多 空间名.id -->
 	    
 	  </resultMap>
 	  
 	  
+	  
+	  <!-- 定义常量 。写出查询的列代替*效率高-->
+	  <sql id="columns">SELECT commodity_number,commodity_name,commodity_made,commodity_price,commodity_balance,commodity_pic,commodity_id
+	                    FROM commodity
+	  </sql>
 	
 	<!-- 解释： id：为该sql语句起一个名字（用于SqlFaction调用该sql语句）resultMap：对应上述resultMap的id -->
 	       <!-- select查出来的信息放到<resultMap>对应的property变量名中 -->
 		<select id="goodsAllList"  resultMap="GoodsResult">
-		    SELECT * FROM commodity 
+		   <include refid="columns"/>
 		</select>
                 <!-- parameterType:根据条件查询，传递来的参数的类型 -->
 		<select id="queryGoodsByKey" parameterType="String" resultMap="GoodsResult">
-		    SELECT * FROM commodity 
+		   <include refid="columns"/>   <!-- 引用<sql>中定义的常量 -->
 		    WHERE commodity_name LIKE '%'|| #{_parameter} ||'%'
 		</select>
 		
@@ -40,26 +46,19 @@
 		<!-- （关键字||分类）or（关键字&&分类） 查询 --> <!-- 多表联立不用别名是为了方便，详情见上面配置column加的注释 -->
 		<!-- 如果引用了外表，并且与主表的查询的列名相同，那么就不得不使用别名加以区分。目的：防止查询的列在column中多对一 -->
 		<select id="queryGoodsByKeyClassify" parameterType="lyons.goods.entity.Goods" resultMap="GoodsResult">
-				  SELECT * FROM commodity 
+				  <include refid="columns"/> 
 				  INNER JOIN classify  
 			      ON commodity.commodity_id = classify.gid
-	        <if test="commodity_name != null and !(&quot;&quot;.equals(commodity_name.trim()))">
-	          and commodity.commodity_name LIKE '%'|| #{commodity_name} ||'%'
-	        </if>
-	        <if test="commodity_id > 0" >
-	           and commodity.commodity_id=#{commodity_id} 
-	        </if>
+			      
+		        <if test="commodity_name != null and !(&quot;&quot;.equals(commodity_name.trim()))">
+		           AND commodity.commodity_name LIKE '%'|| #{commodity_name} ||'%'
+		        </if>
+		        <if test="commodity_id > 0" >
+		           AND commodity.commodity_id = #{commodity_id} 
+		        </if>
 		</select>
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+<!--  
 		<delete id="deleteOneGoodsById" parameterType="int">
 		  DELECT FROM commodity 
 		  where commodity_number = #{_parameter}
@@ -67,36 +66,72 @@
 
 
 
+        <update id="#" parameterType="lyons.goods.entity.Goods">
+            UPDATE commodity
+-->
+<!--  
+            <set>  与where标签效果一样 
+	            <if test="#">
+	               
+	            </if>
+	            <if test="#" >
+	               
+	            </if>
+            </set>
+        </update>
+-->            
+        
+        <!-- 使用自增主键的方法 useGeneratedKeys设置为true keyProperty：存储到的数据库中字段对应的java实体类的变量名-->
+ <!--   <insert id="#" parameterType="lyons.goods.entity.Goods" useGeneratedKeys="true" keyProperty="commodity_number">
+        
+        </insert>
+ --> 
+        
+<!-- 知识扩充 -->
 
+<!-- 多功能的拼接条件，会了语法，自己去创造神奇.本项目中暂不使用大招 -->
+<!-- <trim prefix="where" prefixOverrides="and|or" suffixOverrides="">
+        </trim>
+-->
 
+<!-- 实现switch case -->
+<!--  
+    <choose>
+        <when test=""></when>
+        <when test=""></when>
+        <otherwise></otherwise>
+    </choose>
+-->
 
+<!-- 
+      客官，<select><update>等等查询语句中的 resultMap 可以用resultType代替，你造吗？
+      这样的话就不用在xml中配置resultMap了，它会根据resultType="实体类名"中的变量名自动匹配
+     但是，但是，，，技能受限，不能用别名了
+ -->
 
+<!-- 
+    TypeHandler=""  可以转换数据类型，达到数据库中的字段与java实体类中字段的转换后对应
+-->
 
-
-
-
-
-
-
-
-
-
-
+<!-- 
+                xxxMap xxxType
+       这两个家门狗族是不是总是傻傻分不清？请看虐狗大招：
+       
+       Map系 ：与配置映射关系有关
+       Type系：与java类型有关。
+ -->
+ 
+ <!--  
+        ${} 不是预编译的，而是直接赋值传进来的值
+        区别于预编译 #{} 
+  -->
 
 
 
 <!--  
-  <select id="find" parameterType="long" resultMap="UserResult">
-    SELECT * FROM user WHERE id = #{id:INTEGER}
-  </select>
-
   <select id="version" parameterType="long" resultType="int">
     SELECT version FROM user WHERE id = #{id,jdbcType=INTEGER}
   </select>
-
-  <delete id="delete" parameterType="UserAlias">
-    DELETE FROM user WHERE id = #{id:INTEGER}
-  </delete>
 
   <insert id="insert" parameterType="UserAlias" useGeneratedKeys="false">
     INSERT INTO user

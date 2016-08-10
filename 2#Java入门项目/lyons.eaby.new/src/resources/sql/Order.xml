@@ -3,7 +3,7 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="Order">
+<mapper namespace="lyons.dao.OrderDao">
 
 	  <resultMap type="lyons.order.entity.Order" id="OrderResult">  
 	    <id column="id" jdbcType="INTEGER" property="id"/>
@@ -14,44 +14,47 @@
 	    <result column="sum" jdbcType="INTEGER" property="sum"/>
 	  </resultMap>
 	 
+	 <sql id="columnsSelect">SELECT id,username,orderDate,orderDate,commodity_name,commodity_price,sum FROM orderform</sql>
+	 
 <!-- 查询订单系 --> 
-	  <!-- 自己配置该resultMap的原因是 id="OrderResult" 无对应的返回类型 
+		
+		<select id="queryOrderAllList" parameterType="lyons.order.entity.Order" resultMap="OrderResult">
+		       <include refid="columnsSelect"/>
+		</select>
+		
+	  <!-- 自己配置该resultMap的原因是 id="OrderResult" 无对应的返回类型   没配置成功的原因可能是 resultMap代替parameterMap
 	  <resultMap type="java.util.Map" id="queryOrderSum">
 	    <result column="commodity_name" jdbcType="VARCHAR" property="commodity_name"/>
 	    <result column="SUM(sum)" jdbcType="VARCHAR" property="SUM(sum)"/>
 	  </resultMap>
 	  -->
-		<select id="queryOrderList" parameterType="String" resultMap="OrderResult">
-		    
-		        SELECT * FROM orderform WHERE 1=1
-		        
+		<select id="queryOrderListByuserName" parameterType="String" resultMap="OrderResult">
+		        <include refid="columnsSelect"/>
+		  <where> 
 	           <!-- 传来String类型以及基本数据类型时的参数获取方式： #{_parameter} -->
 	        <if test="_parameter != null and !(&quot;&quot;.equals(_parameter.trim()))">
-                AND username = #{_parameter}                    
+                username = #{_parameter}                    
             </if>
+          </where>  
             <!--  
-			    GROUP BY commodity_name  查询出来的相同数据没有相加
+			    GROUP BY ${commodity_name}  查询出来的相同数据没有相加
 			    HAVING SUM(sum)>0
 			-->
 		</select>
 		
 		
 	  <!-- parameterType:自定义的对象类型（注意文件夹间用点间隔） test=: 与实体类中的变量名对应-->
+	  <!-- <where>  自动拼接where 1=1、and 等等 -->
 		<select id="queryOrderByKeyName" parameterType="lyons.order.entity.Order" resultMap="OrderResult">
-		    
-		        SELECT * FROM orderform WHERE 1=1
-		        
-		    <if test="keyWord != null and !(&quot;&quot;.equals(keyWord.trim()))">
-			    AND commodity_name LIKE '%'|| #{keyWord} ||'%'                      <!-- #{变量名} 取值 -->
+	         <include refid="columnsSelect"/>
+	     <where>  
+		    <if test="keyWord != null and !(&quot;&quot;.equals(keyWord.trim()))"><!-- 注意and代表&& 双引号的表示  -->
+			    commodity_name LIKE '%'|| #{keyWord} ||'%'                      
 		    </if>
-		    <if test="userName != null and !(&quot;&quot;.equals(userName.trim()))"><!-- 注意and代表&& 双引号的表示  -->
-			    AND username = #{userName}
+		    <if test="userName != null and !(&quot;&quot;.equals(userName.trim()))"> 
+			    username = #{userName}       <!-- #{变量名} 取值 -->
 		    </if>
-		    
-		</select>
-		
-		<select id="queryOrderAllList" parameterType="lyons.order.entity.Order" resultMap="OrderResult">
-		        SELECT * FROM orderform 
+		  </where>
 		</select>
 
 
@@ -73,68 +76,5 @@
 		    )
 		  
 		</delete>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--  
-  <select id="find" parameterType="long" resultMap="UserResult">
-    SELECT * FROM user WHERE id = #{id:INTEGER}
-  </select>
-
-  <select id="version" parameterType="long" resultType="int">
-    SELECT version FROM user WHERE id = #{id,jdbcType=INTEGER}
-  </select>
-
-  <delete id="delete" parameterType="UserAlias">
-    DELETE FROM user WHERE id = #{id:INTEGER}
-  </delete>
-
-  <insert id="insert" parameterType="UserAlias" useGeneratedKeys="false">
-    INSERT INTO user
-    ( id,
-    username,
-    password,
-    administrator
-    )
-    VALUES
-    ( #{id},
-    #{username,jdbcType=VARCHAR},
-    #{password.encrypted:VARCHAR},
-    #{administrator,jdbcType=BOOLEAN}
-    )
-  </insert>
-
-  <update id="update" parameterType="UserAlias">
-    UPDATE user SET
-    username = #{username,jdbcType=VARCHAR},
-    password = #{password.encrypted,jdbcType=VARCHAR},
-    administrator = #{administrator,jdbcType=BOOLEAN}
-    WHERE
-    id = #{id,jdbcType=INTEGER}
-  </update>
- -->
-<!--   Unique constraint check 
-  <select id="isUniqueUsername" parameterType="map" resultType="boolean">
-    SELECT (count(*) = 0)
-    FROM user
-    WHERE ((#{userId,jdbcType=BIGINT} IS NOT NULL AND id != #{userId,jdbcType=BIGINT}) OR #{userId,jdbcType=BIGINT} IS
-
-    NULL)  --><!-- other than me --><!--
-    AND (username = #{username,jdbcType=VARCHAR})
-  </select>
--->
+		
 </mapper>

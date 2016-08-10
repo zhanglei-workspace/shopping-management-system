@@ -21,15 +21,15 @@
   
   <servlet>
     <servlet-name>HandleRegister</servlet-name>
-    <servlet-class>lyons.control.HandleRegister</servlet-class>
+    <servlet-class>lyons.user.action.RegisterAction</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>HandleLogin</servlet-name>
-    <servlet-class>lyons.control.HandleLogin</servlet-class>
+    <servlet-class>lyons.user.action.LoginAction</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>HandleExit</servlet-name>
-    <servlet-class>lyons.control.HandleExit</servlet-class>
+    <servlet-class>lyons.user.action.ExitAction</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>PutGoodsToCar</servlet-name>
@@ -56,10 +56,6 @@
     <servlet-class>lyons.user.action.LoginAction</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>RegisterAction</servlet-name>
-    <servlet-class>lyons.user.action.RegisterAction</servlet-class>
-  </servlet>
-  <servlet>
     <servlet-name>ExitAction</servlet-name>
     <servlet-class>lyons.user.action.ExitAction</servlet-class>
   </servlet>
@@ -84,24 +80,24 @@
   
 
   <servlet-mapping>
-    <servlet-name>HandleRegister</servlet-name>
-    <url-pattern>/control.action</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>HandleLogin</servlet-name>
-    <url-pattern>/lyons.control/HandleLogin</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>HandleExit</servlet-name>
-    <url-pattern>/lyons.control/HandleExit</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
     <servlet-name>PutGoodsToCar</servlet-name>
     <url-pattern>/lyons.goods/PutGoodsToCar</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>DeleteGoodsFromCar</servlet-name>
     <url-pattern>/lyons.goods/DeleteGoodsFromCar</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>HandleRegister</servlet-name>
+    <url-pattern>/Register.action</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>HandleLogin</servlet-name>
+    <url-pattern>/Login.action</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>HandleExit</servlet-name>
+    <url-pattern>/Exit.action</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>BuyGoods</servlet-name>
@@ -116,20 +112,8 @@
     <url-pattern>/Order.action</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>LoginAction</servlet-name>
-    <url-pattern>/Login.Action</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>RegisterAction</servlet-name>
-    <url-pattern>/Register.Action</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>ExitAction</servlet-name>
-    <url-pattern>/Exit.Action</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
     <servlet-name>TalkAction</servlet-name>
-    <url-pattern>/Talk.Action</url-pattern>
+    <url-pattern>/Talk.action</url-pattern>
   </servlet-mapping>
 
 
