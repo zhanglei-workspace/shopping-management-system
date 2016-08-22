@@ -49,7 +49,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </style>
   
   <body>
-			<% request.setCharacterEncoding("UTF-8"); %>
 			<div class="nav">
 			<ul class="clearfix">
 			   <li><a href="/lyons.eaby.new/index.jsp">首  页</a></li>

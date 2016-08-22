@@ -18,7 +18,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <body style="background: #e1e9eb;">
     
         <jsp:useBean id="orderAllList" class="lyons.order.entity.Order" scope="session"/>
-        <% request.setCharacterEncoding("UTF-8"); %>
         
         <form action="<%= basePath %>Order.action?key=3" id="mainForm" method="post">
             <div class="right">
@@ -54,7 +53,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                     <th>操作</th>
                                 </tr>
 						              <%
-						               for (int i = 0,num=orderAllList.getOrderList().size(); i < num; i++)
+						               for (int i = 0,num=orderAllList.getOrderList().size(); i < num;)
 						               {
 						                   String userName = orderAllList.getOrderList().get(i).getUserName();
 						                   int ID = orderAllList.getOrderList().get(i).getId();
@@ -65,7 +64,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						               %>
 						                   <tr <% if(i%2 == 0){%> bgcolor="#FFE4B5" <%}else{%> bgcolor="#FFFACD" <%};//隔行换颜色%>>
 						                   <td><input type="checkbox" name="deleteId" value=<%= ID %>></td>
-						                   <td><%= i %></td>
+						                   <td><%= ++i %></td>
 						                   <td><%= userName %></td>
 						                   <td><%= name %></td>
 						                   <td><%= price%> $</td>

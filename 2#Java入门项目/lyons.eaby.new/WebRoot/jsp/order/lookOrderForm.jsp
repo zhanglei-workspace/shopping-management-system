@@ -10,7 +10,6 @@
 </head>
   <body>     
         <jsp:useBean id="orderList" class="lyons.order.entity.Order" scope="session"/>
-        <% request.setCharacterEncoding("UTF-8"); %>
   <br/><br/>
   <center>
   

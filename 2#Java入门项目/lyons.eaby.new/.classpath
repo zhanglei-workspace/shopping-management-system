@@ -5,6 +5,8 @@
 	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.j2eedt.core.MYECLIPSE_JAVAEE_5_CONTAINER"/>
 	<classpathentry kind="lib" path="D:/app/abc/product/11.2.0/dbhome_1/jdbc/lib/ojdbc5.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="E:/software myselfdown/Frame/Mybatis/mybatis-3.3.1/mybatis-3.3.1-sources.jar"/>
+	<classpathentry kind="lib" path="E:/software myselfdown/Frame/Mybatis/mybatis-3.3.1/mybatis-3.3.1.jar" sourcepath="E:/software myselfdown/Frame/Mybatis/mybatis-3.3.1/mybatis-3.3.1-sources.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/mybatis-3.3.1.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

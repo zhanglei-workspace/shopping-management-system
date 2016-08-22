@@ -84,7 +84,7 @@ public class GoodsAction extends HttpServlet
                         request.getRequestDispatcher("/jsp/browse/showGoods.jsp").forward(request, response);
                     }else 
                         {
-                            out.print(Iconst.QUERY_BY_CONDITION_NULL);     
+                            out.print(Iconst.QUERY_BY_CONDITION_RETURN_NULL);     
                         }
                     
                 break;
@@ -99,7 +99,7 @@ public class GoodsAction extends HttpServlet
                         request.getRequestDispatcher("/jsp/browse/showGoods.jsp").forward(request, response);
                     }else 
                         {
-                            out.print(Iconst.QUERY_BY_CONDITION_NULL);
+                            out.print(Iconst.QUERY_BY_CONDITION_RETURN_NULL);
                         }
                     break;
             case 3:

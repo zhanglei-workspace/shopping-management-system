@@ -25,7 +25,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
   
-   		<% request.setCharacterEncoding("UTF-8"); %>
    		
 				<b><font color="red">注册成功</font></b>
 				

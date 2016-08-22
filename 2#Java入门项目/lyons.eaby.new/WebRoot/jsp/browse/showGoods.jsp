@@ -20,7 +20,6 @@
 
   <body>
         <jsp:useBean id="goods" class="lyons.goods.entity.Goods" scope="session"></jsp:useBean>	 
-  		<% request.setCharacterEncoding("UTF-8"); %>
   	
   <br/><br/>
   <center>		
@@ -35,7 +34,7 @@
   		    </tr>
   		    
   	        <%
-	  	       for (int i = 0,num=goods.getGoodsList().size(); i < num; i++)
+	  	       for (int i = 0,num=goods.getGoodsList().size(); i < num;)
                {
                    int ID = goods.getGoodsList().get(i).getCommodity_id();
                    String name = goods.getGoodsList().get(i).getCommodity_name();
@@ -57,7 +56,7 @@
                                    "<input type='submit' value='加入购物车'></form>";
                %>
 	               <tr <% if(i%2 == 0){%> bgcolor="#FFE4B5" <%}else{%> bgcolor="#FFFACD" <%};//隔行换颜色%>>
-	               <td><%= i %></td>
+	               <td><%= ++i %></td>
 	               <td><%= name %></td>
 	               <td><%= price%> $</td>
 	               <td><%= detail %></td>

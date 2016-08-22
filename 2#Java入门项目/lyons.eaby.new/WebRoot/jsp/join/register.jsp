@@ -9,7 +9,6 @@
 <title>register</title>
 </head>
 <body>
-		<% request.setCharacterEncoding("UTF-8"); %>
          <jsp:useBean id="userBean" class="lyons.user.entity.Register" scope="session" ></jsp:useBean>
 		<div align="center">
 			<form action="<%= basePath %>Register.action" method="post">

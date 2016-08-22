@@ -27,7 +27,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
   
   		<jsp:useBean id="loginBean" class="lyons.user.entity.Login" scope="session"/>
-   		<% request.setCharacterEncoding("UTF-8"); %>
    		
    		<%
 			if(loginBean.getBackNews()=="未登录"||loginBean.getBackNews()==null)

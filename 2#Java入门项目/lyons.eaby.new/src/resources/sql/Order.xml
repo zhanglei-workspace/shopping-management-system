@@ -18,8 +18,17 @@
 	 
 <!-- 查询订单系 --> 
 		
+		<!-- 搞个小分页 -->
 		<select id="queryOrderAllList" parameterType="lyons.order.entity.Order" resultMap="OrderResult">
-		       <include refid="columnsSelect"/>
+		        <include refid="columnsSelect"></include>
+		        <!-- select * from 
+				(
+				   select commodity.*,rownum num
+				   from commodity
+				   where rownum &lt;= #{_parameter}
+				)
+				where num &gt;= #{_paramete}
+				-->
 		</select>
 		
 	  <!-- 自己配置该resultMap的原因是 id="OrderResult" 无对应的返回类型   没配置成功的原因可能是 resultMap代替parameterMap

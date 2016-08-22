@@ -69,11 +69,21 @@
     <servlet-name>aaa</servlet-name>
     <servlet-class>lyons.goods.BuyGoods</servlet-class>
   </servlet>
+
   <servlet-mapping>
     <servlet-name>aaa</servlet-name>
     <url-pattern>/lyons.goods.BuyGoods</url-pattern>
   </servlet-mapping>
 
+<!-- 页面编码格式过滤器 -->
+<filter>
+    <filter-name>WebFilter</filter-name>
+    <filter-class>lyons.util.WebFilter</filter-class>
+    <init-param>
+        <param-name>encoding</param-name>
+        <param-value>UTF-8</param-value>
+    </init-param>
+</filter>
 
 
 
@@ -115,7 +125,11 @@
     <servlet-name>TalkAction</servlet-name>
     <url-pattern>/Talk.action</url-pattern>
   </servlet-mapping>
-
+  
+  <filter-mapping>
+    <filter-name>WebFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
 
 <!-- goodsDao-> GoodsAction-->
 </web-app>
