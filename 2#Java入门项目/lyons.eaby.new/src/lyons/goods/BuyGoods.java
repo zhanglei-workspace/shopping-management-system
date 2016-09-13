@@ -21,14 +21,9 @@ import lyons.db.DbConn;
 import lyons.goods.entity.Goods;
 import lyons.user.entity.Login;
 
+@SuppressWarnings("serial")
 public class BuyGoods extends HttpServlet
 {
-    
-    /**
-     * serialVersionUID
-     */
-    private static final long serialVersionUID = 1132L;
-
     public void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException
     {
@@ -255,10 +250,4 @@ public class BuyGoods extends HttpServlet
         }
         
     }
-
-    public void init()
-        throws ServletException
-    {
-    }
-    
 }

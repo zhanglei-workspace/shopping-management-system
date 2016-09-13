@@ -8,7 +8,6 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServlet;
 
 /**
  * 
@@ -16,7 +15,7 @@ import javax.servlet.http.HttpServlet;
  * 
  */
 @SuppressWarnings("serial")
-public class WebFilter extends HttpServlet implements Filter
+public class WebFilter implements Filter
 {
     
     private FilterConfig config;  

@@ -12,37 +12,15 @@ import javax.servlet.http.HttpSession;
 
 import lyons.user.entity.Login;
 
+@SuppressWarnings("serial")
 public class PutGoodsToCar extends HttpServlet
 {
-    
-    /**
-     * serialVersionUID
-     */
-    private static final long serialVersionUID = 97434567L;
-
-    /**
-     * Constructor of the object.
-     */
-    public PutGoodsToCar()
-    {
-        super();
-    }
-    
-    /**
-     * Destruction of the servlet. <br>
-     */
-    public void destroy()
-    {
-        super.destroy(); // Just puts "destroy" string in log
-        // Put your code here
-    }
     
     public void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException
     {
        doPost(request, response);
     }
-    
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException
@@ -99,12 +77,6 @@ public class PutGoodsToCar extends HttpServlet
         out.print("&nbsp;or&nbsp;");
         out.print("<a href=/lyons.eaby.new/jsp/shoppingCar/lookShoppingCar.jsp>查看购物车</a></center>");
         
-    }
-
-    public void init()
-        throws ServletException
-    {
-        // Put your code here
     }
     
 }

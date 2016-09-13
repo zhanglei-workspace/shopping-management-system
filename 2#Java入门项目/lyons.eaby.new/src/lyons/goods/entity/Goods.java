@@ -12,8 +12,8 @@ import lyons.goods.entity.Goods;
  */
 public class Goods
 {
-    private List<Goods>     goodsList = null;
-    private List<GoodsClassify>  goodsClassifyList = null;    //多表联立时使用
+    private List<Goods>     goodsList;
+    private List<GoodsClassify>  goodsClassifyList;    //多表联立时使用
 
     private int commodity_number = -1; //商品编号
     private String commodity_name;     //商品名字

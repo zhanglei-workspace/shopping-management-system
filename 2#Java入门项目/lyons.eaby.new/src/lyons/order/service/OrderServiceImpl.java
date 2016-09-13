@@ -2,7 +2,7 @@ package lyons.order.service;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Map;
 
 import lyons.dao.OrderDaoImpl;
 import lyons.order.entity.Order;
@@ -99,6 +99,20 @@ public class OrderServiceImpl
             idList.add(Integer.valueOf(id));
         }
         dao.deleteOrderBatch(idList);
+        
+    }
+    
+    /**
+     * 
+     * 批量添加订单
+     * @param map
+     */
+    public void insertOrderBatch(List<Order> listOrder)
+    {
+        if (listOrder.size() >0 )
+        {
+            dao.insertOrderBatch(listOrder);
+        }
         
     }
     

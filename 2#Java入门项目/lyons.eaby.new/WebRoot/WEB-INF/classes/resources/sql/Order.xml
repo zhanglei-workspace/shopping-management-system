@@ -77,7 +77,7 @@
 		<delete id="deleteOrderBatch" parameterType="java.util.List">
 		  
 		  DELETE FROM orderform WHERE id 
-		  in(
+		  IN(
 		      <!-- collection:指向集合 item:迭代出来的项 separator:自定义分割符-->
 		      <foreach collection="list" index="" item="item" separator=",">     
 		          #{item}
@@ -85,5 +85,21 @@
 		    )
 		  
 		</delete>
+		
+
+		
+<!-- 插入订单系 -->
+    <!-- 批量插入数据 sql不熟悉的可以参考博客：http://www.voidcn.com/blog/mingtianhaiyouwo/article/p-5959712.html -->
+	<insert id="insertOrderBatch" parameterType="java.util.List"> <!-- 传来的是 List<order> ,所以是集合collection -->
+	            
+	            INSERT INTO orderForm(username,commodity_name,commodity_price,sum)
+		    <foreach collection="collection" item="item" separator="UNION ALL"> <!-- 注意集合：collection="collection" -->
+                (
+	                SELECT 
+	                    '${item.userName}','${item.commodity_name}',${item.commodity_price},${item.sum} 
+	                from dual
+                )
+		    </foreach>
+	</insert>
 		
 </mapper>

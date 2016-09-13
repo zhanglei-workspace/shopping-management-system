@@ -1,13 +1,13 @@
 package lyons.dao;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.ibatis.session.SqlSession;
+import java.util.Map;
 
 import lyons.db.DbAccess;
 import lyons.goods.entity.Goods;
+
+import org.apache.ibatis.session.SqlSession;
 
 /**
  * 商品维护类-学习面向接口编程
@@ -18,8 +18,8 @@ public class GoodsDaoImpl implements GoodsDao
 {
 
 	
-	List<GoodsDao> goodsList = new ArrayList<GoodsDao>();
-    Goods goods = new Goods();
+//	List<GoodsDao> goodsList = new ArrayList<GoodsDao>();
+//    Goods goods = new Goods();
     GoodsDao goodsDao = null;
     
 	DbAccess dbAccess = new DbAccess();
@@ -149,9 +149,23 @@ public class GoodsDaoImpl implements GoodsDao
     
     /**
      * 更新商品
+     * 购买商品
      */
-    public void updateGoods()
+    public void updateGoods(List<Goods> listgoods)
     {
+        try
+        {
+            sqlSession = dbAccess.getSqlSession();
+            sqlSession.getMapper(GoodsDao.class).updateGoods(listgoods);
+            sqlSession.commit();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }finally
+        {
+            sqlSesionClose();
+        }
         
     }
     
@@ -166,27 +180,5 @@ public class GoodsDaoImpl implements GoodsDao
             sqlSession.close();
         }
     }
-	
-	
-//	public static void main(String[] args)
-//    {
-//       GoodsDao gDaoCopy = new GoodsDao();
-//       List<Goods> goodsList = gDaoCopy.queryGoods();
-//       for (int i = 0,num=goodsList.size(); i < num; i++)
-//       {
-//           System.out.print("货名："+goodsList.get(i).getCommodity_name());
-//           System.out.println("\t\t价格："+goodsList.get(i).getCommodity_balance());
-//                
-//       }
-//       
-//       
-//    }
-	
-	
-	
-	
-	
-	
-	
 	
 }

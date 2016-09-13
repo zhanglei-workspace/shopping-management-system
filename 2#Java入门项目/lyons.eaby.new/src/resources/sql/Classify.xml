@@ -9,7 +9,7 @@
 	    <id column="id" jdbcType="INTEGER" property="id"/>
 	    <result column="gname" jdbcType="VARCHAR" property="gname"/>
 	    
-	    <!-- 作为子表表时使用该标签(多对一)。与collection语法一致
+	    <!-- 作为子表时使用该标签(多对一)。与collection语法一致
 	        <association property="#" resultMap=""/>
 	    -->
 	  </resultMap>

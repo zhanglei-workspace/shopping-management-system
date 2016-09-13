@@ -62,7 +62,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
            <tr>
               <td colspan=3>合计：<%= totalPrice %> RMB</td>
               <td>
-                    <form action="<%= basePath %>lyons.goods.BuyGoods" method="post">
+                    <form action="<%= basePath %>BuyGoods.action" method="post">
                         <input type="submit" value="确认付款"/>
                     </form>
               </td>

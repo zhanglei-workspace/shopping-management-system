@@ -44,11 +44,11 @@
                    String pic = goods.getGoodsList().get(i).getCommodity_pic();
                    int category = goods.getGoodsList().get(i).getCommodity_id();
                
-                   String commodity = null;
+                   String commodity = null;//这种拼接的方式并不好，应该使用StringBuffer
                    commodity = ID+","+name+","+made+","+price+","+number+","+pic+","+category;//尾缀#，便于计算购物车价格
                    commodity = commodity.toString().replaceAll("\\p{Blank}","");
                    
-                   String detail = "<form action='jsp/browse/showDetail.jsp' method='post'>"+
+                   String detail = "<form action='"+basePath+"jsp/browse/showDetail.jsp' method='post'>"+
                                    "<input type='hidden' name='detail' value="+commodity+">"+
                                    "<input type='submit' value='商品详情'></form>";      
                    String shopCarButton = "<form action='"+basePath+"lyons.goods/PutGoodsToCar' method='post'>"+

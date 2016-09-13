@@ -21,7 +21,7 @@
 
 <!-- 作为主表时使用该标签。 collection：代表对应一个集合  resultMap：引用Classify.XML的映射关系 配置这个的原因是引用子表查询了 -->    
 	    <collection property="goodsClassifyList" resultMap="lyons.dao.GoodsClassifyDao.ClassifyResult" /><!-- 一对多 空间名.id -->
-	    
+	             
 	  </resultMap>
 	  
 	  
@@ -34,11 +34,11 @@
 	<!-- 解释： id：为该sql语句起一个名字（用于SqlFaction调用该sql语句）resultMap：对应上述resultMap的id -->
 	       <!-- select查出来的信息放到<resultMap>对应的property变量名中 -->
 		<select id="goodsAllList"  resultMap="GoodsResult">
-		   <include refid="columns"/>
+		   <include refid="columns"/> <!-- 引用<sql>中定义的常量 -->
 		</select>
-                <!-- parameterType:根据条件查询，传递来的参数的类型 -->
+                <!-- "src/resources/MybatisConfiguration.xml" parameterType:根据条件查询，传递来的参数的类型 -->
 		<select id="queryGoodsByKey" parameterType="String" resultMap="GoodsResult">
-		   <include refid="columns"/>   <!-- 引用<sql>中定义的常量 -->
+		   <include refid="columns"/>   
 		    WHERE commodity_name LIKE '%'|| #{_parameter} ||'%'
 		</select>
 		
@@ -58,6 +58,24 @@
 		        </if>
 		</select>
 		
+    <!-- 批量更新商品数量 -->
+	<update id="updateGoods"  parameterType="java.util.List">
+	
+		begin  
+	        <foreach collection="list" item="item" index="index" separator=";" > 
+	            update commodity 
+	            <set>
+		            <if test="item.commodity_balance!=null and item.commodity_balance!=''">
+		                commodity_balance = ${item.commodity_balance},
+		            </if>
+	            </set>
+	               where commodity_number = ${item.commodity_number}
+	            </foreach>
+        ;end;
+
+    </update>
+
+
 <!--  
 		<delete id="deleteOneGoodsById" parameterType="int">
 		  DELECT FROM commodity 
@@ -67,9 +85,7 @@
 
 
         <update id="#" parameterType="lyons.goods.entity.Goods">
-            UPDATE commodity
--->
-<!--  
+            UPDATE commodity 
             <set>  与where标签效果一样 
 	            <if test="#">
 	               
@@ -125,6 +141,29 @@
         ${} 不是预编译的，而是直接赋值传进来的值
         区别于预编译 #{} 
   -->
+
+
+
+<!--批量插入参考代码
+<insert id="insertMass" useGeneratedKeys="true" keyProperty="id">
+        insert into user_info
+        <trim prefix="(" suffixOverrides="," suffix=")">
+            <if test="list[0].id != null">id,</if>
+            <if test="list[0].uname!= null">uname,</if>
+            <if test="list[0].unumber!= null">unumber,</if>
+        </trim>
+        values
+        <foreach collection="list" item="item" index="index"
+            separator=",">
+            <trim prefix="(" suffixOverrides="," suffix=")">
+                <if test="item.id != null">#{item.id},</if>
+                <if test="item.uname!= null">#{item.uname},</if>
+                <if test="item.unumber!= null">#{item.unumber},</if>
+            </trim>
+        </foreach>
+</insert>
+  -->
+
 
 
 

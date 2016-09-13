@@ -24,6 +24,9 @@ public interface OrderDao
     public void deleteOrderOneById(int id);
     /** 删除批量 By id **/
     public void deleteOrderBatch(List<Integer> ids);
+    
+    /**批量插入数据**/
+    public void insertOrderBatch(List<Order> listOrder);
 
 
 }

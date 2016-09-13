@@ -40,12 +40,12 @@
     <servlet-class>lyons.goods.DeleteGoodsFromCar</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>BuyGoods</servlet-name>
-    <servlet-class>lyons.action.BuyGoods</servlet-class>
-  </servlet>
-  <servlet>
     <servlet-name>GoodsAction</servlet-name>
     <servlet-class>lyons.goods.action.GoodsAction</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>BuyGoodsAction</servlet-name>
+    <servlet-class>lyons.goods.action.BuyGoodsAction</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>OrderAction</servlet-name>
@@ -64,16 +64,22 @@
     <servlet-class>lyons.talk.action.TalkAction</servlet-class>
   </servlet>
 
-<!-- 旧类临时配置 -->
+<!-- 旧类临时配置 
   <servlet>
     <servlet-name>aaa</servlet-name>
     <servlet-class>lyons.goods.BuyGoods</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>BuyGoodsAction</servlet-name>
+    <servlet-class>lyons.goods.action.BuyGoodsAction</servlet-class>
+  </servlet>
+
 
   <servlet-mapping>
     <servlet-name>aaa</servlet-name>
     <url-pattern>/lyons.goods.BuyGoods</url-pattern>
   </servlet-mapping>
+-->
 
 <!-- 页面编码格式过滤器 -->
 <filter>
@@ -110,10 +116,6 @@
     <url-pattern>/Exit.action</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>BuyGoods</servlet-name>
-    <url-pattern>/BuyGoods.action</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
     <servlet-name>GoodsAction</servlet-name>
     <url-pattern>/Goods.action</url-pattern>
   </servlet-mapping>
@@ -124,6 +126,10 @@
   <servlet-mapping>
     <servlet-name>TalkAction</servlet-name>
     <url-pattern>/Talk.action</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>BuyGoodsAction</servlet-name>
+    <url-pattern>/BuyGoods.action</url-pattern>
   </servlet-mapping>
   
   <filter-mapping>

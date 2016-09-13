@@ -18,13 +18,13 @@ import lyons.user.service.UserService;
 @SuppressWarnings("serial")
 public class OrderAction extends HttpServlet
 {
-    int keys = -1;                          //默认的查询值（即：default ）
-    String user = "";                       //当前用户
-    String key = "";                        //选择查询条件
-    String keyWord = "";                    //查询的关键字
-    String queryUserName = "";              //查询的用户名
-    String id = "";                         //商品唯一标识id 
-    String ids[] = {};                      //批量删除商品的ids
+    int keys = -1;                     //默认的查询值（即：default ）
+    String user;                       //当前用户
+    String key;                        //选择查询条件
+    String keyWord;                    //查询的关键字
+    String queryUserName;              //查询的用户名
+    String id;                         //商品唯一标识id 
+    String ids[];                      //批量删除商品的ids
     List<Order> orderList = new ArrayList<Order>();
     OrderServiceImpl orderService = new OrderServiceImpl();//获取订单服务对象
     
@@ -94,7 +94,7 @@ public class OrderAction extends HttpServlet
         keys = Integer.parseInt(key);  
         orderList.clear();
         Order order = null;
-        order = new Order();
+//        order = new Order();
         order = (Order)session.getAttribute("order");
         if (order==null)
         {
@@ -156,7 +156,7 @@ public class OrderAction extends HttpServlet
                    orderList = orderService.orderAllList();   //重新查询订单列表(应该根据之前的检索条件查询)
                  }
         
-        //不管有没有查询到值到要返回订单列表
+        //不管有没有查询到值都要返回订单列表
         order.setOrderList(orderList);
         session.setAttribute("orderAllList", order);
         request.getRequestDispatcher("/jsp/manageGoods/OrderList.jsp").forward(request, response);

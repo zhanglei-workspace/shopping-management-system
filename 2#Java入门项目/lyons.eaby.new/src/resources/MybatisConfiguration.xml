@@ -16,6 +16,9 @@
   </typeAliases>
 
 -->
+
+<!-- mybatis默认自动关闭数据库连接  关于mybatis详细资料：http://www.mybatis.org/mybatis-3/zh/configuration.html -->
+
   <environments default="development">
     <environment id="development">
       <transactionManager type="JDBC">

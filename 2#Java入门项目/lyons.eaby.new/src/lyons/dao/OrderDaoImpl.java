@@ -1,13 +1,12 @@
 package lyons.dao;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.ibatis.session.SqlSession;
 
 import lyons.db.DbAccess;
 import lyons.order.entity.Order;
+
+import org.apache.ibatis.session.SqlSession;
 
 /**
  * 订单维护类
@@ -16,10 +15,9 @@ import lyons.order.entity.Order;
  */
 public class OrderDaoImpl implements OrderDao
 {
-    List<Order> orderList =  new ArrayList<Order>();
-    OrderDao orderDao = null;
+    OrderDao orderDao;
+    SqlSession sqlSession;
     DbAccess dbAccess = new DbAccess();
-    SqlSession sqlSession = null;
     
     
     /**
@@ -150,8 +148,33 @@ public class OrderDaoImpl implements OrderDao
         
     }
     
+    /**
+     * 
+     * insert-批量增加订单
+     * @param map
+     */
+    public void insertOrderBatch(List<Order> listOrder)
+    {
+        try
+        {
+            sqlSession = dbAccess.getSqlSession();
+            orderDao = sqlSession.getMapper(OrderDao.class);
+            orderDao.insertOrderBatch(listOrder);
+            sqlSession.commit();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }finally
+        {
+            sqlSesionClose();
+        }
+        
+    }
+    
     /*
      * 关闭数据库连接会话
+     * （事实上mybatis默认自动关闭连接）
      */
     private void sqlSesionClose()
     {
@@ -160,6 +183,6 @@ public class OrderDaoImpl implements OrderDao
             sqlSession.close();
         }
     }
-    
+
     
 }
