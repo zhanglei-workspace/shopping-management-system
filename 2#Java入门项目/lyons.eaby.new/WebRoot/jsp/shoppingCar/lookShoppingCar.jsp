@@ -12,7 +12,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <title>Insert title here</title>
 </head>
 <body>
-      <jsp:useBean id="loginBean" class="lyons.user.entity.Login" scope="session"/>
+      <jsp:useBean id="loginBean" class="lyons.user.entity.User" scope="session"/>
       
      <center><br><br>
      

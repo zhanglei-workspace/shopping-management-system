@@ -144,29 +144,6 @@
 
 
 
-<!--批量插入参考代码
-<insert id="insertMass" useGeneratedKeys="true" keyProperty="id">
-        insert into user_info
-        <trim prefix="(" suffixOverrides="," suffix=")">
-            <if test="list[0].id != null">id,</if>
-            <if test="list[0].uname!= null">uname,</if>
-            <if test="list[0].unumber!= null">unumber,</if>
-        </trim>
-        values
-        <foreach collection="list" item="item" index="index"
-            separator=",">
-            <trim prefix="(" suffixOverrides="," suffix=")">
-                <if test="item.id != null">#{item.id},</if>
-                <if test="item.uname!= null">#{item.uname},</if>
-                <if test="item.unumber!= null">#{item.unumber},</if>
-            </trim>
-        </foreach>
-</insert>
-  -->
-
-
-
-
 <!--  
   <select id="version" parameterType="long" resultType="int">
     SELECT version FROM user WHERE id = #{id,jdbcType=INTEGER}

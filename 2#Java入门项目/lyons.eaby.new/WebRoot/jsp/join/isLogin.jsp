@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="lyons.user.entity.Login"%>
+<%@page import="lyons.user.entity.User"%>
 <%
 	
-	Login Logined = (Login)session.getAttribute("loginBean");
+	User Logined = (User)session.getAttribute("loginBean");
 	if(Logined==null)
 	{
 		response.sendRedirect("lyons.eaby.new/jsp/join/login.jsp");

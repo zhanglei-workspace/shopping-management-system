@@ -16,14 +16,14 @@ import org.apache.ibatis.session.SqlSession;
 public class GoodsDaoImpl implements GoodsDao
 {
 
+    GoodsDao goodsDao;
+	DbAccess dbAccess;
+	SqlSession sqlSession;
 	
-//	List<GoodsDao> goodsList = new ArrayList<GoodsDao>();
-//    Goods goods = new Goods();
-    GoodsDao goodsDao = null;
-    
-	DbAccess dbAccess = new DbAccess();
-	SqlSession sqlSession = null;
-	
+	public GoodsDaoImpl()
+    {
+	    dbAccess = new DbAccess();
+    }
 	/**
      * 
      * 查询商品列表-commodity.sql
@@ -39,7 +39,8 @@ public class GoodsDaoImpl implements GoodsDao
         try
         {
             sqlSession = dbAccess.getSqlSession();
-            return sqlSession.selectList("lyons.dao.GoodsDao.queryGoodsByKeyClassify", goodsList);//空间名.查询语句id
+            return sqlSession.selectList("lyons.dao.GoodsDao.queryGoodsByKeyClassify", goodsList);//空间名.查询语句id 
+//                                      (留此方式目的完成知识体系，其他的均使用mapper)
         }
         catch (IOException e)
         {

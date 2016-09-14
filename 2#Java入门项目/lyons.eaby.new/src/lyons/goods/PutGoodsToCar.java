@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import lyons.user.entity.Login;
+import lyons.user.entity.User;
 
 @SuppressWarnings("serial")
 public class PutGoodsToCar extends HttpServlet
@@ -41,7 +41,7 @@ public class PutGoodsToCar extends HttpServlet
                 
                 //将物品信息放进模型中
                 HttpSession session = request.getSession(true);
-                Login loginBean = (Login)session.getAttribute("loginBean");
+                User loginBean = (User)session.getAttribute("loginBean");
                 LinkedList<String> car = null;
                 car = loginBean.getCar();
                /* if (request.getAttribute("clear")!=null) //购物车完成结算，清空数据！

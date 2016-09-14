@@ -18,7 +18,7 @@ import lyons.db.DbClose;
 import lyons.db.DbConn;
 import lyons.goods.entity.Goods;
 import lyons.goods.service.GoodsServiceImpl;
-import lyons.user.entity.Login;
+import lyons.user.entity.User;
 import lyons.user.service.UserService;
 import lyons.util.Iconst;
 
@@ -50,7 +50,7 @@ public class BuyGoodsAction extends HttpServlet
         
         // 从模型中直接拿取购物车信息
         HttpSession session = request.getSession(true);
-        Login loginBean = (Login)session.getAttribute("loginBean");
+        User loginBean = (User)session.getAttribute("loginBean");
         car = loginBean.getCar();
         GoodsServiceImpl goodsService = new GoodsServiceImpl();// 获取商品服务对象
         

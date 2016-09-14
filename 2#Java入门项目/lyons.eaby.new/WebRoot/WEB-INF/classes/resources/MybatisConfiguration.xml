@@ -39,6 +39,7 @@
     <mapper resource="resources/sql/Goods.xml"/>
     <mapper resource="resources/sql/Order.xml"/>
     <mapper resource="resources/sql/Classify.xml"/>
+  <mapper resource="resources/sql/User.xml"/>  
   </mappers>
 
 </configuration>

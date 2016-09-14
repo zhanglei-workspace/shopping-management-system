@@ -13,7 +13,7 @@
   </head>
   
   <body>
- 	 <jsp:useBean id="loginBean" class="lyons.user.entity.Login" scope="session"/>
+ 	 <jsp:useBean id="loginBean" class="lyons.user.entity.User" scope="session"/>
  
  		<ul class="user">
     			<li>
