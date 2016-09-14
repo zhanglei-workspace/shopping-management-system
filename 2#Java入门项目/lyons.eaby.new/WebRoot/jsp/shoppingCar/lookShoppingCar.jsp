@@ -54,7 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                  totalPrice += Double.parseDouble(item[3]); 
             %> <td><a href='/lyons.eaby.new/lyons.goods/DeleteGoodsFromCar?ID=<%= j %>' >删除</a></td></tr><%
               }
-              String backPage = "<a href='/lyons.eaby.new/jsp/browse/showGoods.jsp'><font color=green><b>继续购物</b></font></a>";
+              String backPage = "<a href="+basePath+"Goods.action?key=4><font color=green><b>继续购物</b></font></a>";
            %>
        </table>
       

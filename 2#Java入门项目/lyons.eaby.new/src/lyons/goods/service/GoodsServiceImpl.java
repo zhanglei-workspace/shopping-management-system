@@ -1,7 +1,7 @@
 package lyons.goods.service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -105,11 +105,12 @@ public class GoodsServiceImpl
     {
         if (car.size() <= 0){return "购物车为空";}
         
-        map = new HashMap<String, Integer>();
+        map = new Hashtable<String, Integer>();
         listOrder = new ArrayList<Order>();
         Listgoods = new ArrayList<Goods>();
         
-        map.put("Temp", null);
+        String temp = null;
+        map.clear();
         OrderServiceImpl orderServiceImpl = new OrderServiceImpl();//获取order表服务类
         
         for (int i = 0; i < car.size(); i++)
@@ -124,23 +125,28 @@ public class GoodsServiceImpl
                 order.setCommodity_price(Double.parseDouble(goodsArr[3]));
                 order.setSum(1);
                 
+//  (如果前端实现了单条商品数量可选就不再需要map临时缓存了，那时，下面的代码将变的很简单，不再这样复杂)学好js会省很多事情
+                temp = goodsArr[0];//商品唯一标识充当map的key  
                 goods.setCommodity_number(Integer.parseInt(goodsArr[0]));
-                System.out.println(goodsArr[0]+"--kkkkkkkkkkkk");
-                if (map.get("Temp") != null )//利用map缓存一下，目的:减数量
+                if (j == 4) //当 j=4:购物数量
                 {
-                    map.put("Temp", map.get("Temp")-1);//map已经存在该商品,再次出现故只需将数量减一即可
-                    System.out.println(i+"----有多少啊："+map.get("Temp"));
-                }else{
-                       map.put("Temp", Integer.parseInt(goodsArr[4])-1);
-                       System.out.println(i+"++++有多少啊："+map.get("Temp"));
-                     }
-                if (map.get("Temp") <= 0){return "数据库中商品数量不足";}
-                goods.setCommodity_balance(map.get("Temp"));
+                    if (map.containsKey(temp))//利用map缓存一下，目的:减数量。  
+                    {
+                        if (map.get(temp)-1 <= 0){return "数据库中商品数量不足";}
+                        map.put(temp, map.get(temp)-1);//map已经存在该商品,再次出现故只需将数量减一即可
+                        System.out.println(i+"+递减进入："+map.get(temp));
+                    }else{
+                        map.put(temp, Integer.parseInt(goodsArr[4])-1);
+                        if (map.get(temp) <= 0){return "数据库中商品数量不足";}
+                        
+                        System.out.println(i+"-首次进入："+map.get(temp));
+                    }
+                    goods.setCommodity_balance(map.get(temp));
+                }
                 
             }
             listOrder.add(order);
             Listgoods.add(goods);
-            map.clear();
             
         }
         

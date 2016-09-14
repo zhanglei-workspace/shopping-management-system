@@ -2,7 +2,6 @@ package lyons.dao;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 import lyons.db.DbAccess;
 import lyons.goods.entity.Goods;
