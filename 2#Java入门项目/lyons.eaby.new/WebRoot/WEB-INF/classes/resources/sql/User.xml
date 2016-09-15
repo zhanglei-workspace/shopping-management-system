@@ -14,6 +14,7 @@
       </resultMap>
       
       <sql id="queryVip">select username,userpass,phone,address,realname from vip</sql>
+      <sql id="insertUser">INSERT INTO vip(username,userpass,phone,address,realname) </sql>
       
 <!-- 根据用户名查询用户信息 -->
 
@@ -27,7 +28,6 @@
 		    
 		    </foreach>
       </select>
-      
       <!-- 关于collection 的值
            数组： array
           List： list
@@ -35,4 +35,40 @@
           Map : 键 (在java类中自己定义的)
        -->
        
+    
+    <select id="queryByuserName" parameterType="String" resultMap="userResult">
+     
+     SELECT userName 
+     FROM   vip
+     WHERE  
+            <if test="_parameter != null and !(&quot;&quot;.equals(_parameter.trim()))">
+                username = #{_parameter}                    
+            </if>
+    
+    </select>
+           
+ <!-- 注册新用户 -->      
+ 
+    <insert id="insertUser" parameterType="java.util.Map">
+       
+       <include refid="insertUser"/>
+       VALUES
+       (
+            '${username}',
+            '${userpass}',
+            '${phone}',
+            '${address}',
+            '${realname}'
+       )
+    </insert>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 </mapper>

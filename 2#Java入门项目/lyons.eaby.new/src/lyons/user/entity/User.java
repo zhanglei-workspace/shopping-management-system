@@ -17,7 +17,7 @@ public class User implements Serializable
 	private String phone;
 	private String address;
 	private String realname;
-	private String backNews = "Î´µÇÂ¼";
+	private String backNews = "Çë×¢²á";
 	private LinkedList<String> car;      //¹ºÎï³µ¡¢¶¨µ¥
 	
 	public User()

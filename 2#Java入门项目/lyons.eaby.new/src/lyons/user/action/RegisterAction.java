@@ -1,18 +1,15 @@
 package lyons.user.action;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import lyons.db.DbClose;
-import lyons.db.DbConn;
-import lyons.user.entity.Register;
+import lyons.user.service.RegisterService;
 
 
 /**
@@ -25,6 +22,21 @@ import lyons.user.entity.Register;
 public class RegisterAction extends HttpServlet
 {
 
+//    String username;
+//    String userpass;
+//    String again_userpass;
+//    String phone;
+//    String address;
+//    String realname;
+    Map<String, String> registerMap;
+    RegisterService registerService;
+
+    public void init() throws ServletException
+    {
+        registerMap = new HashMap<String, String>();
+        registerService = new RegisterService();
+    }
+    
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException
 	{
@@ -37,24 +49,17 @@ public class RegisterAction extends HttpServlet
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		
-		Register userBean = new Register();
-		request.setAttribute("userBean", userBean);
 		
-		String username = "";
-		String userpass = "";
-		String again_userpass = "";
-		String phone = "";
-		String address = "";
-		String realname = "";
+		registerMap.put("username", request.getParameter("username").trim());
+		registerMap.put("userpass", request.getParameter("userpass").trim());
+		registerMap.put("again_userpass", request.getParameter("again_userpass").trim());
+		registerMap.put("phone", request.getParameter("phone").trim());
+		registerMap.put("address", request.getParameter("address").trim());
+		registerMap.put("realname", request.getParameter("realname").trim());
 		
-		username = request.getParameter("username").trim();
-		userpass = request.getParameter("userpass").trim();
-		again_userpass = request.getParameter("again_userpass").trim();
-		phone = request.getParameter("phone").trim();
-		address = request.getParameter("address").trim();
-		realname = request.getParameter("realname").trim();
+		registerService.register(request, response, registerMap);
 		
-		if (username==null)
+		/*if (username==null)
 		{
 			username = "";
 		}
@@ -114,15 +119,12 @@ public class RegisterAction extends HttpServlet
 								DbClose.close(pstmt, conn);
 							}
 						}else 
-						{
-							userBean.setBackNews("密码不合法");
-							request.getRequestDispatcher("/jsp/join/register.jsp").forward(request, response);
-						}
-					}
+    						{
+    							userBean.setBackNews("密码不合法");
+    							request.getRequestDispatcher("/jsp/join/register.jsp").forward(request, response);
+    						}
+					}*/
 	}
 
-	public void init() throws ServletException
-	{
-	}
 
 }

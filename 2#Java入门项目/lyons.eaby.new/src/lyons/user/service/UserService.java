@@ -28,9 +28,9 @@ import lyons.user.entity.User;
 public class UserService extends HttpServlet
 {
     
-    UserDaoImp userDao;
     String userPass;
-    List<User> userList;
+    UserDaoImp userDao = new UserDaoImp();;
+    List<User> userList = new ArrayList<User>();;
     
     /**
      * 
@@ -50,9 +50,6 @@ public class UserService extends HttpServlet
         handleCookies(request,response,userMap.get("username"),
         userMap.get("userpass"),userMap.get("cookies"));//处理cookies信息
         
-        userDao = new UserDaoImp();
-        userList = new ArrayList<User>();
-        
         //为了使用map，也是醉了   另外：map取值时对大小写敏感
         Map<String, Object> map = new Hashtable<String, Object>();
         Map<String, String> namePass = new Hashtable<String, String>();
@@ -71,48 +68,23 @@ public class UserService extends HttpServlet
 
     }
     
+
     /**
-     * 处理用户cookies信息
-     * @param request
-     * @param response
+     * 
+     * 验证用户名是否存在
      * @param username
-     * @param userpass
+     * @return Existence:true
      */
-    public void handleCookies(HttpServletRequest request,HttpServletResponse response, 
-            String name,String pass,String isCookie)throws ServletException, IOException
+    public boolean isExistence(String username)
     {
-        if ("isCookie".equals(isCookie))//用户选择了记住密码
+        userList = userDao.queryByuserName(username);
+        
+        if (userList != null && userList.size() > 0)
         {
-            String username = URLEncoder.encode(name,"UTF-8");//编码，解决cookie无法保存字符串的问题
-            String userpass = URLEncoder.encode(pass,"UTF-8");
-            
-            Cookie nameCookie = new Cookie("username",username );//设置与登陆时的name对应的键值对
-            Cookie passCookie = new Cookie("userpass",userpass );
-            
-            nameCookie.setPath("/");//设置的cookie的存储路径很重要，不然取不到值
-            passCookie.setPath("/");
-            nameCookie.setMaxAge(864000); //设置生命期限十天 单位秒
-            passCookie.setMaxAge(864000);
-            response.addCookie(nameCookie); //保存信息
-            response.addCookie(passCookie); 
-        }else 
-            {
-            //用户未选择记住密码，删除浏览器中可能存在的cookie
-                Cookie[] cookies = null;
-                cookies = request.getCookies();
-                if (cookies!=null&&cookies.length>0)
-                {
-                    for (Cookie c : cookies)
-                    {
-                        if ("username".equals(c.getName())||"userpass".equals(c.getName()))
-                        {
-                            c.setMaxAge(0);//设置cookie失效
-                            c.setPath("/");//务必设置
-                            response.addCookie(c);
-                        }
-                    }
-                }
-            }
+            return true;
+        }
+        
+        return false;
     }
     
     
@@ -156,6 +128,51 @@ public class UserService extends HttpServlet
               return "";
           }
           return user;
+    }
+    
+    
+    /**
+     * 处理用户cookies信息
+     * @param request
+     * @param response
+     * @param username
+     * @param userpass
+     */
+    public void handleCookies(HttpServletRequest request,HttpServletResponse response, 
+            String name,String pass,String isCookie)throws ServletException, IOException
+    {
+        if ("isCookie".equals(isCookie))//用户选择了记住密码
+        {
+            String username = URLEncoder.encode(name,"UTF-8");//编码，解决cookie无法保存字符串的问题
+            String userpass = URLEncoder.encode(pass,"UTF-8");
+            
+            Cookie nameCookie = new Cookie("username",username );//设置与登陆时的name对应的键值对
+            Cookie passCookie = new Cookie("userpass",userpass );
+            
+            nameCookie.setPath("/");//设置的cookie的存储路径很重要，不然取不到值
+            passCookie.setPath("/");
+            nameCookie.setMaxAge(864000); //设置生命期限十天 单位秒
+            passCookie.setMaxAge(864000);
+            response.addCookie(nameCookie); //保存信息
+            response.addCookie(passCookie); 
+        }else 
+            {
+            //用户未选择记住密码，删除浏览器中可能存在的cookie
+                Cookie[] cookies = null;
+                cookies = request.getCookies();
+                if (cookies!=null&&cookies.length>0)
+                {
+                    for (Cookie c : cookies)
+                    {
+                        if ("username".equals(c.getName())||"userpass".equals(c.getName()))
+                        {
+                            c.setMaxAge(0);//设置cookie失效
+                            c.setPath("/");//务必设置
+                            response.addCookie(c);
+                        }
+                    }
+                }
+            }
     }
     
     /**
@@ -210,5 +227,5 @@ public class UserService extends HttpServlet
             e.printStackTrace();
         }
     }
-    
+
 }
