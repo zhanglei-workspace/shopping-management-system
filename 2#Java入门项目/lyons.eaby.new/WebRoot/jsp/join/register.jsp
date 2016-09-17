@@ -9,7 +9,7 @@
 <title>register</title>
 </head>
 <body>
-         <jsp:useBean id="userBean" class="lyons.user.entity.Register" scope="session" ></jsp:useBean>
+         <jsp:useBean id="userBean" class="lyons.user.entity.User" scope="session" ></jsp:useBean>
 		<div align="center">
 			<form action="<%= basePath %>Register.action" method="post">
 				<table border="1" cellpadding="10" cellspacing="1">

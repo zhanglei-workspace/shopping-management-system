@@ -36,7 +36,7 @@
   	        <%
 	  	       for (int i = 0,num=goods.getGoodsList().size(); i < num;)
                {
-                   int ID = goods.getGoodsList().get(i).getCommodity_id();
+                   int ID = goods.getGoodsList().get(i).getCommodity_number();
                    String name = goods.getGoodsList().get(i).getCommodity_name();
                    String made = goods.getGoodsList().get(i).getCommodity_made();
                    Double price = goods.getGoodsList().get(i).getCommodity_price();

@@ -2,9 +2,6 @@ package lyons.talk.action;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.lang.ref.PhantomReference;
-import java.lang.ref.ReferenceQueue;
-import java.lang.ref.WeakReference;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

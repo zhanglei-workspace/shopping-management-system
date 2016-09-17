@@ -26,7 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
   
-  		<jsp:useBean id="loginBean" class="lyons.user.entity.Login" scope="session"/>
+  		<jsp:useBean id="loginBean" class="lyons.user.entity.User" scope="session"/>
    		
    		<%
 			if(loginBean.getBackNews()=="未登录"||loginBean.getBackNews()==null)

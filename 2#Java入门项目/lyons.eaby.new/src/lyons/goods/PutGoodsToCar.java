@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import lyons.user.entity.Login;
+import lyons.user.entity.User;
 
 @SuppressWarnings("serial")
 public class PutGoodsToCar extends HttpServlet
@@ -41,7 +41,7 @@ public class PutGoodsToCar extends HttpServlet
                 
                 //将物品信息放进模型中
                 HttpSession session = request.getSession(true);
-                Login loginBean = (Login)session.getAttribute("loginBean");
+                User loginBean = (User)session.getAttribute("loginBean");
                 LinkedList<String> car = null;
                 car = loginBean.getCar();
                /* if (request.getAttribute("clear")!=null) //购物车完成结算，清空数据！
@@ -73,7 +73,7 @@ public class PutGoodsToCar extends HttpServlet
         out.print("<br><br><br>");
         out.print("<center><font size=5 color=red><B>"+goodsName+"</B></font>&nbsp;已成功添加购物车");
         out.print("<br><br><br>");
-        out.print("<a href=/lyons.eaby.new/jsp/browse/showGoods.jsp>返回继续购物</a>");
+        out.print("<a href=/lyons.eaby.new/Goods.action?key=4>返回继续购物</a>");
         out.print("&nbsp;or&nbsp;");
         out.print("<a href=/lyons.eaby.new/jsp/shoppingCar/lookShoppingCar.jsp>查看购物车</a></center>");
         
