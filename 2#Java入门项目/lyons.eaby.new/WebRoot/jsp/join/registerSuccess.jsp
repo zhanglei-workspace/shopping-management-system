@@ -25,7 +25,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
   
-    <jsp:useBean id="loginBean" class="lyons.user.entity.User" scope="session"/>
 				<b><font color="red">注册成功</font></b>
 				
 				三秒后跳转到登陆界面.....
