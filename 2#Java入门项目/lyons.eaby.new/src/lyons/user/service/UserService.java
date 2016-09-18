@@ -28,7 +28,6 @@ import lyons.user.entity.User;
 public class UserService extends HttpServlet
 {
     
-    String userPass;
     UserDaoImp userDao = new UserDaoImp();;
     List<User> userList = new ArrayList<User>();;
     
@@ -48,7 +47,7 @@ public class UserService extends HttpServlet
         request.setCharacterEncoding("UTF-8");
         
         handleCookies(request,response,userMap.get("username"),
-        userMap.get("userpass"),userMap.get("cookies"));//处理cookies信息
+        userMap.get("userpass"),userMap.get("isCookie"));//处理cookies信息
         
         //为了使用map，也是醉了   另外：map取值时对大小写敏感
         Map<String, Object> map = new Hashtable<String, Object>();

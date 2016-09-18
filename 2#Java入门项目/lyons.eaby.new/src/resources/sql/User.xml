@@ -19,7 +19,7 @@
 <!-- 根据用户名查询用户信息 -->
 
        <!-- Map系collection为Map的键 index：键  item:值 -->
-      <select id="queryByuserNamepassWord" parameterType="java.util.Map" resultMap="userResult"> <!-- 利用数组传参 -->
+      <select id="queryByuserNamepassWord" parameterType="java.util.Map" resultMap="userResult"> <!-- 利用Map传参 -->
         <include refid="queryVip"/>
 	    WHERE
 		    <foreach collection="userMap" index="userName" item="userPass" > 
