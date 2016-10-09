@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="lyons.dao.OrderDao">
+
+	  <resultMap type="lyons.order.entity.Order" id="OrderResult">  
+	    <id column="id" jdbcType="INTEGER" property="id"/>
+	    <result column="username" jdbcType="VARCHAR" property="userName"/>
+	    <result column="orderDate" jdbcType="DATE" property="orderDate"/>
+	    <result column="commodity_name" jdbcType="VARCHAR" property="commodity_name"/>
+	    <result column="commodity_price" jdbcType="DOUBLE" property="commodity_price"/>
+	    <result column="sum" jdbcType="INTEGER" property="sum"/>
+	  </resultMap>
+	 
+	 <sql id="columnsSelect">SELECT id,username,orderDate,orderDate,commodity_name,commodity_price,sum FROM orderform</sql>
+	 
+<!-- 查询订单系 --> 
+		
+		<!-- 搞个小分页 -->
+		<select id="queryOrderAllList" parameterType="lyons.order.entity.Order" resultMap="OrderResult">
+		        <include refid="columnsSelect"></include>
+		        <!-- select * from 
+				(
+				   select commodity.*,rownum num
+				   from commodity
+				   where rownum &lt;= #{_parameter}
+				)
+				where num &gt;= #{_paramete}
+				-->
+		</select>
+		
+	  <!-- 自己配置该resultMap的原因是 id="OrderResult" 无对应的返回类型   没配置成功的原因可能是 resultMap代替parameterMap
+	  <resultMap type="java.util.Map" id="queryOrderSum">
+	    <result column="commodity_name" jdbcType="VARCHAR" property="commodity_name"/>
+	    <result column="SUM(sum)" jdbcType="VARCHAR" property="SUM(sum)"/>
+	  </resultMap>
+	  -->
+		<select id="queryOrderListByuserName" parameterType="String" resultMap="OrderResult">
+		        <include refid="columnsSelect"/>
+		  <where> 
+	           <!-- 传来String类型以及基本数据类型时的参数获取方式： #{_parameter} -->
+	        <if test="_parameter != null and !(&quot;&quot;.equals(_parameter.trim()))">
+                username = #{_parameter}                    
+            </if>
+          </where>  
+            <!--  
+			    GROUP BY ${commodity_name}  查询出来的相同数据没有相加
+			    HAVING SUM(sum)>0
+			-->
+		</select>
+		
+		
+	  <!-- parameterType:自定义的对象类型（注意文件夹间用点间隔） test=: 与实体类中的变量名对应-->
+	  <!-- <where>  自动拼接where 1=1、and 等等 -->
+		<select id="queryOrderByKeyName" parameterType="lyons.order.entity.Order" resultMap="OrderResult">
+	         <include refid="columnsSelect"/>
+	     <where>  
+		    <if test="keyWord != null and !(&quot;&quot;.equals(keyWord.trim()))"><!-- 注意and代表&& 双引号的表示  -->
+			    commodity_name LIKE '%'|| #{keyWord} ||'%'                      
+		    </if>
+		    <if test="userName != null and !(&quot;&quot;.equals(userName.trim()))"> 
+			    username = #{userName}       <!-- #{变量名} 取值 -->
+		    </if>
+		  </where>
+		</select>
+
+
+<!-- 删除订单系 --> 
+		<delete id="deleteOrderOneById" parameterType="int" >
+		    
+		        DELETE FROM orderform WHERE id = #{_parameter} 
+            
+		</delete>
+		
+		<delete id="deleteOrderBatch" parameterType="java.util.List">
+		  
+		  DELETE FROM orderform WHERE id 
+		  IN(
+		      <!-- collection:指向集合 item:迭代出来的项 separator:自定义分割符-->
+		      <foreach collection="list" index="" item="item" separator=",">     
+		          #{item}
+		      </foreach>
+		    )
+		  
+		</delete>
+		
+
+		
+<!-- 插入订单系 -->
+    <!-- 批量插入数据 sql不熟悉的可以参考博客：http://www.voidcn.com/blog/mingtianhaiyouwo/article/p-5959712.html -->
+	<insert id="insertOrderBatch" parameterType="java.util.List"> <!-- 传来的是 List<order> ,所以是集合collection -->
+	            
+	            INSERT INTO orderForm(username,commodity_name,commodity_price,sum)
+		    <foreach collection="collection" item="item" separator="UNION ALL"> <!-- 注意集合：collection="collection" -->
+                (
+	                SELECT 
+	                    '${item.userName}','${item.commodity_name}',${item.commodity_price},${item.sum} 
+	                from dual
+                )
+		    </foreach>
+	</insert>
+		
+</mapper>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="lyons.dao.GoodsClassifyDao">
+
+	  <resultMap type="lyons.goods.entity.GoodsClassify" id="ClassifyResult">  
+	    <id column="id" jdbcType="INTEGER" property="id"/>
+	    <result column="gname" jdbcType="VARCHAR" property="gname"/>
+	    
+	    <!-- 作为子表时使用该标签(多对一)。与collection语法一致
+	        <association property="#" resultMap=""/>
+	    -->
+	  </resultMap>
+       
+       <!-- <sql id="columns"></sql> -->
+</mapper>
