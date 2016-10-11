@@ -31,7 +31,7 @@ public final class GoodsDao
 		boolean bool = false;
 		conn = DbConn.getconn();
 		String sql = "INSERT INTO GOODS(GNAME,GPRICE,GNUM) VALUES(?,?,?)";
-			
+			//System.out.println("das ");
 			try
 			{
 				pstmt = conn.prepareStatement(sql);
