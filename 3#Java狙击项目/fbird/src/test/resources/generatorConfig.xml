@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<!-- <generatorConfiguration>
+  <context id="context1">
+    <jdbcConnection connectionURL="???" driverClass="???" password="scott" userId="tiger" />
+    <javaModelGenerator targetPackage="src/model" targetProject="???" />
+    <sqlMapGenerator targetPackage="???" targetProject="???" />
+    <javaClientGenerator targetPackage="???" targetProject="???" type="XMLMAPPER" />
+    <table schema="???" tableName="???">
+      <columnOverride column="???" property="???" />
+    </table>
+  </context>
+</generatorConfiguration> -->
+
+<generatorConfiguration>  
+ <!-- 数据库访问的驱动包 -->  
+  <classPathEntry location="D:\app\abc\product\11.2.0\dbhome_1\jdbc\lib\ojdbc5.jar" />    
+<context id="DB2Tables" targetRuntime="MyBatis3">    
+  <commentGenerator>    
+   <!-- 是否去除自动生成的注释  这个最好设置成false  否则容易出现重复代码 -->  
+    <property name="suppressAllComments" value="false" />    
+  </commentGenerator>    
+  <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"    
+          connectionURL="jdbc:oracle:thin:@localhost:1521:orcl"    
+          userId="ffbird"    
+          password="ffbird">    
+  </jdbcConnection>    
+  <javaTypeResolver >    
+     <property name="forceBigDecimals" value="false" />    
+  </javaTypeResolver>    
+  <!-- javabeen生成的地方 -->  
+  <javaModelGenerator targetPackage="lyons.common.model.goods" targetProject="fbird">    
+      <property name="enableSubPackages" value="true" />    
+      <property name="trimStrings" value="true" />    
+  </javaModelGenerator>    
+ <sqlMapGenerator targetPackage="mybatis" targetProject="fbird"> 
+ 	<property name="enableSubPackages" value="false" /> 
+ </sqlMapGenerator>  
+<!-- mapper生成的地方 -->    
+ <javaClientGenerator type="XMLMAPPER" targetPackage="lyons.common.mapper.goods" targetProject="fbird"> 
+ 	<property name="enableSubPackages" value="true" /> 
+ </javaClientGenerator>    
+  <!-- 表名和生成的实体名 -->  
+<!--    <table tableName="users" domainObjectName="users" >
+   	<columnOverride column="loginname" property="loginname" />
+   </table>   -->
+   <table tableName="g_car" domainObjectName="GCar"  />    
+</context>    
+     
+</generatorConfiguration>  

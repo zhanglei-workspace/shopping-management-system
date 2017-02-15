@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!DOCTYPE xml>
+<configuration>
+
+	<property>
+		<name>mapred.job.tracker</name>
+		<value>lyons:9001</value>
+	</property>
+
+</configuration>

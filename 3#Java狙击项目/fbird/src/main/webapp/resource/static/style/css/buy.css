@@ -1,0 +1,62 @@
+@CHARSET "UTF-8";
+
+.buy-tip{
+    width:990px;
+    margin: 15px auto;
+    padding: 10px;
+    border: 1px dotted #B2D1FF;
+}
+.buy-tip-column-5{
+	margin: 3px auto;
+}
+.buy-td{
+	display: inline-block;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    border-bottom: 3px solid #b2d1ff;
+    font-size: 12px;
+    vertical-align: bottom;
+}
+.td-0{
+	width: 228px;
+    margin-left: 0;
+}
+.td-1{
+	width: 198px;
+}
+.td-2{
+	width: 148px;
+}
+.td-3{
+	width: 148px;
+}
+.td-4{
+	width: 168px;
+}
+
+.th-left{
+    display: inline-block;
+	text-align:center;
+	height: 44px;
+    line-height: 44px;
+    margin: 0 2px;
+}
+.buy-tip-column{
+	margin: auto;
+}
+.buy-confirm{
+	width: 990px;
+	padding: 100px 0px;
+}
+.buy-address{
+	float: left;
+    border: dashed #61cfd4;
+    padding: 10px;
+}
+.buy-submit{
+	float: right;
+	margin: 40px;
+	color: #fff;
+	
+}

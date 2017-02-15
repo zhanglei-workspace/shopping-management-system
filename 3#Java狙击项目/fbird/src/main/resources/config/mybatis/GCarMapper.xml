@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lyons.common.mapper.goods.GCarMapper">
+  <resultMap id="BaseResultMap" type="GCar">
+    <id column="G_CAR_ID" jdbcType="INTEGER" property="gCarId" />
+    <result column="G_CAR_U_NAME" jdbcType="VARCHAR" property="gCarUName" />
+    <result column="G_CAR_G_ID" jdbcType="INTEGER" property="gCarGId" />
+    <result column="G_CAR_G_NAME" jdbcType="VARCHAR" property="gCarGName" />
+    <result column="G_CAR_PRICE" jdbcType="DOUBLE" property="gCarPrice" />
+    <result column="G_CAR_NUMBER" jdbcType="INTEGER" property="gCarNumber" />
+    <result column="G_CAR_G_MADE" jdbcType="VARCHAR" property="gCarGMade" />
+    <result column="G_CAR_CREATE_DATE" jdbcType="DATE" property="gCarCreateDate" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    G_CAR_ID, G_CAR_U_NAME, G_CAR_G_ID, G_CAR_G_NAME, G_CAR_PRICE, G_CAR_NUMBER, G_CAR_G_MADE, G_CAR_CREATE_DATE
+  </sql>
+  <sql id="Insert_Column_List">
+  	 G_CAR_U_NAME, G_CAR_G_ID, G_CAR_G_NAME, G_CAR_PRICE, G_CAR_NUMBER, G_CAR_G_MADE
+  </sql>
+  
+  <select id="selectByuName" parameterType="String" resultMap="BaseResultMap">
+  	SELECT
+  		<include refid="Base_Column_List"/>
+  	FROM  g_car
+  	WHERE g_car_u_name = #{username}
+  </select>
+  
+  <delete id="deleteByCondition">
+	  DELETE FROM g_car
+	  WHERE 
+	  		g_car_g_id = #{gCarGId} 
+	  	AND
+	  		g_car_u_name = #{gCarUName}
+  </delete>
+  
+  <insert id="addGoods" parameterType="GCar">
+  	 INSERT INTO g_car
+  	 	( 
+  	 		<include refid="Insert_Column_List"/>
+  	 	)
+     VALUES
+        (#{gCarUName},#{gCarGId},#{gCarGName},#{gCarPrice},#{gCarNumber},#{gCarGMade})
+
+  </insert>
+  
+</mapper>

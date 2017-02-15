@@ -1,0 +1,199 @@
+@charset "utf-8";
+/* 登录注册 CSS Document */
+/* ------------------*****login*******--------------- */
+/* header */
+.top-main-login {
+    margin: 0px auto;
+    width: 1190px;
+    height: 65px;
+    border-bottom: 1px solid #ddd;
+}
+
+.ff-logo-cn{
+    height: 48px;
+    line-height: 90px;
+    color: #1ec32c;
+    font-size: 30px;
+    text-shadow: 1px 1px 2px #0fd414;
+}
+
+.advice
+{
+    margin-top: 45px;
+    float: right;
+}
+
+/************************content-top-login********************/
+
+.content-top-login{
+    height: 582px;
+    width: 1200px;
+    position: relative;
+    clear: both;
+}
+
+/* left-ad */
+.login-left {
+	position: absolute;
+    width: 630px;
+    height: 480px;
+    left: 120px;
+    margin: 20px auto;
+}
+.login-left > img {
+    width: 630px;
+    height: 542px;
+}
+
+/* login-right */
+
+.login-right{
+    position: absolute;
+    width: 355px;
+    height: 380px;
+    top: 100px;
+    right: 0px;
+    background-color: rgba(222, 224, 222, 0.21);
+}
+
+.static-form {
+	margin: 10px 25px;
+    position: relative;
+    display: block;
+}
+
+.login-title {
+    height: 18px;
+    line-height: 18px;
+    font-size: 16px;
+    color: #3c3c3c;
+    margin-top: 9px;
+    padding-bottom: 8px;
+    font-weight: 700;
+}
+
+.static-form .login-text{
+    width: 240px;
+    font-size: 14px;
+    line-height: 18px;
+    height: 18px;
+    padding: 11px 8px 11px 50px;
+    background: #faffbd;
+    border: 1px solid #ddd;
+}
+
+.static-form .field {
+    margin-top: 38px;
+    position: relative;
+}
+
+.login-icon{
+	padding: 6px;
+}
+
+.static-form .field label {
+    display: block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    color: #fff;
+    background: #ddd;
+    text-align: center;
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    outline: 0;
+}
+
+label {
+    cursor: default;
+}
+
+.login-message{
+    margin: 8px 40px;
+    width: 200px;
+    font-size: 13px;
+    position: absolute;
+	
+}
+.uNameMessage{
+	display: none;
+}
+.pswdMessage{
+	display: none;
+}
+.submitMessage{
+	display: none;
+}
+#repeatPswdMessage{
+	display: none;
+}
+.login-button{
+    width: 300px;
+    height: 42px;
+    border: 0;
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: middle;
+    line-height: 42px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    background: #1ec32c;
+    border-radius: 3px;
+    cursor: pointer;
+    zoom: 1;
+    letter-spacing: 10px;
+}
+
+.login-links a {
+	color: #45c54a;
+    margin-right: 10px;
+}
+
+.login-links {
+    margin-top: 45px;
+    overflow: hidden;
+    text-align: right;
+}
+.fn-left {
+    float: left!important;
+}
+.pointer{
+	cursor: pointer;
+}
+/* ------------------*****register*******--------------- */
+.register-content{
+	width:100%;
+	margin: 3px auto;
+}
+.register-right{
+	position: absolute;
+    width: 355px;
+    height: 440px;
+    top: 80px;
+    right: 0px;
+    border-radius: 8px;
+    background-color: rgba(222, 224, 222, 0.21);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

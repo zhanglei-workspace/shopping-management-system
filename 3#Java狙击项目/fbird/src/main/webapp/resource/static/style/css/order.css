@@ -1,0 +1,45 @@
+@CHARSET "UTF-8";
+
+.order-top { 
+	width:1100px;
+    margin: 15px auto;
+    padding: 10px;
+    border: 1px dotted #B2D1FF;
+	
+	}
+.order-Content { 
+	border:1px solid #ddd; 
+	padding:10px 30px; 
+	background:#fff;
+	}
+.order-Content .btn02 { 
+	float: right;
+    font-size: 15px;
+    width: 100px;
+    margin: 10px;
+	}
+.fix { 
+	clear:both; 
+	zoom:1; 
+	}
+	
+.tab{
+	width:100%;
+	}
+.tab tr{
+	background:#FFFACD;
+	}
+.tab th { 
+	font-weight:normal; 
+	height:29px; 
+	line-height:29px; 
+	background:#e5f0ff; 
+	border-top:1px solid #fff; 
+	border-bottom:1px solid #ddd;
+	}
+.tab td{ 
+	text-align:center; 
+	padding:5px 0px; 
+	border-bottom:1px solid #ddd;
+	}
+	

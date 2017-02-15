@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lyons.common.mapper.user.UUserMapper">
+  <resultMap id="BaseResultMap" type="UUser">
+    <id column="U_NAME" jdbcType="VARCHAR" property="uName" />
+    <result column="U_ID" jdbcType="INTEGER" property="uId" />
+    <result column="U_NICK_NAME" jdbcType="VARCHAR" property="uNickName" />
+    <result column="U_SEX" jdbcType="INTEGER" property="uSex" />
+    <result column="U_PASSWORD" jdbcType="VARCHAR" property="uPassword" />
+    <result column="U_EMAIL" jdbcType="VARCHAR" property="uEmail" />
+    <result column="U_STATE" jdbcType="INTEGER" property="uState" />
+    <result column="U_IS_SELLER" jdbcType="INTEGER" property="uIsSeller" />
+    <result column="U_LAST_LOGIN_TIME" jdbcType="DATE" property="ulastLoginTime" />
+    <result column="U_CREATE_DATE" jdbcType="DATE" property="uCreateDate" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    U_NAME, U_ID, U_NICK_NAME, U_SEX, U_PASSWORD, U_EMAIL, U_STATE, U_IS_SELLER, U_LAST_LOGIN_TIME,
+    U_CREATE_DATE
+  </sql>
+  
+  <!-- login -->
+  <select id="loginByNamePswd" parameterType="String" resultType="UUser" >
+  	SELECT 
+    <include refid="Base_Column_List" />
+    FROM u_user
+    WHERE u_name = #{uName} and u_password = #{pswd}
+  </select> 
+  
+  <!-- checking for the existence of username --> 
+  <select id="findUsernameByUsername" parameterType="String" resultType="String">
+  	SELECT u_name
+  	FROM u_user
+  	WHERE u_name = #{uName}
+  </select>
+  
+  <!-- register -->
+  <insert id="register" parameterType="UUser">
+  	INSERT INTO
+  		u_user(u_name,u_password,u_email) 
+  	VALUES
+  		( #{uName}, #{uPassword}, #{uEmail} )
+  </insert> 
+  
+  <update id="updateByPrimaryKeySelective" parameterType="UUser">
+    update U_USER
+    <set>
+      <if test="uNickName != null  and !(&quot;&quot;.equals(uNickName.trim()))">
+        U_NICK_NAME = #{uNickName,jdbcType=VARCHAR},
+      </if>
+      <if test="uSex != null">
+        U_SEX = #{uSex,jdbcType=INTEGER},
+      </if>
+      <if test="uPassword != null  and !(&quot;&quot;.equals(uPassword.trim()))">
+        U_PASSWORD = #{uPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="uEmail != null and !(&quot;&quot;.equals(uEmail.trim()))">
+        U_EMAIL = #{uEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="uState != null">
+        U_STATE = #{uState,jdbcType=INTEGER},
+      </if>
+      <if test="uIsSeller != null">
+        U_IS_SELLER = #{uIsSeller,jdbcType=INTEGER},
+      </if>
+      <if test="uLastLoginTime != null">
+        U_LAST_LOGIN_TIME = #{uLastLoginTime,jdbcType=DATE},
+      </if>
+    </set>
+    where U_NAME = #{uName,jdbcType=VARCHAR}
+  </update>
+  
+
+</mapper>

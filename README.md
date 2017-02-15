@@ -3,8 +3,8 @@ README
 前言：该项目是多个项目的合集,每个文件夹下存在一个Java项目。目的在于为不同知识层次的Java学习者提供一个项目实战晋级平台,便于Java爱好者有步伐频率的学习Java这门庞大的艺术体系。项目难度： `0-? --> 浅-深`。
 ######*此项目代码仅可用于个人自我学习,谢绝任何组织或个人用于学生毕业设计、商业性传播等一切功利性行为。
 ****
-###　　　　　　　　　　　　    Author: lyons(zhanglei)
-###　　　　　　　　　     E-mail:zhangleiworkspace@gmail.com
+###　　　　　　　　　　　　        Author: lyons(zhanglei)
+###　　　　　　　　　         E-mail:zhangleiworkspace@gmail.com
 
 ===========================
 
@@ -33,12 +33,13 @@ README
         * - [x] JavaScript
 * [3：Java狙击项目](#project3) 
     * 具备知识
-        * - [ ] maven
-        * - [ ] Spring
-        * - [ ] Struts2
-        * - [ ] Hibernate
-        * - [ ] Lucene
-        *  未完待续...
+        * - [x] Maven
+        * - [x] Shiro
+        * - [x] Mybatis
+        * - [x] Spring
+        * - [x] SpringMVC
+        * - [x] jQuery
+        *   包括但不限于上述所列知识...
 
 
 <br><br>
@@ -89,3 +90,20 @@ README
                 需要学习者了解 maven、Spring MVC 等相关知识
                 因已使用mybatis故Hibernate不再在此项目中涉及，
                 两个者思想类似、职能相同，喜欢的同学可以自己研究重构。
+
+
+<br><br>
+
+
+##<a name="project3"/>___3# Java狙击项目___
+#### 飞鸟速购
+
+###
+
+    该项目独立于上述项目存在。
+ 	此项目涉猎的知识更为广泛。
+ 	时间仍然很难连续起来，间断性推送中。。。
+    
+    开发工具：Eclipse + Oracle
+    开发框架：shiro+spring+springMVc+mybatis
+    另：jdk 1.8

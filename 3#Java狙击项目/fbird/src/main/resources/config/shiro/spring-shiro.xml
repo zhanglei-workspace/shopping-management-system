@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<description> ==[ Shiro Config ]== </description>
+	
+	<!-- 安全管理器  -->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<!--设置自定义Realm -->
+		<property name="realm" ref="shiroDbRealm" />
+		<!-- 缓存管理器 -->
+		<property name="cacheManager" ref="shiroEhcacheManager"/>
+	</bean>
+	
+	<!-- 认证 授权  -->
+	<bean id="shiroDbRealm" class="lyons.core.shiro.token.ShiroDbRealm"/>
+	<!-- 用户授权信息Cache, 采用EhCache -->
+	<bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+		<property name="cacheManagerConfigFile" value="classpath:config/shiro/ehcache-shiro.xml" />
+	</bean>
+	
+	<!-- Shiro Filter -->
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<!-- 安全管理器 -->
+		<property name="securityManager" ref="securityManager" />
+		<!-- 默认的登录访问url -->
+		<property name="loginUrl" value="/index" />
+		<!-- 认证成功后跳转的url。不配置：认证成功后调到上一级链接 -->
+<!-- 		<property name="successUrl" value="/index" /> -->
+		<!-- 没有权限跳转的url -->
+		<property name="unauthorizedUrl" value="/error/unauth" />
+		<property name="filterChainDefinitions">
+			<value>
+				/resource/** = anon <!-- 不需要认证 -->
+				<!-- /** = authc 需要认证 -->
+			</value>
+		</property>
+	</bean>
+	
+	<!-- 在方法中 注入 securityManager ，进行代理控制 -->
+	<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="staticMethod" value="org.apache.shiro.SecurityUtils.setSecurityManager" />
+		<property name="arguments" ref="securityManager" />
+	</bean>
+	
+    <!-- Shiro生命周期处理器-->
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+	
+	<!-- AOP式方法级权限检查 -->
+	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+		depends-on="lifecycleBeanPostProcessor" />
+		
+	<!-- 启用shrio授权注解拦截方式 -->
+	<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+		<property name="securityManager" ref="securityManager" />
+	</bean>
+	
+</beans>
+

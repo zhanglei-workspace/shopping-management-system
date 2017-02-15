@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lyons.common.mapper.goods.GOrderMapper">
+  <resultMap id="BaseResultMap" type="GOrder">
+    <id column="G_ORDER_ID" jdbcType="INTEGER" property="gOrderId" />
+    <result column="G_ORDER_U_NAME" jdbcType="VARCHAR" property="gOrderUName" />
+    <result column="G_ORDER_G_ID" jdbcType="INTEGER" property="gOrderGId" />
+    <result column="G_ORDER_PRICE" jdbcType="DOUBLE" property="gOrderPrice" />
+    <result column="G_ORDER_NUMBER" jdbcType="INTEGER" property="gOrderNumber" />
+    <result column="G_ORDER_CREATE_DATE" jdbcType="DATE" property="gOrderCreateDate" />
+    <result column="G_ORDER_RECEIVER" jdbcType="VARCHAR" property="receiver" />
+    <result column="G_ORDER_PHONE" jdbcType="VARCHAR" property="gOrderPhone" />
+    <result column="G_ORDER_ADDRESS" jdbcType="VARCHAR" property="gOrderAddress" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    G_ORDER_ID, G_ORDER_U_NAME, G_ORDER_G_ID, G_ORDER_PRICE, G_ORDER_NUMBER, G_ORDER_CREATE_DATE, 
+    G_ORDER_RECEIVER, G_ORDER_PHONE, G_ORDER_ADDRESS
+  </sql>
+  
+  	<!-- 批量插入订单 -->
+	  <insert id="insertsBatchOrder" parameterType="java.util.List">
+		  INSERT INTO g_order
+		  		(g_order_u_name, g_order_g_id, g_order_price, g_order_number,
+		  			g_order_receiver,g_order_phone, g_order_address)
+		   <foreach collection="collection" item="item" separator="UNION ALL">
+                (
+	                SELECT 
+	                    '${item.g_order_u_name}','${item.g_order_g_id}',${item.g_order_price},${item.g_order_number},
+	                    '${item.g_order_receiver}','${item.g_order_phone}',${item.g_order_address}
+	                FROM dual
+                )
+		    </foreach>
+	  </insert>
+		
+</mapper>

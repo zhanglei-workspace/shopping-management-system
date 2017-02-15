@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!DOCTYPE xml>
+<configuration>
+
+	 <property>
+   		<name>hadoop.tmp.dir</name>
+   		<value>/hadoop</value>
+	 </property>
+
+	 <property>
+		<name>dfs.name.dir</name>
+		<value>/hadoop/name</value>
+	 </property>
+
+	 <property>
+		<name>fs.default.name</name>
+		<value>hdfs://lyons:9001</value>
+	 </property>
+</configuration>
