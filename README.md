@@ -1,54 +1,54 @@
 README
 ===========================
-前言：该项目是多个项目的合集,每个文件夹下存在一个Java项目。目的在于为不同知识层次的Java学习者提供一个项目实战晋级平台,便于Java爱好者有步伐频率的学习Java这门庞大的艺术体系。项目难度： `0-? --> 浅-深`。
-######*此项目代码仅可用于个人自我学习,谢绝任何组织或个人用于学生毕业设计、商业性传播等一切功利性行为。
+前言：该项目是多个项目的合集,每个文件夹下存在一个Java项目。目的在于为不同知识层次的Java学习者提供一个项目实战晋级平台,便于Java爱好者有步伐频率的学习Java这门庞大的艺术体系。项目难度： `0-? --> 浅-深`。<br/>
+☆☆☆<b>此项目代码仅可用于个人自我学习,谢绝任何组织或个人用于学生毕业设计、商业性传播等一切功利性行为。</b><br/>
+☆tips: communication group number is 151162474 by qq.
 ****
-###　　　　　　　　　　　　        Author: lyons(zhanglei)
-###　　　　　　　　　         E-mail:zhangleiworkspace@gmail.com
-
-===========================
+　　　　　　　　　　　　         Author: lyons(zhanglei) &nbsp; &nbsp; E-mail:zhangleiworkspace@gmail.com                      
+　　　　　　　　　　　　    
 
 
 
-##<a name="index"/>目录
+<a name="index"/>目录
 * [0：Java基础项目](#project0)
     * 具备知识
-        * - [x] sql
-        * - [x] JDBC
-        * - [x] Java基础
+         - [x] sql
+         - [x] JDBC
+         - [x] Java基础
 * [1：Java菜鸟项目](#project1) 
     * 具备知识
-        * - [x] sql
-        * - [x] JDBC
-        * - [x] Java基础
-        * - [x] HTML/CSS
-        * - [x] JSP/Servlet
+         - [x] sql
+         - [x] JDBC
+         - [x] Java基础
+         - [x] HTML/CSS
+         - [x] JSP/Servlet
 * [2：Java入门项目](#project2) 
     * 具备知识
-        * - [x] sql
-        * - [x] Java基础
-        * - [x] HTML/CSS
-        * - [x] JSP/Servlet
-        * - [x] MyBatis
-        * - [x] JavaScript
+         - [x] sql
+         - [x] Java基础
+         - [x] HTML/CSS
+         - [x] JSP/Servlet
+         - [x] MyBatis
+         - [x] JavaScript
 * [3：Java狙击项目](#project3) 
     * 具备知识
-        * - [x] Maven
-        * - [x] Shiro
-        * - [x] Mybatis
-        * - [x] Spring
-        * - [x] SpringMVC
-        * - [x] jQuery
-        *   包括但不限于上述所列知识...
+         - [x] Maven
+         - [x] Shiro
+         - [x] Mybatis
+         - [x] Spring
+         - [x] SpringMVC
+         - [x] jQuery
+         *   包括但不限于上述所列知识...
 
 
 <br><br>
 
 
-##<a name="project0"/>___0# Java基础项目___
-####Java控制台显示界面。
+<a name="project0"/>___0 Java基础项目___
+#### Java控制台显示界面。
 
-### 
+###
+
   Java基础项目(商超购物管理系统)具有商品管理、前台收银、商品库存等功能，本项目使用java作为开发语言，
   `原生JDBC`连接Oracle数据库存储数据，可以有效地锻炼和加强开发者运用Java、oracle数据库及基本sql编程开发的能力。
   本项目适用于有Java、基本sql基础的开发者进行实战训练。(基础不错的同学可以直接学习 1# Java菜鸟项目 )
@@ -59,10 +59,11 @@ README
 <br><br>
 
 
-##<a name="project1"/>___1# Java菜鸟项目___
-####JSP显示页面，模拟购物网站。
+<a name="project1"/>___1 Java菜鸟项目___
+#### JSP显示页面，模拟购物网站。
 
 ###
+
     时间断断续续...
     目前推送完成 注册、登陆、浏览商品、购物车、查询商品、退出 等模块。
     此项目雏形完成，后续改进细节。相对于 《0# Java基础项目》 本项目知识量较大，慢慢消化。
@@ -73,7 +74,7 @@ README
 <br><br>
 
 
-##<a name="project2"/>___2# Java入门项目___
+<a name="project2"/>___2 Java入门项目___
 #### 改为mybatis连接数据库。
 
 ###
@@ -95,7 +96,7 @@ README
 <br><br>
 
 
-##<a name="project3"/>___3# Java狙击项目___
+<a name="project3"/>___3 Java狙击项目___
 #### 飞鸟速购
 
 ###
