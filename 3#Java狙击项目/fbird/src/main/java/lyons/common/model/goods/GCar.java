@@ -1,7 +1,15 @@
 package lyons.common.model.goods;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lyons.common.utils.ModelSetterUtil;
+
 import java.util.Date;
 
+import static lyons.common.utils.ModelSetterUtil.setFieldWithNotNullValue;
+
+@Data
+@NoArgsConstructor
 public class GCar {
     
     /** 购物车编号 */
@@ -21,70 +29,29 @@ public class GCar {
     /** 创建时间 */
     private Date gCarCreateDate;
 
-    public GCar(){}
     public GCar(int gCarId, String gCarUName, int gCarGId, String gCarGName, double gCarPrice, 
         int gCarNumber,String gCarGMade, Date gCarCreateDate)
     {
         super();
         this.gCarId = gCarId;
-        this.gCarUName = gCarUName;
+        this.setgCarUName(gCarUName);
         this.gCarGId = gCarGId;
         this.setgCarGName(gCarGName);
         this.gCarPrice = gCarPrice;
         this.gCarNumber = gCarNumber;
-        this.gCarGMade = gCarGMade;
+        this.setgCarGMade(gCarGMade);
         this.gCarCreateDate = gCarCreateDate;
     }
 
-    
-    
-    public int getgCarId() {
-        return gCarId;
-    }
-    public void setgCarId(int gCarId) {
-        this.gCarId = gCarId;
-    }
-    public String getgCarUName() {
-        return gCarUName;
-    }
+
     public void setgCarUName(String gCarUName) {
-        this.gCarUName = gCarUName == null ? null : gCarUName.trim();
-    }
-    public int getgCarGId() {
-        return gCarGId;
-    }
-    public void setgCarGId(int gCarGId) {
-        this.gCarGId = gCarGId;
-    }
-    public double getgCarPrice() {
-        return gCarPrice;
-    }
-    public void setgCarPrice(double gCarPrice) {
-        this.gCarPrice = gCarPrice;
-    }
-    public int getgCarNumber() {
-        return gCarNumber;
-    }
-    public void setgCarNumber(int gCarNumber) {
-        this.gCarNumber = gCarNumber;
-    }
-    public String getgCarGMade() {
-        return gCarGMade;
+        this.gCarUName = setFieldWithNotNullValue(gCarUName);
     }
     public void setgCarGMade(String gCarGMade) {
-        this.gCarGMade = gCarGMade == null ? null : gCarGMade.trim();
-    }
-    public Date getgCarCreateDate() {
-        return gCarCreateDate;
-    }
-    public void setgCarCreateDate(Date gCarCreateDate) {
-        this.gCarCreateDate = gCarCreateDate;
-    }
-    public String getgCarGName(){
-        return gCarGName;
+        this.gCarGMade = setFieldWithNotNullValue(gCarGMade);
     }
     public void setgCarGName(String gCarGName)
     {
-        this.gCarGName = gCarGName == null ? null : gCarGName.trim();
+        this.gCarGName = setFieldWithNotNullValue(gCarGName);
     }
 }

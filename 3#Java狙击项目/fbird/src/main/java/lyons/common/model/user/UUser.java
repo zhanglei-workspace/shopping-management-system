@@ -3,7 +3,11 @@ package lyons.common.model.user;
 
 import java.util.Date;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import net.sf.json.JSONObject;
+
+import static lyons.common.utils.ModelSetterUtil.setFieldWithNotNullValue;
 
 /**
  * @Description: 用户实体类
@@ -12,6 +16,8 @@ import net.sf.json.JSONObject;
  * @date: 2017年1月17日 下午5:36:03
  * @version: [1.0]
  */
+@Data
+@NoArgsConstructor
 public class UUser
 {
     /** 用户名 */
@@ -34,8 +40,7 @@ public class UUser
     private Date uLastLoginTime;
     /** 创建日期 */
     private Date uCreateDate;
-    
-    public UUser() {}
+
     public UUser(String uName, int uId, String uNickName, int uSex, String uPassword, String uEmail, int uState,
         int uIsSeller, Date ulastLoginTime, Date uCreateDate)
     {
@@ -57,68 +62,21 @@ public class UUser
         return JSONObject.fromObject(this).toString();
     }
     
-    public String getuName() {
-        return uName;
-    }
+
     public void setuName(String uName) {
-        this.uName = uName == null ? null : uName.trim();
-    }
-    public int getuId() {
-        return uId;
-    }
-    public void setuId(int uId) {
-        this.uId = uId;
-    }
-    public String getuNickName() {
-        return uNickName;
-    }
-    public void setuNickName(String uNickName) {
-        this.uNickName = uNickName == null ? null : uNickName.trim();
-    }
-    public int getuSex() {
-        return uSex;
-    }
-    public void setuSex(int uSex) {
-        this.uSex = uSex;
-    }
-    public String getuPassword() {
-        return uPassword;
-    }
-    public void setuPassword(String uPassword) {
-        
-        this.uPassword = uPassword == null ? null : uPassword.trim();     
-    }
-    public String getuEmail() {
-        return uEmail;
-    }
-    public void setuEmail(String uEmail) {
-        this.uEmail = uEmail == null ? null : uEmail.trim();
-    }
-    public int getuState() {
-        return uState;
-    }
-    public void setuState(int uState) {
-        this.uState = uState;
-    }
-    public int getuIsSeller() {
-        return uIsSeller;
-    }
-    public void setuIsSeller(int uIsSeller) {
-        this.uIsSeller = uIsSeller;
-    }
-    public Date getulastLoginTime()
-    {
-        return uLastLoginTime;
-    }
-    public void setulastLoginTime(Date ulastLoginTime)
-    {
-        this.uLastLoginTime = ulastLoginTime;
-    }
-    public Date getuCreateDate() {
-        return uCreateDate;
-    }
-    public void setuCreateDate(Date uCreateDate) {
-        this.uCreateDate = uCreateDate;
+        this.uName = setFieldWithNotNullValue(uName);
     }
 
+    public void setuNickName(String uNickName) {
+        this.uNickName = setFieldWithNotNullValue(uNickName);
+    }
+
+    public void setuPassword(String uPassword) {
+        
+        this.uPassword = setFieldWithNotNullValue(uPassword);
+    }
+
+    public void setuEmail(String uEmail) {
+        this.uEmail = setFieldWithNotNullValue(uEmail);
+    }
 }
