@@ -199,9 +199,16 @@
 	    <artifactId>gson</artifactId>
 	    <version>${gson.version}</version>
 		</dependency>
-		
-		
-		
+		<!-- for spicing up your code with <3  from bn1knb-->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.16.22</version>
+			<scope>provided</scope>
+		</dependency>
+
+
+
 
 		<!-- Hadoop依赖 -->
 <!-- 		<dependency>

@@ -22,7 +22,7 @@ public class MathUtil
      */
     public static String getMd5(String str)
     {
-       return StringUtils.isBlank(str) ? null : DigestUtils.md5Hex(str.trim()+"2@&%/*Wd"); 
+       return StringUtils.isBlank(str) ? "" : DigestUtils.md5Hex(str.trim()+"2@&%/*Wd");
     }
     
     /**
@@ -34,7 +34,7 @@ public class MathUtil
      */
     public static char[] getCharMd5(String str)
     {
-        return StringUtils.isBlank(str) ? null : DigestUtils.md5Hex(str.trim()+"2@&%/*Wd").toCharArray(); 
+        return StringUtils.isBlank(str) ? "" : DigestUtils.md5Hex(str.trim()+"2@&%/*Wd").toCharArray();
     }
    
 }
