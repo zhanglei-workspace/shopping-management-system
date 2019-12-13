@@ -2,8 +2,11 @@ package lyons.common.model.goods;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lyons.common.utils.ModelSetterUtil;
 
 import java.util.Date;
+
+import static lyons.common.utils.ModelSetterUtil.setFieldWithNotNullValue;
 
 @Data
 @NoArgsConstructor
@@ -42,13 +45,13 @@ public class GCar {
 
 
     public void setgCarUName(String gCarUName) {
-        this.gCarUName = gCarUName == null ? null : gCarUName.trim();
+        this.gCarUName = setFieldWithNotNullValue(gCarUName);
     }
     public void setgCarGMade(String gCarGMade) {
-        this.gCarGMade = gCarGMade == null ? null : gCarGMade.trim();
+        this.gCarGMade = setFieldWithNotNullValue(gCarGMade);
     }
     public void setgCarGName(String gCarGName)
     {
-        this.gCarGName = gCarGName == null ? null : gCarGName.trim();
+        this.gCarGName = setFieldWithNotNullValue(gCarGName);
     }
 }
