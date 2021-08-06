@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/shopping-management-system/src/lyons/dao/GoodsDao.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/shopping-management-system/src/lyons/entity/Goods.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/shopping-management-system/src/lyons/page/GoodsPage.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/shopping-management-system/src/lyons/page/GsalesPage.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/shopping-management-system/src/lyons/page/MainPage.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/shopping-management-system/src/lyons/page/SalesManPage.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/shopping-management-system/src/lyons/tools/Arith.java" charset="GBK" />
+  </component>
+</project>
