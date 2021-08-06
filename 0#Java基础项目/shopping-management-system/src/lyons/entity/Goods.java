@@ -1,18 +1,19 @@
 package lyons.entity;
 /**
- * goods ÉÌÆ·ÊµÌåÀà
+ * goods å•†å“å®ä½“ç±»
  * @author lyons(zhanglei)
  */
 public final class Goods
 {
- 	//Êı¾İ¿âGoods±íÖ÷æI
+ 	//æ•°æ®åº“Goodsè¡¨ä¸»éµ
 	private int gid;
 	private String gname;
 	private double gprice;
 	private int gnum;
+	private BigDecimal gpriceB;
 
 	/**
-	 * Ìí¼ÓÉÌÆ·ĞÅÏ¢
+	 * æ·»åŠ å•†å“ä¿¡æ¯
 	 * @param gname,gprice,gum
 	 */
 	public Goods(String gname,double gprice,int gum)
@@ -20,9 +21,10 @@ public final class Goods
 		this.gname  = gname;
 		this.gprice = gprice;
 		this.gnum 	= gum;
+		this.gpriceB = new BigDecimal(Double.toString(gprice));
 	}
 	/**
-	 * Õ¹Ê¾ËùÓĞÉÌÆ·
+	 * å±•ç¤ºæ‰€æœ‰å•†å“
 	 * @param gid,gname,gprice,gum
 	 */
 	public Goods(int gid,String gname,double gprice,int gum)
@@ -31,10 +33,11 @@ public final class Goods
 		this.gname  = gname;
 		this.gprice = gprice;
 		this.gnum 	= gum;
+		this.gpriceB = new BigDecimal(Double.toString(gprice));
 	}
 	
 	/**
-	 * ¸ù¾İ±àºÅ¸ü¸ÄÉÌÆ·ĞÅÏ¢
+	 * æ ¹æ®ç¼–å·æ›´æ”¹å•†å“ä¿¡æ¯
 	 * @param gid,gum
 	 */
 	public Goods(int gid,int gnum)
@@ -43,17 +46,18 @@ public final class Goods
 		this.gnum 	= gnum;
 	}
 	/**
-	 * ¸ù¾İ±àºÅ¸ü¸ÄÉÌÆ·ĞÅÏ¢
+	 * æ ¹æ®ç¼–å·æ›´æ”¹å•†å“ä¿¡æ¯
 	 * @param gid,gprice
 	 */
 	public  Goods(int gid,double gprice)
 	{
 		this.gid	= gid;
 		this.gprice = gprice;
+		this.gpriceB = new BigDecimal(Double.toString(gprice));
 	}
 	
 	/**
-	 * ¸ù¾İ±àºÅ¸ü¸ÄÉÌÆ·ĞÅÏ¢
+	 * æ ¹æ®ç¼–å·æ›´æ”¹å•†å“ä¿¡æ¯
 	 * @param gid,gname
 	 */
 	public  Goods(int gid,String gname)
@@ -62,7 +66,7 @@ public final class Goods
 		this.gname  = gname;
 	}
 
-	//¹²ÓĞ-get¡¢set-·½·¨¡£
+	//å…±æœ‰-getã€set-æ–¹æ³•ã€‚
 		public int getGid()
 		{
 			return gid;
@@ -81,7 +85,7 @@ public final class Goods
 		}
 		public double getGprice()
 		{
-			return gprice;
+			return gpriceB.doubleValue();
 		}
 		public void setGprice(double gprice)
 		{
