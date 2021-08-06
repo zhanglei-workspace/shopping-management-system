@@ -7,7 +7,7 @@ import lyons.entity.Gsales;
 import lyons.tools.ScannerChoice;
 
 /**
- * µ±ÈÕÂô³öÉÌÆ·ÁĞ±í½çÃæ
+ * å½“æ—¥å–å‡ºå•†å“åˆ—è¡¨ç•Œé¢
  * @author lyons(zhanglei)
  */
 
@@ -15,30 +15,30 @@ public final class GsalesPage
 {
 	public static void dailySaleGoodsPage()
 	{
-		System.out.println("\tÕıÔÚÖ´ĞĞÁĞ³öµ±ÈÕÊÛ³öÉÌÆ·ÁĞ±í²Ù×÷\n");
-		ArrayList<Gsales> GsalesList = new GsalesDao().dailyGsales();//µ±ÈÕÊÛ³öÉÌÆ·Êı×é¼¯
+		System.out.println("\tæ­£åœ¨æ‰§è¡Œåˆ—å‡ºå½“æ—¥å”®å‡ºå•†å“åˆ—è¡¨æ“ä½œ\n");
+		ArrayList<Gsales> GsalesList = new GsalesDao().dailyGsales();//å½“æ—¥å”®å‡ºå•†å“æ•°ç»„é›†
 
 		if (GsalesList.size() <= 0)
 		{
-			System.err.println("\t£¡£¡½ñÈÕÎŞÉÌÆ·ÊÛ³ö£¡£¡");
+			System.err.println("\tï¼ï¼ä»Šæ—¥æ— å•†å“å”®å‡ºï¼ï¼");
 			MainPage.commodityManagementPage();
 		}else 
 			{
-				System.out.println("\t\t\t\t½ñÈÕÊÛ³öÉÌÆ·ÁĞ±í\n");
-				System.out.println("\tÉÌÆ·Ãû³Æ\t\tÉÌÆ·¼Û¸ñ\t\tÉÌÆ·ÊıÁ¿\t\tÏúÁ¿\t\t±¸×¢\n");
+				System.out.println("\t\t\t\tä»Šæ—¥å”®å‡ºå•†å“åˆ—è¡¨\n");
+				System.out.println("\tå•†å“åç§°\t\tå•†å“ä»·æ ¼\t\tå•†å“æ•°é‡\t\té”€é‡\t\tå¤‡æ³¨\n");
 	
 				for (int i = 0,length = GsalesList.size(); i < length; i++)
 				{
-					//»ñÈ¡ÊÛ³öÉÌÆ·£ºgname,gprice,gnum, allSum (µ¥ÖÖÉÌÆ·µÄÏúÊÛ×ÜºÍ)
+					//è·å–å”®å‡ºå•†å“ï¼šgname,gprice,gnum, allSum (å•ç§å•†å“çš„é”€å”®æ€»å’Œ)
 					Gsales gSales = GsalesList.get(i);
 					System.out.print("\t"+gSales.getGName()+"\t\t"+gSales.getGPrice()+" $\t\t"+gSales.getGNum()+"\t\t"+gSales.getAllSnum());
 					int gNUm = gSales.getGNum();
 					if (gNUm==0)
 					{
-						System.out.println("\t\t¸ÃÉÌÆ·ÒÑÊÛ¿Õ");
+						System.out.println("\t\tè¯¥å•†å“å·²å”®ç©º");
 					}else if (gNUm<10)
 							{
-								System.out.println("\t\t¸ÃÉÌÆ·ÒÑ²»×ã10¼ş");
+								System.out.println("\t\tè¯¥å•†å“å·²ä¸è¶³10ä»¶");
 							}else 
 								{
 									System.out.println("\t\t-");
@@ -47,7 +47,7 @@ public final class GsalesPage
 				}
 				do
 				{
-					System.out.println("\n\nÊäÈë 0 ·µ»ØÉÏÒ»¼¶²Ëµ¥");
+					System.out.println("\n\nè¾“å…¥ 0 è¿”å›ä¸Šä¸€çº§èœå•");
 					String choice = ScannerChoice.ScannerInfoString();
 					if ("0".equals(choice))
 					{

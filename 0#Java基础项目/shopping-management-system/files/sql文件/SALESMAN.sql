@@ -1,4 +1,4 @@
---�������ݿ�˵���齨�� ӪҵԱ�� //SID �Զ�����
+--根据数据库说明书建立 营业员表 //SID 自动生成
 
 CREATE TABLE salesman
 (
@@ -8,7 +8,7 @@ CREATE TABLE salesman
        
 )
 
---��������
+--生成序列
 
 CREATE SEQUENCE salesman_seq
        START WITH     1
@@ -18,7 +18,7 @@ CREATE SEQUENCE salesman_seq
        NOCYCLE
        CACHE        10
        
---������
+--触发器
 
 CREATE TRIGGER salesman_trigger
        BEFORE INSERT ON salesman
@@ -27,4 +27,4 @@ CREATE TRIGGER salesman_trigger
            SELECT salesman_seq.nextval INTO :new.sid FROM dual;
        END;
        
---�û�Υ��ΨһԼ����δ�����Ϣʱ����ռ���Զ����ɵ����кţ��Ҿ���������ܴ��ڰ�ȫ������
+--用户违反唯一约束多次创建信息时，会占用自动生成的序列号（我觉得这个可能存在安全隐患）

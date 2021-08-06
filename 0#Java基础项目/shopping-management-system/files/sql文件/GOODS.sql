@@ -1,4 +1,4 @@
---¸ù¾ÝÊý¾Ý¿âÉè¼ÆÊé£¬½¨Á¢ GOODS ±í¡£ 
+--æ ¹æ®æ•°æ®åº“è®¾è®¡ä¹¦ï¼Œå»ºç«‹ GOODS è¡¨ã€‚ 
 
 CREATE TABLE GOODS
 (
@@ -8,27 +8,27 @@ CREATE TABLE GOODS
        gnum    NUMBER(11) NOT NULL
 );
 
---ÐèÇó£ºgidÖ÷¼ü×Ô¶¯Éú³É¡£·ÖÒÔÏÂÁ½²½ÊµÏÖ£¡
+--éœ€æ±‚ï¼šgidä¸»é”®è‡ªåŠ¨ç”Ÿæˆã€‚åˆ†ä»¥ä¸‹ä¸¤æ­¥å®žçŽ°ï¼
  
---1.ÎªGOODS±íÉú³ÉÎ¨Ò» ÐòÁÐ
+--1.ä¸ºGOODSè¡¨ç”Ÿæˆå”¯ä¸€ åºåˆ—
 
-CREATE SEQUENCE goods_seq  --ÐòÁÐÃû×ÖËæ±ãÈ¡
+CREATE SEQUENCE goods_seq  --åºåˆ—åå­—éšä¾¿å–
        START WITH    1
        INCREMENT  BY 1
        MINVALUE      1
-       MAXVALUE   100000 --×î´óÊýÖµ¿ÉÒÔËæ±ãÉèÖÃ
-       NOCYCLE           --ÓÃÍêmaxvaluesºó£¬²»ÔÙÑ­»·£¡
-       CACHE 10         --Ã¿´ÎÌáÇ°»º´æ10Êý×ÖÌá¸ßÐ§ÂÊ£¬¿ÉÒÔËæ±ãÉèÖÃ
+       MAXVALUE   100000 --æœ€å¤§æ•°å€¼å¯ä»¥éšä¾¿è®¾ç½®
+       NOCYCLE           --ç”¨å®ŒmaxvaluesåŽï¼Œä¸å†å¾ªçŽ¯ï¼
+       CACHE 10         --æ¯æ¬¡æå‰ç¼“å­˜10æ•°å­—æé«˜æ•ˆçŽ‡ï¼Œå¯ä»¥éšä¾¿è®¾ç½®
        
 
---2.Îª±í´´½¨ ´¥·¢Æ÷ £¬ÓÃÓÚ×Ô¶¯´ÓÐòÁÐÈ¡Öµ¸øGOODS±íÖÐgid×Ô¶¯¸³Öµ
+--2.ä¸ºè¡¨åˆ›å»º è§¦å‘å™¨ ï¼Œç”¨äºŽè‡ªåŠ¨ä»Žåºåˆ—å–å€¼ç»™GOODSè¡¨ä¸­gidè‡ªåŠ¨èµ‹å€¼
 
 CREATE TRIGGER goods_trigger
        BEFORE INSERT ON goods
-       FOR EACH ROW        --ÐÐ¼¶´¥·¢Æ÷£º²åÈëµÄÃ¿Ò»ÐÐÊý¾Ý¶¼»á´¥·¢
-       BEGIN               --´ÓÐòÁÐÖÐ»ñÈ¡ÐÂµÄÐòºÅ²¢¸³¸ø ÐÂÐÐ µÄgid ×Ö¶Î
+       FOR EACH ROW        --è¡Œçº§è§¦å‘å™¨ï¼šæ’å…¥çš„æ¯ä¸€è¡Œæ•°æ®éƒ½ä¼šè§¦å‘
+       BEGIN               --ä»Žåºåˆ—ä¸­èŽ·å–æ–°çš„åºå·å¹¶èµ‹ç»™ æ–°è¡Œ çš„gid å­—æ®µ
            SELECT goods_seq.nextval INTO :new.gid FROM dual;
        END;
 
 
---truncate ÄÜ¹»Çå³ýÊý¾Ý£¬È»¶ø£¬²»ÄÜÄ¨µôÐòÁÐµÄ¼ÇÒä¡£
+--truncate èƒ½å¤Ÿæ¸…é™¤æ•°æ®ï¼Œç„¶è€Œï¼Œä¸èƒ½æŠ¹æŽ‰åºåˆ—çš„è®°å¿†ã€‚

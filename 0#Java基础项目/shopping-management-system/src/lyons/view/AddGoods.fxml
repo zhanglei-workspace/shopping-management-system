@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lyons.view.AddGoods">
+   <children>
+      <Label layoutX="72.0" layoutY="87.0" prefHeight="37.0" prefWidth="141.0" text="Goods Name:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField layoutX="282.0" layoutY="91.0" />
+      <TextField layoutX="282.0" layoutY="167.0" />
+      <Label layoutX="82.0" layoutY="164.0" prefHeight="37.0" prefWidth="141.0" text="Goods price:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField layoutX="282.0" layoutY="241.0" />
+      <Label layoutX="115.0" layoutY="238.0" prefHeight="37.0" prefWidth="141.0" text="Quantity:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Button layoutX="176.0" layoutY="315.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="95.0" text="OK" />
+      <Button layoutX="353.0" layoutY="315.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="95.0" text="Cancel" />
+   </children>
+</AnchorPane>

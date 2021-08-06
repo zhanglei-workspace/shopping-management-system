@@ -11,7 +11,7 @@ import lyons.db.DbConn;
 import lyons.entity.SalesMan;
 
 /**
- * Êı¾İ¿âSalesMan±í²Ù×÷
+ * æ•°æ®åº“SalesManè¡¨æ“ä½œ
  * @author lyons(zhanglei)
  */
 public final class SalesManDao
@@ -21,8 +21,8 @@ public final class SalesManDao
 	 ResultSet 		rs 	 	 = null;
 	
 	/**
-	 * 1.Ç°Ì¨ÊÕÒøµÇÂ½
-	 * @param sName ÓÃ»§Ãû
+	 * 1.å‰å°æ”¶é“¶ç™»é™†
+	 * @param sName ç”¨æˆ·å
 	 * @return ArrayList<SalesMan> sPassWord,sId
 	 */
  	public ArrayList<SalesMan> checkstandLog(String sName)
@@ -54,8 +54,8 @@ public final class SalesManDao
 	}
 
  	/**
-	 * 2.Ìí¼ÓÊÛ»õÔ±
-	 * @param sName ÓÃ»§Ãû
+	 * 2.æ·»åŠ å”®è´§å‘˜
+	 * @param sName ç”¨æˆ·å
 	 * @return boolean
 	 */
 		public boolean addSalesMan(SalesMan sName)
@@ -86,9 +86,9 @@ public final class SalesManDao
 		}
 	
 	/**
-	 * 3.¸ü¸ÄÊÛ»õÔ±ĞÅÏ¢
-	 * @param key 	Òª¸ü¸ÄÏî
-	 * @param sName ÓÃ»§Ãû
+	 * 3.æ›´æ”¹å”®è´§å‘˜ä¿¡æ¯
+	 * @param key 	è¦æ›´æ”¹é¡¹
+	 * @param sName ç”¨æˆ·å
 	 * @return boolean
 	 */
 	public  boolean updateSalesMan(int key,SalesMan sName)
@@ -98,7 +98,7 @@ public final class SalesManDao
 		conn = DbConn.getconn();
 			switch (key)
 			{
-			case 1:		//	3.1 ¸ü¸ÄÊÛ»õÔ±ĞÕÃû
+			case 1:		//	3.1 æ›´æ”¹å”®è´§å‘˜å§“å
 						String sqlName = "UPDATE SALESMAN SET SNAME=? WHERE SID=?";
 						
 						try
@@ -119,7 +119,7 @@ public final class SalesManDao
 								DbClose.addClose(pstmt,conn);
 							}
 				break;
-			case 2:		//	3.2 ¸ü¸ÄÊÛ»õÔ±ÃÜÂë
+			case 2:		//	3.2 æ›´æ”¹å”®è´§å‘˜å¯†ç 
 						String sqlPrice = "UPDATE SALESMAN SET SPASSWORD=? WHERE SID=?";
 						
 						try
@@ -147,8 +147,8 @@ public final class SalesManDao
 	}
 
 	/**
-	 * 4.É¾³ıÊÛ»õÔ±
-	 * @param sName ÓÃ»§Ãû
+	 * 4.åˆ é™¤å”®è´§å‘˜
+	 * @param sName ç”¨æˆ·å
 	 * @return boolean
 	 */
 	public boolean deleteSalesMan(String sName)
@@ -175,8 +175,8 @@ public final class SalesManDao
 	}
 	
 	/**
-	 * 5.Ä£ºı²éÑ¯ÊÛ»õÔ±
-	 * @param sName ÓÃ»§Ãû
+	 * 5.æ¨¡ç³ŠæŸ¥è¯¢å”®è´§å‘˜
+	 * @param sName ç”¨æˆ·å
 	 * @return ArrayList<SalesMan>
 	 */
 	public ArrayList<SalesMan> querySalesMan(String sName)
@@ -184,8 +184,8 @@ public final class SalesManDao
 		ArrayList<SalesMan> SalesManList = new ArrayList<SalesMan>();
 		conn = DbConn.getconn();	
 	
-		sName = "%"+sName+"%";	//´ÓÓÃ»§´¦»ñÈ¡µÄ×Ö·û´®¼ÓÉÏ % ·ûºÅ£¬À´´ïµ½Ä£ºı²éÑ¯µÄÄ¿µÄ.×Ö·û´® µÄÁ¬½Ó»¹ÓĞ¸üÓÅĞãµÄ·½Ê½£¬´ıÓÅ»¯´úÂë£¡
-		String sql = "SELECT * FROM SALESMAN WHERE SNAME LIKE ?";  //¾ÓÈ»²»ÄÜÖ±½Ó¸ú % .Ö»ÄÜÓÃÁ¬½Ó×Ö·û´®µÄ·½Ê½
+		sName = "%"+sName+"%";	//ä»ç”¨æˆ·å¤„è·å–çš„å­—ç¬¦ä¸²åŠ ä¸Š % ç¬¦å·ï¼Œæ¥è¾¾åˆ°æ¨¡ç³ŠæŸ¥è¯¢çš„ç›®çš„.å­—ç¬¦ä¸² çš„è¿æ¥è¿˜æœ‰æ›´ä¼˜ç§€çš„æ–¹å¼ï¼Œå¾…ä¼˜åŒ–ä»£ç ï¼
+		String sql = "SELECT * FROM SALESMAN WHERE SNAME LIKE ?";  //å±…ç„¶ä¸èƒ½ç›´æ¥è·Ÿ % .åªèƒ½ç”¨è¿æ¥å­—ç¬¦ä¸²çš„æ–¹å¼
 		   try
 		   {
 				pstmt = conn.prepareStatement(sql);
@@ -211,7 +211,7 @@ public final class SalesManDao
 	}
 	
 	/**
-	 * 6.ÏÔÊ¾ËùÓĞÊÛ»õÔ±
+	 * 6.æ˜¾ç¤ºæ‰€æœ‰å”®è´§å‘˜
 	 * @return ArrayList<SalesMan>
 	 */
 	public  ArrayList<SalesMan> displaySalesMan()
