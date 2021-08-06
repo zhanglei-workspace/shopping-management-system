@@ -1,7 +1,7 @@
 package lyons.entity;
 
 /**
- * Gsales g¹ºÎï½áËãÊµÌåÀà
+ * Gsales gè´­ç‰©ç»“ç®—å®ä½“ç±»
  * @author lyons(zhanglei)
  */
 
@@ -14,10 +14,10 @@ public final class Gsales
 	private String gName; 
 	private double gPrice;
 	private int gNum;
-	private int allSnum; //µ¥ÖÖÉÌÆ·ÏúÁ¿×ÜºÍ
+	private int allSnum; //å•ç§å•†å“é”€é‡æ€»å’Œ
 	
 	/**
-	 * ¹ºÎï½áËã
+	 * è´­ç‰©ç»“ç®—
 	 * @param gId,sId,sNum
 	 */
 	public Gsales(int gId,int sId, int sNum)
@@ -28,7 +28,7 @@ public final class Gsales
 	}
 	
 	/**
-	 * Õ¹ÏÖÉÌÆ·ÁĞ±í
+	 * å±•ç°å•†å“åˆ—è¡¨
 	 * @param gName,gPrice,gNum,allSnum
 	 */
 	public Gsales(String gName,double gPrice,int gNum,int allSnum)
@@ -39,7 +39,7 @@ public final class Gsales
 		this.allSnum = allSnum;
 	}
 
-	//¹²ÓĞset¡¢get
+	//å…±æœ‰setã€get
 		public int getGId()
 		{
 			return gId;

@@ -12,7 +12,7 @@ import lyons.entity.Goods;
 import lyons.tools.ScannerChoice;
 
 /**
- * Êı¾İ¿âgoods±í²Ù×÷
+ * æ•°æ®åº“goodsè¡¨æ“ä½œ
  * @author lyons(zhanglei)
  */
 public final class GoodsDao 
@@ -22,8 +22,8 @@ public final class GoodsDao
 		ResultSet 		  rs    = null;
 	
 	/**
-	 * 1.Ìí¼ÓÉÌÆ·µ½Êı¾İ¿âgoods±í
-	 * @param goods ÉÌÆ·¶ÔÏó
+	 * 1.æ·»åŠ å•†å“åˆ°æ•°æ®åº“goodsè¡¨
+	 * @param goods å•†å“å¯¹è±¡
 	 * @return boolean
 	 */
 	public boolean addGoods(Goods goods)
@@ -55,9 +55,9 @@ public final class GoodsDao
 	}
 
 	/**
-	 * 2.¸ü¸ÄÉÌÆ·ĞÅÏ¢µ½Êı¾İ¿âgoods±í
-	 * @param key   Ñ¡ÔñÒª¸ü¸ÄÉÌÆ·ĞÅÏ¢
-	 * @param goods ÉÌÆ·¶ÔÏó
+	 * 2.æ›´æ”¹å•†å“ä¿¡æ¯åˆ°æ•°æ®åº“goodsè¡¨
+	 * @param key   é€‰æ‹©è¦æ›´æ”¹å•†å“ä¿¡æ¯
+	 * @param goods å•†å“å¯¹è±¡
 	 * @return boolean
 	 */
 	public boolean updateGoods(int key,Goods goods)
@@ -66,7 +66,7 @@ public final class GoodsDao
 		conn = DbConn.getconn();
 			switch (key)
 			{
-			case 1:		//	key=1,¸ü¸ÄÉÌÆ·Ãû³Æ
+			case 1:		//	key=1,æ›´æ”¹å•†å“åç§°
 						String sqlName = "UPDATE GOODS SET GNAME=? WHERE GID=?";
 						
 					    try
@@ -87,7 +87,7 @@ public final class GoodsDao
 									DbClose.addClose(pstmt,conn);
 								}
 				break;
-			case 2:		//	key=2,¸ü¸ÄÉÌÆ·¼Û¸ñ
+			case 2:		//	key=2,æ›´æ”¹å•†å“ä»·æ ¼
 						String sqlPrice = "UPDATE GOODS SET GPRICE=? WHERE GID=?";
 						
 						try
@@ -108,7 +108,7 @@ public final class GoodsDao
 									DbClose.addClose(pstmt,conn);
 								}
 				break;
-			case 3:		//	key=3,¸ü¸ÄÉÌÆ·ÊıÁ¿
+			case 3:		//	key=3,æ›´æ”¹å•†å“æ•°é‡
 						String sqlNum = "UPDATE GOODS SET GNUM=? WHERE GID=?";
 							
 						try
@@ -136,8 +136,8 @@ public final class GoodsDao
 	}
 	
 	/**
-	 * 3.´ÓÊı¾İ¿âgoods±íÖĞ-„h³ıÉÌÆ·
-	 * @param gid ÉÌÆ·±àºÅ
+	 * 3.ä»æ•°æ®åº“goodsè¡¨ä¸­-åˆªé™¤å•†å“
+	 * @param gid å•†å“ç¼–å·
 	 * @return boolean
 	 */
 	public boolean deleteGoods(int gid)
@@ -165,8 +165,8 @@ public final class GoodsDao
 	}
 	
 	/**
-	 *4.²éÑ¯ÉÌÆ·ĞÅÏ¢
-	 * @param key ²éÑ¯·½Ê½
+	 *4.æŸ¥è¯¢å•†å“ä¿¡æ¯
+	 * @param key æŸ¥è¯¢æ–¹å¼
 	 * @return ArrayList<Goods>
 	 */
 	public ArrayList<Goods> queryGoods(int key) 
@@ -177,7 +177,7 @@ public final class GoodsDao
 		switch (key)
 		{
 			case 1:
-					//	key=1ÉÌÆ· ÊıÁ¿ ÉıĞò²éÑ¯
+					//	key=1å•†å“ æ•°é‡ å‡åºæŸ¥è¯¢
 					String sqlGnum = "SELECT * FROM GOODS ORDER BY GNUM ASC";
 					try
 					{
@@ -202,7 +202,7 @@ public final class GoodsDao
 							}
 				break;
 			case 2:
-				 	//	key=2ÉÌÆ· ¼Û¸ñ ÉıĞò²éÑ¯
+				 	//	key=2å•†å“ ä»·æ ¼ å‡åºæŸ¥è¯¢
 					String sqlGprice = "SELECT * FROM GOODS ORDER BY GPRICE ASC";
 					try
 					{
@@ -227,7 +227,7 @@ public final class GoodsDao
 							}
 				break;
 			case 3:
-					//	key=3ÉÌÆ· ¹Ø¼ü×Ö ²éÑ¯
+					//	key=3å•†å“ å…³é”®å­— æŸ¥è¯¢
 					String nameGet = ScannerChoice.ScannerInfoString();
 					String sqlGname = "SELECT * FROM GOODS WHERE GNAME LIKE '%'||?||'%'";
 					try
@@ -260,7 +260,7 @@ public final class GoodsDao
 	}
 
 	/**
-	 *5.ÏÔÊ¾ËùÓĞÉÌÆ·ĞÅÏ¢
+	 *5.æ˜¾ç¤ºæ‰€æœ‰å•†å“ä¿¡æ¯
 	 * @return ArrayList<Goods>
 	 */
 	public ArrayList<Goods> displayGoods()
@@ -278,11 +278,11 @@ public final class GoodsDao
 				{
 					int gid = rs.getInt(1);
 					String gname = rs.getString(2);
-					double gprice = rs.getDouble("gprice"); 		//Ë«ÒıºÅ+Ö÷¼üÃû,Ò²¿ÉÓÃÊı×Ö±íÊ¾.
+					double gprice = rs.getDouble("gprice"); 		//åŒå¼•å·+ä¸»é”®å,ä¹Ÿå¯ç”¨æ•°å­—è¡¨ç¤º.
 					int gnum = rs.getInt(4);
 					
-					Goods goods = new Goods(gid,gname,gprice,gnum);	//´´½¨Goods¶ÔÏó£¬²¢¸³Öµ.
-					goodsList.add(goods);							//Ìí¼ÓĞÅÏ¢µ½¶¯Ì¬Êı×éÖĞ.
+					Goods goods = new Goods(gid,gname,gprice,gnum);	//åˆ›å»ºGoodså¯¹è±¡ï¼Œå¹¶èµ‹å€¼.
+					goodsList.add(goods);							//æ·»åŠ ä¿¡æ¯åˆ°åŠ¨æ€æ•°ç»„ä¸­.
 				}
 		} catch (SQLException e)
 		{

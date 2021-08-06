@@ -6,19 +6,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * 关闭操作数据库时产生的资源流
+ * 鍏抽棴鎿嶄綔鏁版嵁搴撴椂浜х敓鐨勮祫婧愭祦
  * @author lyons(zhanglei)
  */
 public final class DbClose
 {
 	/**
-	 * 关闭 添加功能 资源
+	 * 鍏抽棴 娣诲姞鍔熻兘 璧勬簮
 	 * @param pstmt,rs,conn
 	 */
 		public static void addClose(PreparedStatement pstmt, Connection conn)
 		{
 			/*
-			 * 多个 try-catch 出发点：安全
+			 * 澶氫釜 try-catch 鍑哄彂鐐癸細瀹夊叏
 			 */
 			try
 			{
@@ -43,7 +43,7 @@ public final class DbClose
 		}
 		
 		/**
-		 * 关闭资源
+		 * 鍏抽棴璧勬簮
 		 * @param pstmt,rs,conn
 		 */
 		public static void queryClose(PreparedStatement pstmt, ResultSet rs, Connection conn)

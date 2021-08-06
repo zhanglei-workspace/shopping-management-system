@@ -2,23 +2,23 @@ select * from gsales
 select * from goods
 select * from salesman
 
---Õ¹Ê¾ËùÓĞÉÌÆ·ÁĞ±íËùÓÃ¶à±íÁªÁ¢µÄsql½âÊÍ£º
+--å±•ç¤ºæ‰€æœ‰å•†å“åˆ—è¡¨æ‰€ç”¨å¤šè¡¨è”ç«‹çš„sqlè§£é‡Šï¼š
 ------------------------------------------------------
-select gname,gprice,gnum, allSum                        --ËùÇóĞÂ±íµÄÏîÄ¿
+select gname,gprice,gnum, allSum                        --æ‰€æ±‚æ–°è¡¨çš„é¡¹ç›®
 
-from goods, (select gid as salesid,sum(snum) as allSum  --Õû¸ö´óÀ¨ºÅÀïÃæ´ú±íÒ»ÕÅ±í
-            from gsales                                   --½«gidÏàÍ¬µÄÏà¼ÓÇóºÍ
-            where trunc(sdate) = trunc(sysdate)            --Ê±¼ä´ÓÏµÍ³»ñÈ¡£¬Ìõ¼şÊÇÓë±íÖĞsdateÊ±¼äÏàÍ¬
+from goods, (select gid as salesid,sum(snum) as allSum  --æ•´ä¸ªå¤§æ‹¬å·é‡Œé¢ä»£è¡¨ä¸€å¼ è¡¨
+            from gsales                                   --å°†gidç›¸åŒçš„ç›¸åŠ æ±‚å’Œ
+            where trunc(sdate) = trunc(sysdate)            --æ—¶é—´ä»ç³»ç»Ÿè·å–ï¼Œæ¡ä»¶æ˜¯ä¸è¡¨ä¸­sdateæ—¶é—´ç›¸åŒ
             group by gid)
-where gid = salesid                                      --goods±íÓë´óÀ¨ºÅÀïµÄÕâÕÅ±í£¬È¡gidÓësalessidµÄ½»¼¯
+where gid = salesid                                      --goodsè¡¨ä¸å¤§æ‹¬å·é‡Œçš„è¿™å¼ è¡¨ï¼Œå–gidä¸salessidçš„äº¤é›†
 ------------------------------------------------------
 
---ÖªÊ¶³äµç£º
+--çŸ¥è¯†å……ç”µï¼š
 select trunc(sysdate) from dual;
 select trunc(sysdate) + 1 from dual;
-select sysdate from dual;       --´ÓÏµÍ³»ñÈ¡Ê±¼ä
+select sysdate from dual;       --ä»ç³»ç»Ÿè·å–æ—¶é—´
 
-select sid,to_char(sdate,'yyyy/mm/dd') from gsales --×ª»»Ê±¼äÊä³ö¸ñÊ½£¬×¢Òâ£º×Ö¶ÎµÄ¸ñÊ½²»ÄÜ±»×ª»»
+select sid,to_char(sdate,'yyyy/mm/dd') from gsales --è½¬æ¢æ—¶é—´è¾“å‡ºæ ¼å¼ï¼Œæ³¨æ„ï¼šå­—æ®µçš„æ ¼å¼ä¸èƒ½è¢«è½¬æ¢
 
 
 

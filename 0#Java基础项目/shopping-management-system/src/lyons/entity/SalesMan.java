@@ -1,7 +1,7 @@
 package lyons.entity;
 
 /**
- * SalesMan ÊÛ»õÔ±ÊµÌåÀà
+ * SalesMan å”®è´§å‘˜å®ä½“ç±»
  * @author lyons(zhanglei)
  */
 
@@ -12,7 +12,7 @@ public final class SalesMan
 	private String sPassWord;
 	
 	/**
-	 * ÑéÖ¤ÓÃ»§µÇÂ½
+	 * éªŒè¯ç”¨æˆ·ç™»é™†
 	 * @param sId,spassWord
 	 */
 	public SalesMan(int sId,String spassWord)
@@ -22,7 +22,7 @@ public final class SalesMan
 	}
 	
 	/**
-	 * ²éÑ¯ÓÃ»§¡¢¸ü¸ÄÓÃ»§ÃÜÂë
+	 * æŸ¥è¯¢ç”¨æˆ·ã€æ›´æ”¹ç”¨æˆ·å¯†ç 
 	 * @param sId,sName,sPassWord
 	 */
 	public SalesMan(int sId,String sName,String sPassWord)
@@ -33,7 +33,7 @@ public final class SalesMan
 	}
 	
 	/**
-	 * Ìí¼ÓÓÃ»§
+	 * æ·»åŠ ç”¨æˆ·
 	 * @param NsNameame,sPassWord
 	 */
 	public SalesMan(String NsNameame, String sPassWord)
@@ -43,7 +43,7 @@ public final class SalesMan
 	}
 
 		
-	//¹²ÓĞget.set·½·¨
+	//å…±æœ‰get.setæ–¹æ³•
 		public int getSId()
 		{
 			return sId;

@@ -8,23 +8,23 @@ import lyons.tools.QueryPrint;
 import lyons.tools.ScannerChoice;
 
 /**
- * ²Ù×÷ÊÛ»õÔ±½çÃæ           
+ * æ“ä½œå”®è´§å‘˜ç•Œé¢           
  * @author lyons(zhanglei)
  */
 
 public final class SalesManPage extends ScannerChoice
 {
 	/**
-	 * 1.Ìí¼ÓÊÛ»õÔ±½çÃæ ÒÑÊµÏÖ£¡
+	 * 1.æ·»åŠ å”®è´§å‘˜ç•Œé¢ å·²å®ç°ï¼
 	 */
 	public static void  addSalesManPage()
 	{
-		System.out.println("\tÕıÔÚÖ´ĞĞÌí¼ÓÊÛ»õÔ±²Ù×÷\n");
+		System.out.println("\tæ­£åœ¨æ‰§è¡Œæ·»åŠ å”®è´§å‘˜æ“ä½œ\n");
 		
-		System.out.println("\nÌí¼ÓÊÛ»õÔ±-ĞÕÃû");
+		System.out.println("\næ·»åŠ å”®è´§å‘˜-å§“å");
 		String sName = ScannerInfoString();
 		
-		System.out.println("\nÌí¼ÓÊÛ»õÔ±-ÃÜÂë");
+		System.out.println("\næ·»åŠ å”®è´§å‘˜-å¯†ç ");
 		String sPssswd = ScannerInfoString();
 		
 		SalesMan salesMan = new SalesMan(sName,sPssswd);
@@ -32,43 +32,43 @@ public final class SalesManPage extends ScannerChoice
 		
 		if (bool)
 		{
-			System.out.println("\n\t!ÄúÒÑ³É¹¦Ìí¼ÓÊÛ»õÔ±µ½Êı¾İ¿â!");
+			System.out.println("\n\t!æ‚¨å·²æˆåŠŸæ·»åŠ å”®è´§å‘˜åˆ°æ•°æ®åº“!");
 		}else 
 			{
-				System.out.println("Ìí¼ÓÊÛ»õÔ±Ê§°Ü");	
+				System.out.println("æ·»åŠ å”®è´§å‘˜å¤±è´¥");	
 			}
 	 choiceSalesManNext("addSalesMan");
 	}
 	
 	/**
-	 * 2.¸ü¸ÄÊÛ»õÔ±½çÃæ
+	 * 2.æ›´æ”¹å”®è´§å‘˜ç•Œé¢
 	 */
 	public static void updateSalesManPage()
 	{
-		System.out.println("\tÕıÔÚÖ´ĞĞ¸ü¸ÄÊÛ»õÔ±²Ù×÷\n");
-		System.out.println("ÇëÊäÈëÏëÒª¸ü¸ÄµÄÊÛ»õÔ±Ãû×Ö");
+		System.out.println("\tæ­£åœ¨æ‰§è¡Œæ›´æ”¹å”®è´§å‘˜æ“ä½œ\n");
+		System.out.println("è¯·è¾“å…¥æƒ³è¦æ›´æ”¹çš„å”®è´§å‘˜åå­—");
 		String sName = ScannerInfoString();
 
-		//µ÷ÓÃ¾«È·²éÕÒÊÛ»õÔ±º¯Êı
+		//è°ƒç”¨ç²¾ç¡®æŸ¥æ‰¾å”®è´§å‘˜å‡½æ•°
 		ArrayList<SalesMan> salesManList = new QueryPrint().querySalesMan(sName);
 			if (salesManList.size() <= 0)
 			{
-				System.err.println("\t£¡£¡²éÎŞ´ËÈË£¡£¡");
+				System.err.println("\tï¼ï¼æŸ¥æ— æ­¤äººï¼ï¼");
 				choiceSalesManNext("updateSalesMan");
 			}else 
 				{
-					//ÏÔÊ¾½«Òª¸ü¸ÄµÄÊÛ»õÔ±ĞÅÏ¢
-					System.out.println("\t\t\tÊÛ»õÔ±ĞÅÏ¢\n\n");
-					System.out.println("\tÊÛ»õÔ±±àºÅ\t\tÊÛ»õÔ±ĞÕÃû\t\tÊÛ»õÔ±ÃÜÂë");
+					//æ˜¾ç¤ºå°†è¦æ›´æ”¹çš„å”®è´§å‘˜ä¿¡æ¯
+					System.out.println("\t\t\tå”®è´§å‘˜ä¿¡æ¯\n\n");
+					System.out.println("\tå”®è´§å‘˜ç¼–å·\t\tå”®è´§å‘˜å§“å\t\tå”®è´§å‘˜å¯†ç ");
 					
-					SalesMan salesMan = salesManList.get(0); //ÉÏÃæµÄ¾«È·²éÕÒÖĞ£¬Ö»ÄÜ·µ»ØÒ»×éÊıÖµ¡£ÎŞĞè±éÀú£¡
+					SalesMan salesMan = salesManList.get(0); //ä¸Šé¢çš„ç²¾ç¡®æŸ¥æ‰¾ä¸­ï¼Œåªèƒ½è¿”å›ä¸€ç»„æ•°å€¼ã€‚æ— éœ€éå†ï¼
 					System.out.println("\t"+salesMan.getSId()+"\t\t\t"+salesMan.getSName()+"\t\t\t"+salesMan.getSPassWord());
 					System.out.println();
 					
-					//Ñ¡Ôñ¸ü¸ÄÊÛ»õÔ±ÄÚÈİ
-					System.out.println("\n--------ÇëÑ¡ÔñÄúÒª¸ü¸ÄµÄÄÚÈİ\n");
-					System.out.println("\t1.¸ü¸ÄÊÛ»õÔ±-ĞÕÃû");
-					System.out.println("\t2.¸ü¸ÄÊÛ»õÔ±-ÃÜÂë");
+					//é€‰æ‹©æ›´æ”¹å”®è´§å‘˜å†…å®¹
+					System.out.println("\n--------è¯·é€‰æ‹©æ‚¨è¦æ›´æ”¹çš„å†…å®¹\n");
+					System.out.println("\t1.æ›´æ”¹å”®è´§å‘˜-å§“å");
+					System.out.println("\t2.æ›´æ”¹å”®è´§å‘˜-å¯†ç ");
 					do
 					{
 						String choice = ScannerInfoString();
@@ -82,7 +82,7 @@ public final class SalesManPage extends ScannerChoice
 									MainPage.salesManManagementPage();
 								break;
 							case 1:
-									System.out.println("¸ü¸ÄÊÛ»õÔ±-ĞÂĞÕÃû");
+									System.out.println("æ›´æ”¹å”®è´§å‘˜-æ–°å§“å");
 									String sNewName = ScannerInfoString();
 									
 									SalesMan salesManName = new SalesMan(salesMan.getSId(),sNewName,null);
@@ -90,15 +90,15 @@ public final class SalesManPage extends ScannerChoice
 									
 									if (boolsName)
 									{
-										System.out.println("\n\t£¡£¡³É¹¦¸üĞÂÊÛ»õÔ±Ãû×ÖÖÁÊı¾İ¿â£¡£¡\n");
+										System.out.println("\n\tï¼ï¼æˆåŠŸæ›´æ–°å”®è´§å‘˜åå­—è‡³æ•°æ®åº“ï¼ï¼\n");
 									}else 
 										{
-											System.err.println("\n\t£¡£¡¸üĞÂÊÛ»õÔ±Ãû×ÖÊ§”¡£¡£¡");
+											System.err.println("\n\tï¼ï¼æ›´æ–°å”®è´§å‘˜åå­—å¤±æ•—ï¼ï¼");
 										}
 									choiceSalesManNext("updateSalesMan");
 								break;
 							case 2:
-									System.out.println("¸ü¸ÄÊÛ»õÔ±-ĞÂÃÜÂë");
+									System.out.println("æ›´æ”¹å”®è´§å‘˜-æ–°å¯†ç ");
 									String sNewPasswd = ScannerInfoString();
 									
 									SalesMan salesManPasswd = new SalesMan(salesMan.getSId(),null,sNewPasswd);
@@ -106,10 +106,10 @@ public final class SalesManPage extends ScannerChoice
 									
 									if (boolsPasswd)
 									{
-										System.out.println("\n\t£¡£¡³É¹¦¸üĞÂÊÛ»õÔ±ÃÜÂëÖÁÊı¾İ¿â£¡£¡\n");
+										System.out.println("\n\tï¼ï¼æˆåŠŸæ›´æ–°å”®è´§å‘˜å¯†ç è‡³æ•°æ®åº“ï¼ï¼\n");
 									}else 
 										{
-											System.err.println("\n\t£¡£¡¸üĞÂÊÛ»õÔ±ÃÜÂëÊ§”¡£¡£¡");
+											System.err.println("\n\tï¼ï¼æ›´æ–°å”®è´§å‘˜å¯†ç å¤±æ•—ï¼ï¼");
 										}
 									choiceSalesManNext("updateSalesMan");
 								break;
@@ -117,33 +117,33 @@ public final class SalesManPage extends ScannerChoice
 								break;
 							}
 						}
-						System.out.println("\t!ÊäÈëÓĞÎó!");
-						System.out.println("\nÇëÑ¡ÔñÑ¡Ïî.»òÕß°´ 0 ·µ»ØÉÏÒ»¼¶²Ëµ¥.");
+						System.out.println("\t!è¾“å…¥æœ‰è¯¯!");
+						System.out.println("\nè¯·é€‰æ‹©é€‰é¡¹.æˆ–è€…æŒ‰ 0 è¿”å›ä¸Šä¸€çº§èœå•.");
 					} while (true);
 				}
 	}
 
 	/**
-	 * 3.É¾³ıÊÛ»õÔ±½çÃæ
+	 * 3.åˆ é™¤å”®è´§å‘˜ç•Œé¢
 	 */
 	public static void deleteSalesManPage()
 	{
 		
-		System.out.println("\tÕıÔÚÖ´ĞĞ É¾³ıÊÛ»õÔ± ²Ù×÷\n");
-		System.out.println("ÇëÊäÈëÏëÒªÉ¾³ıµÄÊÛ»õÔ±Ãû×Ö");
+		System.out.println("\tæ­£åœ¨æ‰§è¡Œ åˆ é™¤å”®è´§å‘˜ æ“ä½œ\n");
+		System.out.println("è¯·è¾“å…¥æƒ³è¦åˆ é™¤çš„å”®è´§å‘˜åå­—");
 		String sName = ScannerInfoString();
 		
-		//µ÷ÓÃ¾«È·²éÕÒÊÛ»õÔ±º¯Êı
+		//è°ƒç”¨ç²¾ç¡®æŸ¥æ‰¾å”®è´§å‘˜å‡½æ•°
 		ArrayList<SalesMan> salesManList = new QueryPrint().querySalesMan(sName);
 			if (salesManList.size() <= 0)
 			{
-				System.err.println("\t£¡£¡²éÎŞ´ËÈË£¡£¡");
+				System.err.println("\tï¼ï¼æŸ¥æ— æ­¤äººï¼ï¼");
 				choiceSalesManNext("deleteSalesMan");
 			}else 
 				{
-					//ÏÔÊ¾½«ÒªÉ¾³ıµÄÊÛ»õÔ±ĞÅÏ¢
-					System.out.println("\t\t\tÉ¾³ıÊÛ»õÔ±ĞÅÏ¢\n\n");
-					System.out.println("\tÊÛ»õÔ±±àºÅ\t\tÊÛ»õÔ±ĞÕÃû\t\tÊÛ»õÔ±ÃÜÂë");
+					//æ˜¾ç¤ºå°†è¦åˆ é™¤çš„å”®è´§å‘˜ä¿¡æ¯
+					System.out.println("\t\t\tåˆ é™¤å”®è´§å‘˜ä¿¡æ¯\n\n");
+					System.out.println("\tå”®è´§å‘˜ç¼–å·\t\tå”®è´§å‘˜å§“å\t\tå”®è´§å‘˜å¯†ç ");
 					
 					for (int i = 0,length = salesManList.size(); i < length; i++)
 					{
@@ -151,52 +151,52 @@ public final class SalesManPage extends ScannerChoice
 						System.out.println("\t"+salesMan.getSId()+"\t\t\t"+salesMan.getSName()+"\t\t\t"+salesMan.getSPassWord());
 						System.out.println();
 					}
-					//È·ÈÏÊÇ·ñÕæµÄÉ¾³ı£¡
+					//ç¡®è®¤æ˜¯å¦çœŸçš„åˆ é™¤ï¼
 					do
 					{
-						System.out.println("\nÈ·ÈÏÉ¾³ı¸ÃÊÛ»õÔ±£ºY/N");
+						System.out.println("\nç¡®è®¤åˆ é™¤è¯¥å”®è´§å‘˜ï¼šY/N");
 						String choice = ScannerInfoString();
 						if ("y".equals(choice) || "Y".equals(choice))
 						{
-							//½øĞĞ„h³ı-Êı¾İ¿â²Ù×÷
-							boolean boolDeleteSalesMan = new SalesManDao().deleteSalesMan(sName);//Õ{ÓÃ„h³ı¹¦ÄÜ
+							//è¿›è¡Œåˆªé™¤-æ•°æ®åº“æ“ä½œ
+							boolean boolDeleteSalesMan = new SalesManDao().deleteSalesMan(sName);//èª¿ç”¨åˆªé™¤åŠŸèƒ½
 							
 							if (boolDeleteSalesMan)
 							{
-								System.err.println("\t£¡£¡ÒÑ³É¹¦„h³ı¸ÃÊÛ»õÔ±£¡£¡\n");
+								System.err.println("\tï¼ï¼å·²æˆåŠŸåˆªé™¤è¯¥å”®è´§å‘˜ï¼ï¼\n");
 							}else 
 								{
-									System.err.println("\t£¡£¡„h³ı¸ÃÊÛ»õÔ±Ê§”¡£¡£¡");
+									System.err.println("\tï¼ï¼åˆªé™¤è¯¥å”®è´§å‘˜å¤±æ•—ï¼ï¼");
 								}
 							choiceSalesManNext("deleteGoods"); 
 						}else if ("N".equals(choice) || "n".equals(choice)) 
 						{
 							MainPage.salesManManagementPage();
 						}
-						System.err.println("\t!!ÊäÈëÓĞÎó,ÇëÖØĞÂÊäÈë!!");
+						System.err.println("\t!!è¾“å…¥æœ‰è¯¯,è¯·é‡æ–°è¾“å…¥!!");
 					} while (true);
 				}
 	}
 	
 	
 	/**
-	 * 4.²éÑ¯ÊÛ»õÔ±½çÃæ ÒÑÊµÏÖ£¡
+	 * 4.æŸ¥è¯¢å”®è´§å‘˜ç•Œé¢ å·²å®ç°ï¼
 	 */
 		public static void querySalesManPage()
 		{
-			System.out.println("\t\t  ÕıÔÚÖ´ĞĞ²éÑ¯ÊÛ»õÔ±²Ù×÷\n");
-			System.out.println("Òª²éÑ¯µÄÊÛ»õÔ±¹Ø¼ü×Ö");
+			System.out.println("\t\t  æ­£åœ¨æ‰§è¡ŒæŸ¥è¯¢å”®è´§å‘˜æ“ä½œ\n");
+			System.out.println("è¦æŸ¥è¯¢çš„å”®è´§å‘˜å…³é”®å­—");
 			String sName = ScannerInfoString();
 			
 			ArrayList<SalesMan> salesManList = new SalesManDao().querySalesMan(sName);
 				
 			if (salesManList.size() <=0)
 			{
-				System.err.println("\t£¡Ã»ÓĞÈËÔ±·ûºÏ²éÑ¯Ìõ¼ş£¡");
+				System.err.println("\tï¼æ²¡æœ‰äººå‘˜ç¬¦åˆæŸ¥è¯¢æ¡ä»¶ï¼");
 			}else 
 				{
-					System.out.println("\t\t\tËùÓĞÊÛ»õÔ±ÁĞ±í\n\n");
-					System.out.println("\tÊÛ»õÔ±±àºÅ\t\tÊÛ»õÔ±ĞÕÃû\t\tÊÛ»õÔ±ÃÜÂë");
+					System.out.println("\t\t\tæ‰€æœ‰å”®è´§å‘˜åˆ—è¡¨\n\n");
+					System.out.println("\tå”®è´§å‘˜ç¼–å·\t\tå”®è´§å‘˜å§“å\t\tå”®è´§å‘˜å¯†ç ");
 					
 					for (int i = 0,length = salesManList.size(); i < length; i++)
 					{
@@ -205,23 +205,23 @@ public final class SalesManPage extends ScannerChoice
 						System.out.println();
 					}
 				}
-		 choiceSalesManNext("querySalesMan"); //param£ºµ÷ÓÃÕß
+		 choiceSalesManNext("querySalesMan"); //paramï¼šè°ƒç”¨è€…
 		}
 		
 	/**
-	 * 5.ÏÔÊ¾ËùÓĞÊÛ»õÔ±½çÃæ
+	 * 5.æ˜¾ç¤ºæ‰€æœ‰å”®è´§å‘˜ç•Œé¢
 	 */
 	public static void displaySalesManPage()
 	{
 		ArrayList<SalesMan> salesManList = new SalesManDao().displaySalesMan();
 		if (salesManList.size() <= 0)
 		{
-			System.err.println("\t£¡£¡ÊÛ»õÔ±ÁĞ±íÎª¿Õ£¡£¡");
+			System.err.println("\tï¼ï¼å”®è´§å‘˜åˆ—è¡¨ä¸ºç©ºï¼ï¼");
 			MainPage.salesManManagementPage();
 		}else 
 			{
-				System.out.println("\t\t\tËùÓĞÊÛ»õÔ±ÁĞ±í\n\n");
-				System.out.println("\tÊÛ»õÔ±±àºÅ\t\tÊÛ»õÔ±ĞÕÃû\t\tÊÛ»õÔ±ÃÜÂë");
+				System.out.println("\t\t\tæ‰€æœ‰å”®è´§å‘˜åˆ—è¡¨\n\n");
+				System.out.println("\tå”®è´§å‘˜ç¼–å·\t\tå”®è´§å‘˜å§“å\t\tå”®è´§å‘˜å¯†ç ");
 				
 				for (int i = 0,length = salesManList.size(); i < length; i++)
 				{
@@ -231,14 +231,14 @@ public final class SalesManPage extends ScannerChoice
 				}
 				do
 				{
-					System.out.println("\n\nÊäÈë 0 ·µ»ØÉÏÒ»¼¶²Ëµ¥");
+					System.out.println("\n\nè¾“å…¥ 0 è¿”å›ä¸Šä¸€çº§èœå•");
 					String choice = ScannerInfoString();
 					
 					if ("0".equals(choice))
 					{
 						MainPage.salesManManagementPage();
 					}
-					System.err.print("\tÊäÈëÓĞÎó£¡");
+					System.err.print("\tè¾“å…¥æœ‰è¯¯ï¼");
 				} while (true);
 			}
 	}

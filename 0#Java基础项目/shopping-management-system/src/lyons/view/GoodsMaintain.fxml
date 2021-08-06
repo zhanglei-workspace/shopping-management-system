@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lyons.view.GoodsMaintain">
+   <children>
+      <Button layoutX="73.0" layoutY="88.0" mnemonicParsing="false" onAction="#AddGoods" prefHeight="46.0" prefWidth="111.0" text="addGoods" />
+      <Button layoutX="424.0" layoutY="88.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="111.0" text="delGoods" />
+      <Button layoutX="245.0" layoutY="88.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="121.0" text="updateGoods" />
+      <Button layoutX="342.0" layoutY="200.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="111.0" text="showGoods" />
+      <Button layoutX="154.0" layoutY="200.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="111.0" text="queryGoods" />
+   </children>
+</AnchorPane>

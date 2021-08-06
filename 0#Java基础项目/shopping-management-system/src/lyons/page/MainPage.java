@@ -13,8 +13,8 @@ import lyons.tools.QueryPrint;
 import lyons.tools.ScannerChoice;
 
 /**
- * ÉÌ³¬¹ºÎï¹ÜÀíÏµÍ³Ö÷½çÃæ            
- * @author ÕÅÀÚ
+ * å•†è¶…è´­ç‰©ç®¡ç†ç³»ç»Ÿä¸»ç•Œé¢            
+ * @author å¼ ç£Š
  * @version 1.0
  */
 
@@ -22,7 +22,7 @@ public final class MainPage extends ScannerChoice
 {
 
 	/**
-	 * Èë¿Úº¯Êı
+	 * å…¥å£å‡½æ•°
 	 */
 	public static void main(String[] args)
 	{
@@ -30,21 +30,21 @@ public final class MainPage extends ScannerChoice
 	}
 	
 	/**
-	 * Ö÷½çÃæ ÒÑÊµÏÖ£¡ÒÑĞ£Ñé£¡
+	 * ä¸»ç•Œé¢ å·²å®ç°ï¼å·²æ ¡éªŒï¼
 	 */
 		public static void  mianPage()
 		{
 			System.out.println("***************************\n");
-			System.out.println("\t 1.ÉÌÆ·Î¬»¤\n");
-			System.out.println("\t 2.Ç°Ì¨ÊÕÒø\n");
-			System.out.println("\t 3.ÉÌÆ·¹ÜÀí\n");
+			System.out.println("\t 1.å•†å“ç»´æŠ¤\n");
+			System.out.println("\t 2.å‰å°æ”¶é“¶\n");
+			System.out.println("\t 3.å•†å“ç®¡ç†\n");
 			System.out.println("***************************");
 			
-			System.out.println("\nÇëÊäÈëÑ¡Ïî,»òÕß°´0ÍË³ö.");
+			System.out.println("\nè¯·è¾“å…¥é€‰é¡¹,æˆ–è€…æŒ‰0é€€å‡º.");
 			do
 			{
 				 String choice = ScannerInfoString();
-				 String regex = "[0-3]";//ÕıÔò±í´ïÊ½
+				 String regex = "[0-3]";//æ­£åˆ™è¡¨è¾¾å¼
 				 if (choice.matches(regex))
 				 { 
 					 int info = Integer.parseInt(choice);
@@ -52,8 +52,8 @@ public final class MainPage extends ScannerChoice
 					 {
 					 case 0:
 						 System.out.println("------------------");
-						 System.out.println("ÄúÒÑ¾­ÍË³öÏµÍ³!");
-						 System.exit(1);//ÍË³ö³ÌĞò£¬·µ»ØÖµËæ±ãÉèÖÃ
+						 System.out.println("æ‚¨å·²ç»é€€å‡ºç³»ç»Ÿ!");
+						 System.exit(1);//é€€å‡ºç¨‹åºï¼Œè¿”å›å€¼éšä¾¿è®¾ç½®
 						 break;
 					 case 1:
 						 MaintenancePage();
@@ -68,27 +68,27 @@ public final class MainPage extends ScannerChoice
 					 break;
 					 }
 				 }
-				 System.err.println("!ÊäÈëÓĞÎó!");
-				 System.out.println("ÖØĞÂÑ¡Ôñ»òÕß°´0ÍË³ö.");
+				 System.err.println("!è¾“å…¥æœ‰è¯¯!");
+				 System.out.println("é‡æ–°é€‰æ‹©æˆ–è€…æŒ‰0é€€å‡º.");
 			} while (true);
 			
 		}
 		
 	/**
-	 * 1.ÉÌÆ·Î¬»¤½çÃæ
+	 * 1.å•†å“ç»´æŠ¤ç•Œé¢
 	 */
 		public static void MaintenancePage()
 		{
 			
 			System.out.println("***************************\n");
-			System.out.println("\t 1.Ìí¼ÓÉÌÆ·\n");
-			System.out.println("\t 2.¸ü¸ÄÉÌÆ·\n");
-			System.out.println("\t 3.É¾³ıÉÌÆ·\n");
-			System.out.println("\t 4.²éÑ¯ÉÌÆ·\n");
-			System.out.println("\t 5.ÏÔÊ¾ËùÓĞÉÌÆ·\n");
+			System.out.println("\t 1.æ·»åŠ å•†å“\n");
+			System.out.println("\t 2.æ›´æ”¹å•†å“\n");
+			System.out.println("\t 3.åˆ é™¤å•†å“\n");
+			System.out.println("\t 4.æŸ¥è¯¢å•†å“\n");
+			System.out.println("\t 5.æ˜¾ç¤ºæ‰€æœ‰å•†å“\n");
 			System.out.println("***************************");
 			
-			System.out.println("\nÇëÊäÈëÑ¡Ïî,»òÕß°´ 0 ·µ»ØÉÏÒ»¼¶²Ëµ¥.");
+			System.out.println("\nè¯·è¾“å…¥é€‰é¡¹,æˆ–è€…æŒ‰ 0 è¿”å›ä¸Šä¸€çº§èœå•.");
 			do
 			{
 				String choice = ScannerInfoString();
@@ -120,21 +120,21 @@ public final class MainPage extends ScannerChoice
 						break;
 					}
 				}
-				System.err.println("!ÊäÈëÓĞÎó!");
-				System.out.println("ÖØĞÂÊäÈë»ò°´ 0 ·µ»ØÉÏÒ»¼¶²Ëµ¥.");
+				System.err.println("!è¾“å…¥æœ‰è¯¯!");
+				System.out.println("é‡æ–°è¾“å…¥æˆ–æŒ‰ 0 è¿”å›ä¸Šä¸€çº§èœå•.");
 			}while(true);
 		}
 
 	/**
-	 * 2.Ç°Ì¨ÊÕÒøµÇÂ½½çÃæ
+	 * 2.å‰å°æ”¶é“¶ç™»é™†ç•Œé¢
 	 */
 		public static void checkstandLogPage()
 		{
-			System.out.println("\n*******»¶Ó­Ê¹ÓÃÉÌ³¬¹ºÎï¹ÜÀíÏµÍ³*******\n");
-			System.out.println("\t 1.µÇÂ¼ÏµÍ³\n");
-			System.out.println("\t 2.ÍË³ö\n");
+			System.out.println("\n*******æ¬¢è¿ä½¿ç”¨å•†è¶…è´­ç‰©ç®¡ç†ç³»ç»Ÿ*******\n");
+			System.out.println("\t 1.ç™»å½•ç³»ç»Ÿ\n");
+			System.out.println("\t 2.é€€å‡º\n");
 			System.out.println("-----------------------------");
-			System.out.println("ÇëÊäÈëÑ¡Ïî,»òÕß°´ 0 ·µ»ØÉÏÒ»¼¶²Ëµ¥.");
+			System.out.println("è¯·è¾“å…¥é€‰é¡¹,æˆ–è€…æŒ‰ 0 è¿”å›ä¸Šä¸€çº§èœå•.");
 			
 			do
 			{
@@ -149,67 +149,67 @@ public final class MainPage extends ScannerChoice
 								mianPage();
 								break;
 							case 1:
-								int loginTimes = 3;//3´ÎµÇÂ½»ú»á
+								int loginTimes = 3;//3æ¬¡ç™»é™†æœºä¼š
 								
 								while (loginTimes!=0)
 								{
 									loginTimes--;
-									System.out.println("---ÓÃ»§Ãû---");
+									System.out.println("---ç”¨æˆ·å---");
 									String sName = ScannerInfoString();
-									System.out.println("---ÃÜÂë---");
+									System.out.println("---å¯†ç ---");
 									String sPssWord = ScannerInfoString();
 									
-									ArrayList<SalesMan> salesManInfo = new SalesManDao().checkstandLog(sName); //ÒÔÓÃ»§Ãû´ÓÊı¾İ¿âÖĞ»ñÈ¡ÓÃ»§ÃÜÂë.
+									ArrayList<SalesMan> salesManInfo = new SalesManDao().checkstandLog(sName); //ä»¥ç”¨æˆ·åä»æ•°æ®åº“ä¸­è·å–ç”¨æˆ·å¯†ç .
 									
-									if (salesManInfo == null || salesManInfo.size() == 0)//Ã»ÓĞ´ËÓÃ»§µÄÇé¿ö£¡
+									if (salesManInfo == null || salesManInfo.size() == 0)//æ²¡æœ‰æ­¤ç”¨æˆ·çš„æƒ…å†µï¼
 									{
-										System.err.println("\t!!ÓÃ»§ÃûÊäÈëÓĞÎó!!\n");
-										System.out.println("\nÊ£ÓàµÇÂ½´ÎÊı£º"+loginTimes);
+										System.err.println("\t!!ç”¨æˆ·åè¾“å…¥æœ‰è¯¯!!\n");
+										System.out.println("\nå‰©ä½™ç™»é™†æ¬¡æ•°ï¼š"+loginTimes);
 									}else 
 										{
-											SalesMan salesMan = salesManInfo.get(0);//´ËµØ£¬Ö»·µ»ØÁËÒ»×éÊıÖµ£¬Ö»±éÀú1´Î¼´¿É
+											SalesMan salesMan = salesManInfo.get(0);//æ­¤åœ°ï¼Œåªè¿”å›äº†ä¸€ç»„æ•°å€¼ï¼Œåªéå†1æ¬¡å³å¯
 											
-											if (sPssWord.equals(salesMan.getSPassWord()))//ÑéÖ¤ÃÜÂë£¬µÇÂ½³É¹¦ÁË£¡£¡
+											if (sPssWord.equals(salesMan.getSPassWord()))//éªŒè¯å¯†ç ï¼Œç™»é™†æˆåŠŸäº†ï¼ï¼
 											{
-												System.out.println("\t  ---ÕË»§³É¹¦µÇÂ½---");
-												shoppingSettlementPage(salesMan.getSId());//²ÎÊıÎªÓªÒµÔ±±àºÅsId
+												System.out.println("\t  ---è´¦æˆ·æˆåŠŸç™»é™†---");
+												shoppingSettlementPage(salesMan.getSId());//å‚æ•°ä¸ºè¥ä¸šå‘˜ç¼–å·sId
 											}else 
 												{
-													System.err.println("\t!!ÃÜÂë´íÎó!!\n");
-													System.out.println("\nÊ£ÓàµÇÂ½´ÎÊı£º"+loginTimes);
+													System.err.println("\t!!å¯†ç é”™è¯¯!!\n");
+													System.out.println("\nå‰©ä½™ç™»é™†æ¬¡æ•°ï¼š"+loginTimes);
 												}
 										}
 								}
 								//loginTimes = 0
 								System.out.println("------------------");
-								System.err.println("\t£¡£¡ÄúÒÑ±»Ç¿ÖÆÍË³öÏµÍ³£¡£¡");
+								System.err.println("\tï¼ï¼æ‚¨å·²è¢«å¼ºåˆ¶é€€å‡ºç³»ç»Ÿï¼ï¼");
 								System.exit(1);			
 								break;
 							case 2:
 								System.out.println("------------------");
-								System.out.println("ÄúÒÑ¾­ÍË³öÏµÍ³!");
+								System.out.println("æ‚¨å·²ç»é€€å‡ºç³»ç»Ÿ!");
 								System.exit(-1);			
 								break;
 							default:
 							break;
 							}
 					}
-				 System.err.println("!ÊäÈëÓĞÎó!");
-				 System.out.println("ÖØĞÂÊäÈë»ò°´ 0 ·µ»ØÉÏÒ»¼¶²Ëµ¥");
+				 System.err.println("!è¾“å…¥æœ‰è¯¯!");
+				 System.out.println("é‡æ–°è¾“å…¥æˆ–æŒ‰ 0 è¿”å›ä¸Šä¸€çº§èœå•");
 			}while(true);
 		}
 
 	/**
-	 * 3.ÉÌÆ·¹ÜÀí½çÃæ
+	 * 3.å•†å“ç®¡ç†ç•Œé¢
 	 */
 		public static void commodityManagementPage()
 		{
 			System.out.println("***************************\n");
-			System.out.println("\t 1.ÊÛ»õÔ±¹ÜÀí\n");
-			System.out.println("\t 2.ÁĞ³öµ±ÈÕÂô³öÁĞ±í\n");
+			System.out.println("\t 1.å”®è´§å‘˜ç®¡ç†\n");
+			System.out.println("\t 2.åˆ—å‡ºå½“æ—¥å–å‡ºåˆ—è¡¨\n");
 			System.out.println("***************************");
 			
-			System.out.println("\nÇëÊäÈëÑ¡Ïî,»òÕß°´ 0 ·µ»ØÉÏÒ»¼¶²Ëµ¥.");
+			System.out.println("\nè¯·è¾“å…¥é€‰é¡¹,æˆ–è€…æŒ‰ 0 è¿”å›ä¸Šä¸€çº§èœå•.");
 			do
 			{
 				String choice = ScannerInfoString();
@@ -232,20 +232,20 @@ public final class MainPage extends ScannerChoice
 							break;
 					}
 				}
-				System.err.println("!ÊäÈëÓĞÎó!");
-				System.out.println("ÖØĞÂÊäÈë»ò°´ 0 ·µ»ØÉÏÒ»¼¶²Ëµ¥.");
+				System.err.println("!è¾“å…¥æœ‰è¯¯!");
+				System.out.println("é‡æ–°è¾“å…¥æˆ–æŒ‰ 0 è¿”å›ä¸Šä¸€çº§èœå•.");
 			}while(true);
 		}
 					
 	/**
-	 * ¹ºÎï½áËã½çÃæ
+	 * è´­ç‰©ç»“ç®—ç•Œé¢
 	 */
 		public static void shoppingSettlementPage(int salesManSid)
 		{
-			System.out.println("\n\t*******¹ºÎï½áËã*******\n");
+			System.out.println("\n\t*******è´­ç‰©ç»“ç®—*******\n");
 			do
 			{
-				System.out.println("°´ S ¿ªÊ¼¹ºÎï½áËã.°´ 0 ·µ»ØÕË»§µÇÂ¼½çÃæ");
+				System.out.println("æŒ‰ S å¼€å§‹è´­ç‰©ç»“ç®—.æŒ‰ 0 è¿”å›è´¦æˆ·ç™»å½•ç•Œé¢");
 				String choNext = ScannerInfoString();
 				if ("0".equals(choNext))
 				{
@@ -253,93 +253,93 @@ public final class MainPage extends ScannerChoice
 					
 				}else if ("s".equals(choNext) || "S".equals(choNext)) 
 						{
-							System.out.println("\n--ÇëÊäÈëÉÌÆ·¹Ø¼ü×Ö--");
+							System.out.println("\n--è¯·è¾“å…¥å•†å“å…³é”®å­—--");
 							
-							int gid = QueryPrint.querySettlement();//µ±ÉÌÆ·¼şÊıÓĞÇÒÖ»ÓĞÒ»¼şÊ±·µ»ØÉÌÆ·gidºÅ£¬ÉÌÆ·ÒÑÊÛ¿ÕÊ±·µ»Ø -1. >1¼şÊ±·µ»Ø-2 . ²éÎŞ´ËÉÌÆ·Ê±·µ»Ø-3
+							int gid = QueryPrint.querySettlement();//å½“å•†å“ä»¶æ•°æœ‰ä¸”åªæœ‰ä¸€ä»¶æ—¶è¿”å›å•†å“gidå·ï¼Œå•†å“å·²å”®ç©ºæ—¶è¿”å› -1. >1ä»¶æ—¶è¿”å›-2 . æŸ¥æ— æ­¤å•†å“æ—¶è¿”å›-3
 							
 							switch (gid)
 							{
 							case -3:
-								//ÎŞ´ËÉÌÆ·,ÖØĞÂÑ­»·
+								//æ— æ­¤å•†å“,é‡æ–°å¾ªç¯
 								break;
 							case -1:
-								System.err.println("\t--±§Ç¸£¬¸ÃÉÌÆ·ÒÑÊÛ¿Õ--");
+								System.err.println("\t--æŠ±æ­‰ï¼Œè¯¥å•†å“å·²å”®ç©º--");
 								break;
 								
 							default:
-								System.out.println("--°´ÉÌÆ·±àºÅÑ¡ÔñÉÌÆ·--");
+								System.out.println("--æŒ‰å•†å“ç¼–å·é€‰æ‹©å•†å“--");
 							 		
-							 	//´«²Îgid£¬µ÷ÓÃ¾«È·²éÑ¯ÉÌÆ·
+							 	//ä¼ å‚gidï¼Œè°ƒç”¨ç²¾ç¡®æŸ¥è¯¢å•†å“
 							 	int shoppingGid = ScannerNum();
 								
 							 	ArrayList<Goods> goodsList = new QueryPrint().queryGoodsKey(shoppingGid,null);
 								if (goodsList == null || goodsList.size() == 0)
 								{
-									System.err.println("\t£¡£¡²éÎŞ´ËÉÌÆ· £¡£¡\n");
+									System.err.println("\tï¼ï¼æŸ¥æ— æ­¤å•†å“ ï¼ï¼\n");
 								}else 
 									{
 										Goods goods = goodsList.get(0);
 										int gNum = goods.getGnum();	
 										double gPrice = goods.getGprice(); 
 										
-										System.out.println("--ÇëÊäÈë¹ºÂòÊıÁ¿--");
+										System.out.println("--è¯·è¾“å…¥è´­ä¹°æ•°é‡--");
 										do
 										{
-											int choicegoodsNum = ScannerNum();//»ñÈ¡ÓÃ»§Òª¹ºÂòµÄÊıÁ¿
+											int choicegoodsNum = ScannerNum();//è·å–ç”¨æˆ·è¦è´­ä¹°çš„æ•°é‡
 											
 											if (choicegoodsNum > gNum)
 											{
-												System.err.println("\t£¡£¡²Ö¿â´¢±¸²»×ã£¡£¡");
-												System.out.println("--ÇëÖØĞÂÊäÈë¹ºÂòÊıÁ¿--");
+												System.err.println("\tï¼ï¼ä»“åº“å‚¨å¤‡ä¸è¶³ï¼ï¼");
+												System.out.println("--è¯·é‡æ–°è¾“å…¥è´­ä¹°æ•°é‡--");
 											}else 
 												{
-													double allPrice = Arith.mul(choicegoodsNum, gPrice);//ÀûÓÃBigDecimal×÷³Ë·¨ÔËËã
-													System.out.println("\t\t\t  ¹ºÎï³µ½áËã\n");
-													System.out.println("\t\tÉÌÆ·Ãû³Æ\tÉÌÆ·µ¥¼Û\t¹ºÂòÊıÁ¿\t×Ü¼Û\n");
+													double allPrice = Arith.mul(choicegoodsNum, gPrice);//åˆ©ç”¨BigDecimalä½œä¹˜æ³•è¿ç®—
+													System.out.println("\t\t\t  è´­ç‰©è½¦ç»“ç®—\n");
+													System.out.println("\t\tå•†å“åç§°\tå•†å“å•ä»·\tè´­ä¹°æ•°é‡\tæ€»ä»·\n");
 													System.out.println("\t\t"+goods.getGname()+"\t"+gPrice+" $\t"+choicegoodsNum+"\t"+allPrice+" $\n");
 													
 													do
 													{
-														System.out.println("È·ÈÏ¹ºÂò£ºY/N");
+														System.out.println("ç¡®è®¤è´­ä¹°ï¼šY/N");
 														String choShopping = ScannerInfoString(); 
 														if ("y".equals(choShopping) || "Y".equals(choShopping))
 														{
-															System.out.println("\n×Ü¼Û£º"+allPrice+" $");
-															System.out.println("\nÊµ¼Ê½É·Ñ½ğ¶î");
+															System.out.println("\næ€»ä»·ï¼š"+allPrice+" $");
+															System.out.println("\nå®é™…ç¼´è´¹é‡‘é¢");
 															
 															do
 															{
 																double amount = ScannerInfo();
-																double balance = Arith.sub(amount, allPrice);  //ÓÃ»§½»Ç®Óë¹ºÂòÎïÆ·×Ü¼Û¼äµÄ²î¶î
+																double balance = Arith.sub(amount, allPrice);  //ç”¨æˆ·äº¤é’±ä¸è´­ä¹°ç‰©å“æ€»ä»·é—´çš„å·®é¢
 																if (balance < 0)
 																{
-																	System.err.println("\t£¡£¡½ÉÄÉ½ğ¶î²»×ã£¡£¡");
-																	System.out.println("\nÇëÖØĞÂÊäÈë½ÉÄÉ½ğ¶î($)");
+																	System.err.println("\tï¼ï¼ç¼´çº³é‡‘é¢ä¸è¶³ï¼ï¼");
+																	System.out.println("\nè¯·é‡æ–°è¾“å…¥ç¼´çº³é‡‘é¢($)");
 																}else{																
 																	
-		/*	ÕâÀïÊÇ¹ºÎï½áËã²Ù×÷Êı¾İ¿â£¡£¡£¡£¡£¡£¡----------------------	  1.¸ü¸Ägoods±íÊıÁ¿ 
-		  														  2.Ôö¼Ósales±íÊıÁ¿
-																Ô­ÉÌÆ·ÊıÁ¿gNum¡£ ½áËãÔ±Id  salesManSid */
+		/*	è¿™é‡Œæ˜¯è´­ç‰©ç»“ç®—æ“ä½œæ•°æ®åº“ï¼ï¼ï¼ï¼ï¼ï¼----------------------	  1.æ›´æ”¹goodsè¡¨æ•°é‡ 
+		  														  2.å¢åŠ salesè¡¨æ•°é‡
+																åŸå•†å“æ•°é‡gNumã€‚ ç»“ç®—å‘˜Id  salesManSid */
 																
-																	//¶Ôsales±í²Ù×÷
+																	//å¯¹salesè¡¨æ“ä½œ
 																	Gsales gSales = new Gsales(goods.getGid(),salesManSid,choicegoodsNum);
 																	boolean insert = new GsalesDao().shoppingSettlement(gSales);
 																	
-																	//¶Ôgoods±í²Ù×÷
-																	int goodsNewNum = gNum - choicegoodsNum; //ÏÖÔÚgoods±íÖĞ¸ÃÉÌÆ·ÊıÁ¿
+																	//å¯¹goodsè¡¨æ“ä½œ
+																	int goodsNewNum = gNum - choicegoodsNum; //ç°åœ¨goodsè¡¨ä¸­è¯¥å•†å“æ•°é‡
 																	Goods newGoods = new Goods(goods.getGid(),goodsNewNum);
 																	boolean update = new GoodsDao().updateGoods(3,newGoods);
 											
 																		if (update && insert)
 																		{
-																			System.out.println("ÕÒÁã£º"+balance);
-																			System.out.println("\nĞ»Ğ»¹âÁÙ£¬»¶Ó­ÏÂ´Î»İ¹Ë");
+																			System.out.println("æ‰¾é›¶ï¼š"+balance);
+																			System.out.println("\nè°¢è°¢å…‰ä¸´ï¼Œæ¬¢è¿ä¸‹æ¬¡æƒ é¡¾");
 																		}else 
 																			{
-																				System.err.println("£¡Ö§¸¶Ê§°Ü£¡"); //³öÏÖÕâ¸ö´íÎóÒ»¶¨ÊÇÊı¾İ¿â²Ù×÷ÓĞÎÊÌâ£¡
+																				System.err.println("ï¼æ”¯ä»˜å¤±è´¥ï¼"); //å‡ºç°è¿™ä¸ªé”™è¯¯ä¸€å®šæ˜¯æ•°æ®åº“æ“ä½œæœ‰é—®é¢˜ï¼
 																			}
-																	shoppingSettlementPage(salesManSid);//×îºóÌø×ªµ½µ½¹ºÎï½áËãÒ³Ãæ
-	   //	½áÊø¹ºÎï½áËã²Ù×÷Êı¾İ¿â£¡£¡£¡£¡£¡£¡-----------------------------------
+																	shoppingSettlementPage(salesManSid);//æœ€åè·³è½¬åˆ°åˆ°è´­ç‰©ç»“ç®—é¡µé¢
+	   //	ç»“æŸè´­ç‰©ç»“ç®—æ“ä½œæ•°æ®åº“ï¼ï¼ï¼ï¼ï¼ï¼-----------------------------------
 																	 }
 															} while (true);	
 															
@@ -347,7 +347,7 @@ public final class MainPage extends ScannerChoice
 																{
 																	shoppingSettlementPage(salesManSid);
 																}
-														System.err.println("\t£¡£¡ÇëÈ·ÈÏ¹ºÎïÒâÏò£¡£¡");
+														System.err.println("\tï¼ï¼è¯·ç¡®è®¤è´­ç‰©æ„å‘ï¼ï¼");
 													} while (true);
 												}
 										} while (true);
@@ -356,26 +356,26 @@ public final class MainPage extends ScannerChoice
 							}
 						}else
 							{
-								System.err.println("\t!!ÇëÊäÈëºÏ·¨×Ö·û!!\n");
+								System.err.println("\t!!è¯·è¾“å…¥åˆæ³•å­—ç¬¦!!\n");
 							}
 			} while (true);
 		}
 
 	/**
-	 * ÊÛ»õÔ±¹ÜÀí½çÃæ
+	 * å”®è´§å‘˜ç®¡ç†ç•Œé¢
 	 */
 	public static void salesManManagementPage()
 	{
 
 		System.out.println("***************************\n");
-		System.out.println("\t 1.Ìí¼ÓÊÛ»õÔ±\n");
-		System.out.println("\t 2.¸ü¸ÄÊÛ»õÔ±\n");
-		System.out.println("\t 3.É¾³ıÊÛ»õÔ±\n");
-		System.out.println("\t 4.²éÑ¯ÊÛ»õÔ±\n");
-		System.out.println("\t 5.ÏÔÊ¾ËùÓĞÊÛ»õÔ±\n");
+		System.out.println("\t 1.æ·»åŠ å”®è´§å‘˜\n");
+		System.out.println("\t 2.æ›´æ”¹å”®è´§å‘˜\n");
+		System.out.println("\t 3.åˆ é™¤å”®è´§å‘˜\n");
+		System.out.println("\t 4.æŸ¥è¯¢å”®è´§å‘˜\n");
+		System.out.println("\t 5.æ˜¾ç¤ºæ‰€æœ‰å”®è´§å‘˜\n");
 		System.out.println("***************************");
 		
-		System.out.println("\nÇëÊäÈëÑ¡Ïî,»òÕß°´ 0 ·µ»ØÉÏÒ»¼¶²Ëµ¥.");
+		System.out.println("\nè¯·è¾“å…¥é€‰é¡¹,æˆ–è€…æŒ‰ 0 è¿”å›ä¸Šä¸€çº§èœå•.");
 		do
 		{
 			String choice = ScannerInfoString();
@@ -407,8 +407,8 @@ public final class MainPage extends ScannerChoice
 					break;
 				}
 			}
-			System.err.println("\t!ÊäÈëÓĞÎó!");
-			System.out.println("ÖØĞÂÊäÈë»ò°´ 0 ·µ»ØÉÏÒ»¼¶²Ëµ¥.");
+			System.err.println("\t!è¾“å…¥æœ‰è¯¯!");
+			System.out.println("é‡æ–°è¾“å…¥æˆ–æŒ‰ 0 è¿”å›ä¸Šä¸€çº§èœå•.");
 		}while(true);
 	}
 }

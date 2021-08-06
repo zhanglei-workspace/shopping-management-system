@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.sql.Connection;
 
 /**
- * Á¬½ÓoracleÊı¾İ¿â
+ * è¿æ¥oracleæ•°æ®åº“
  * @author lyons(zhanglei)
  */
 public final class DbConn
@@ -16,9 +16,9 @@ public final class DbConn
 		
 		String user   = "scott";
 		String passwd = "tiger";
-		String url = "jdbc:oracle:thin:@localhost:1521:orcl";//orclÎªoracleÊı¾İ¿âÊµÀıÃû×Ö
+		String url = "jdbc:oracle:thin:@localhost:1521:orcl";//orclä¸ºoracleæ•°æ®åº“å®ä¾‹åå­—
 		
-		//ÒÑ¼ÓÔØÍêÇı¶¯
+		//å·²åŠ è½½å®Œé©±åŠ¨
 		try
 		{
 			Class.forName("oracle.jdbc.driver.OracleDriver"); 
