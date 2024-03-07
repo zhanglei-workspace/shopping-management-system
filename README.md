@@ -108,3 +108,20 @@ README
     开发工具：Eclipse + Oracle
     开发框架：shiro+spring+springMVc+mybatis
     另：jdk 1.8
+
+	使用方法
+1.后端配置：
+项目使用了 Oracle 数据库。您需要在 ..\config\jdbc.properties 文件中配置数据库连接信息。
+Oracle 配置：
+数据库连接URL：jdbc:oracle:thin:@localhost:1521:orcl
+用户名：your_username
+密码：your_password
+2.登录网站
+服务器端口号：8080，启动成功后访问 http://localhost:8080，用户名和密码在数据库的用户信息表中。
+3.后端框架：
+后端框架是 Spring Boot 框架。
+4.导入 SQL 文件：
+将"GOODS.sql","GSALES.sql","java_sql.sql","SALESMAN.sql"这些数据库文件导入oracle中。
+5.启动项目：
+直接在本地下载tomcat，在编译器中手动将项目打包成.war的形式，并且在编译器中选择使用tomcat运行这个war包。
+
